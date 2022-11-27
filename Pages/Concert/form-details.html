@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <meta charset="UTF-8">
+    <title>Artyści i koncerty</title>
+    <link rel ="stylesheet" href="../../css/style.css"/>
+</head>
+<body>
+<header>
+    <h1>Artyści i koncerty</h1>
+    <img scr="Images/logo.png" alt="Artysci i koncerty logo">
+</header>
+<nav>
+    <ul>
+        <li><a href ="">Strona główna</a></li>
+        <li><a href ="">Artysta</a></li>
+        <li><a href ="" class="active">Koncert</a></li>
+        <li><a href ="">Kto występował</a></li>
+    </ul>
+</nav>
+<main>
+    <h2>Szczegóły koncertu</h2>
+    <form class="form">
+        <label for="Venue">Lokalizacja: <span class="symbol-required">*</span></label>
+        <input type="text" name="Venue" value="Smolna" id="Venue" disabled>
+        <label for="StartDate">Data początkowa: <span class="symbol-required">*</span></label>
+        <input type="date" name="StartDate" value="2022-10-20" id="StartDate" disabled>
+        <label for="FinishDate">Data końca: <span class="symbol-required">*</span></label>
+        <input type="date" name="FinishDate" value="2022-10-20" id="FinishDate" disabled>
+    </form>
+    <div class="form-buttons">
+        <a href="">Edytuj</a>
+    </div>
+    <h2>Szczegóły artystów</h2>
+    <table class="table-list">
+        <thead>
+            <tr>
+                <th>Imie</th>
+                <th>Nazwisko</th>
+                <th>Pseudonim</th>
+                <th>Numer występu</th>
+                <th>Czas występu</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Kuba</td>
+            <td>Wudarski</td>
+            <td>qqubica</td>
+            <td>1</td>
+            <td>45</td>
+        </tr>
+        <tr>
+            <td>Arek</td>
+            <td>Barek</td>
+            <td>ABB</td>
+            <td>2</td>
+            <td>45</td>
+
+        </tr>
+        <tr>
+            <td>Marek</td>
+            <td>K</td>
+            <td>Hotel plaza</td>
+            <td>3</td>
+            <td>45</td>
+
+        </tr>
+        <tr>
+            <td>Tomek</td>
+            <td>W</td>
+            <td></td>
+            <td>4</td>
+            <td>60</td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+<footer>
+    Jakub Wudarski, s23291
+</footer>
+</body>
+</html>

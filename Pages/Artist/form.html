@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <meta charset="UTF-8">
+    <title>Artyści i koncerty</title>
+    <link rel ="stylesheet" href="../../css/style.css"/>
+</head>
+<body>
+<header>
+    <h1>Artyści i koncerty</h1>
+    <img scr="Images/logo.png" alt="Artysci i koncerty logo">
+</header>
+<nav>
+    <ul>
+        <li><a href ="">Strona główna</a></li>
+        <li><a href ="" class="active">Artysta</a></li>
+        <li><a href ="">Koncert</a></li>
+        <li><a href ="">Kto występował</a></li>
+    </ul>
+</nav>
+<main>
+    <h2>Nowy artysta</h2>
+    <form class="form">
+        <label for="FirstName">Imie: <span class="symbol-required">*</span></label>
+        <input type="text" name="imie" id="FirstName" required>
+        <span id="errorFirstName" class="errors-text">Pole jest wymagane</span>
+        <label for="LastName">Nazwisko: <span class="symbol-required">*</span></label>
+        <input type="text" name="nazwisko" id="LastName" required>
+        <span id="errorLastName" class="errors-text">Pole jest wymagane</span>
+        <label for="Pseudonym">Pseudonym: </label>
+        <input type="text" name="pseudonim" id="Pseudonym">
+        <label for="Birthdate">Data urodzenia: </label>
+        <input type="date" name="Data urodzenia" id="Birthdate">
+    </form>
+    <div class="form-buttons">
+        <p id="errorsSummary" class="errors-text">Popraw błędy w formularzu</p>
+        <input type="submit" class="button-add" value="Dodaj">
+        <a href="">Anuluj</a>
+    </div>
+</main>
+<footer>
+    Jakub Wudarski, s23291
+</footer>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <meta charset="UTF-8">
+    <title>Artyści i koncerty</title>
+    <link rel ="stylesheet" href="../../css/style.css"/>
+</head>
+<body>
+<header>
+    <h1>Artyści i koncerty</h1>
+    <img scr="Images/logo.png" alt="Artysci i koncerty logo">
+</header>
+<nav>
+    <ul>
+        <li><a href ="">Strona główna</a></li>
+        <li><a href ="">Artysta</a></li>
+        <li><a href ="" class="active">Koncert</a></li>
+        <li><a href ="">Kto występował</a></li>
+    </ul>
+</nav>
+<main>
+    <h2>Edytuj koncert</h2>
+    <form class="form">
+        <label for="Venue">Lokalizacja: <span class="symbol-required">*</span></label>
+        <input type="text" name="Venue" value="Smolna" id="Venue" required>
+        <label for="StartDate">Data początkowa: <span class="symbol-required">*</span></label>
+        <input type="date" name="StartDate" value="2022-10-20" id="StartDate" required>
+        <label for="FinishDate">Data końca: <span class="symbol-required">*</span></label>
+        <input type="date" name="FinishDate" value="2022-10-20" id="FinishDate">
+    </form>
+    <div class="form-buttons">
+        <input type="submit" class="button-add" value="Dodaj">
+        <a href="">Anuluj</a>
+    </div>
+</main>
+<footer>
+    Jakub Wudarski, s23291
+</footer>
+</body>
+</html>
