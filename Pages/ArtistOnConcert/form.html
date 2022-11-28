@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <meta charset="UTF-8">
+    <title>Artyści i koncerty</title>
+    <link rel ="stylesheet" href="../../css/style.css"/>
+</head>
+<body>
+<header>
+    <h1>Artyści i koncerty</h1>
+    <img src="../../Images/logo.png" alt="Artysci i koncerty logo">
+</header>
+<nav>
+    <ul>
+        <li><a href ="../../index.html">Strona główna</a></li>
+        <li><a href ="../Artist/list.html">Artysta</a></li>
+        <li><a href ="../Concert/list.html">Koncert</a></li>
+        <li><a href ="../ArtistOnConcert/list.html" class="active">Kto występował</a></li>
+    </ul>
+</nav>
+<main>
+    <h2>Nowy występ</h2>
+    <form class="form">
+        <label for="Artysta">Artysta: <span class="symbol-required">*</span></label>
+        <select name="Artysta" id="Artysta">
+            <option selected>Wybierz artystę</option>
+            <option>Kuba Wudarski</option>
+            <option>Hotel Plaza</option>
+            <option>Marek W</option>
+            <option >Arek</option>
+        </select>
+        <span class="emptySpan"></span>
+        <label for="Pseudonym">Pseudonym: </label>
+        <input type="text" name="pseudonim" id="Pseudonym">
+        <span class="emptySpan"></span>
+        <label for="Venue">Lokalizacja: <span class="symbol-required">*</span></label>
+        <select name="Venue" id="Venue">
+            <option selected>Wybierz gdzie jest koncert</option>
+            <option>Smolna</option>
+            <option>Jasna 1</option>
+            <option>Firleje Camp Festiwal</option>
+        </select>
+        <span class="emptySpan"></span>
+        <label for="Duration">Ile trwa występ:</label>
+        <input type="number" name="Duration" id="Duration">
+        <span class="emptySpan"></span>
+    </form>
+    <div class="form-buttons">
+        <input type="submit" class="button-add" value="Dodaj">
+        <a href="list.html" class="form-button-cancel">Anuluj</a>
+    </div>
+</main>
+<footer>
+    Jakub Wudarski, s23291
+</footer>
+</body>
+</html>

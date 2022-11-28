@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+  <meta charset="UTF-8">
+  <title>Artyści i koncerty</title>
+  <link rel ="stylesheet" href="../../css/style.css"/>
+</head>
+<body>
+<header>
+  <h1>Artyści i koncerty</h1>
+  <img src="../../Images/logo.png" alt="Artysci i koncerty logo">
+</header>
+<nav>
+  <ul>
+    <li><a href ="../../index.html">Strona główna</a></li>
+    <li><a href ="../Artist/list.html">Artysta</a></li>
+    <li><a href ="../Concert/list.html">Koncert</a></li>
+    <li><a href ="../ArtistOnConcert/list.html" class="active">Kto występował</a></li>
+  </ul>
+</nav>
+<main>
+  <h2>Nowy występ</h2>
+  <form class="form">
+    <label for="Artist">Artysta: <span class="symbol-required">*</span></label>
+    <select name="Artist" id="Artist" disabled>
+      <option >Wybierz artystę</option>
+      <option selected>Kuba Wudarski</option>
+      <option>Hotel Plaza</option>
+      <option>Marek W</option>
+      <option >Arek</option>
+    </select>
+    <span class="emptySpan"></span>
+
+    <label for="Pseudonym">Pseudonym: </label>
+    <input type="text" name="pseudonim" id="Pseudonym" disabled>
+    <span class="emptySpan"></span>
+    <label for="Venue">Lokalizacja: <span class="symbol-required">*</span></label>
+    <select name="Venue" id="Venue" disabled>
+      <option >Wybierz gdzie jest koncert</option>
+      <option selected>Smolna</option>
+      <option>Jasna 1</option>
+      <option>Firleje Camp Festiwal</option>
+    </select>
+    <span class="emptySpan"></span>
+    <label for="Duration">Ile trwa występ:</label>
+    <input type="number" name="Duration" id="Duration" value="45" disabled>
+    <span class="emptySpan"></span>
+  </form>
+  <div class="form-buttons">
+    <a href="form-edit.html" class="list-actions-button-edit">Edytuj</a>
+    <a href="list.html" class="list-actions-button-details">Powrót</a>
+  </div>
+</main>
+<footer>
+  Jakub Wudarski, s23291
+</footer>
+</body>
+</html>
