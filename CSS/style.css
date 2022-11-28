@@ -136,6 +136,37 @@ main h2 {
   margin-right: 1rem;
 }
 
+.button-edit,
+.button-details {
+  padding: 0.5rem 1rem;
+  margin-right: 1rem;
+  display: inline-block;
+  width: 75px;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+.button-details{
+  background-color: #2980b9;
+}
+
+.button-details:hover{
+  background-color: #3498db;
+}
+
+.button-edit{
+  background-color: #f39c12;
+}
+
+.button-edit:hover{
+  background-color: #f1c40f
+
+}
+
 .list-actions-button-details {
   background-color: #2980b9;
 }
