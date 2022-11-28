@@ -7,6 +7,10 @@ body {
   min-width: 600px;
 }
 
+p {
+  margin-top: 32px;
+}
+
 header,
 main,
 footer {
@@ -116,7 +120,7 @@ main h2 {
 .form-button-cancel {
   border: none;
   border-radius: 5px;
-  color:lightBlue;
+  color:white;
   text-decoration: none;
   text-align: center;
   font-size: 0.8rem;
@@ -221,6 +225,7 @@ textarea {
 }
 
 .form-button-cancel {
+  background-color: #ee4834;
   box-sizing: border-box;
 }
 

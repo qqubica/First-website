@@ -8,7 +8,7 @@
 <body>
 <header>
   <h1>Artyści i koncerty</h1>
-  <img scr="../../Images/logo.png" alt="Artysci i koncerty logo">
+  <img src="../../Images/logo.png" alt="Artysci i koncerty logo">
 </header>
 <nav>
   <ul>
@@ -23,15 +23,18 @@
   <form class="form">
     <label for="FirstName">Imie: <span class="symbol-required">*</span></label>
     <input type="text" name="imie" value="Kuba" id="FirstName" disabled>
+    <span class="emptySpan"></span>
     <label for="LastName">Nazwisko: <span class="symbol-required">*</span></label>
     <input type="text" name="nazwisko" value="Wudarski" id="LastName" disabled>
+    <span class="emptySpan"></span>
     <label for="Pseudonym">Pseudonym: </label>
     <input type="text" name="pseudonim" value="qqubica" id="Pseudonym" disabled>
+    <span class="emptySpan"></span>
     <label for="Birthdate">Data urodzenia: </label>
     <input type="date" name="Data urodzenia" value="1999-08-18" id="Birthdate" disabled>
   </form>
   <div class="form-buttons">
-    <a href="">Edytuj</a>
+    <a href="" class="list-actions-button-edit">Edytuj</a>
   </div>
   <h2>Szczegóły koncertów</h2>
   <table class="table-list">
@@ -44,32 +47,33 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-      <td>Progresja</td>
-      <td>1</td>
-      <td>60</td>
-      <td>27-10-2022</td>
-    </tr>
-    <tr>
-      <td>Smolna</td>
-      <td>2</td>
-      <td>45</td>
-      <td>11-11-2022</td>
-    </tr>
-    <tr>
-      <td>Jasna 1</td>
-      <td>2</td>
-      <td>90</td>
-      <td>18-08-2022</td>
-    </tr>
-    <tr>
-      <td>Firleje camp festiwal</td>
-      <td>3</td>
-      <td>75</td>
-      <td>12-07-2022</td>
-    </tr>
+      <tr>
+        <td>Progresja</td>
+        <td>1</td>
+        <td>60</td>
+        <td>27-10-2022</td>
+      </tr>
+      <tr>
+        <td>Smolna</td>
+        <td>2</td>
+        <td>45</td>
+        <td>11-11-2022</td>
+      </tr>
+      <tr>
+        <td>Jasna 1</td>
+        <td>2</td>
+        <td>90</td>
+        <td>18-08-2022</td>
+      </tr>
+      <tr>
+        <td>Firleje camp festiwal</td>
+        <td>3</td>
+        <td>75</td>
+        <td>12-07-2022</td>
+      </tr>
     </tbody>
   </table>
+  <p><a href="list.html" class="list-actions-button-details">Powrót</a></p>
 </main>
 <footer>
   Jakub Wudarski, s23291

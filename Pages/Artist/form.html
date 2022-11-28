@@ -8,7 +8,7 @@
 <body>
 <header>
     <h1>Artyści i koncerty</h1>
-    <img scr="../../Images/logo.png" alt="Artysci i koncerty logo">
+    <img src="../../Images/logo.png" alt="Artysci i koncerty logo">
 </header>
 <nav>
     <ul>
@@ -23,19 +23,19 @@
     <form class="form">
         <label for="FirstName">Imie: <span class="symbol-required">*</span></label>
         <input type="text" name="imie" id="FirstName" required>
-        <span id="errorFirstName" class="errors-text">Pole jest wymagane</span>
+        <span class="emptySpan"></span>
         <label for="LastName">Nazwisko: <span class="symbol-required">*</span></label>
         <input type="text" name="nazwisko" id="LastName" required>
-        <span id="errorLastName" class="errors-text">Pole jest wymagane</span>
+        <span class="emptySpan"></span>
         <label for="Pseudonym">Pseudonym: </label>
         <input type="text" name="pseudonim" id="Pseudonym">
+        <span class="emptySpan"></span>
         <label for="Birthdate">Data urodzenia: </label>
         <input type="date" name="Data urodzenia" id="Birthdate">
     </form>
     <div class="form-buttons">
-        <p id="errorsSummary" class="errors-text">Popraw błędy w formularzu</p>
         <input type="submit" class="button-add" value="Dodaj">
-        <a href="">Anuluj</a>
+        <a href="../../index.html" class="form-button-cancel">Anuluj</a>
     </div>
 </main>
 <footer>
