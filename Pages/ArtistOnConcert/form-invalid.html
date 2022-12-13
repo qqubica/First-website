@@ -22,6 +22,7 @@
 <main>
   <h2>Nowy występ</h2>
   <form class="form">
+
     <label for="Artist">Artysta: <span class="symbol-required">*</span></label>
     <select name="Artist" id="Artist" class="error-input">
       <option selected>Wybierz artystę</option>
@@ -31,9 +32,11 @@
       <option >Arek</option>
     </select>
     <span id="errorArtist" class="errors-text">Pole jest wymagane</span>
+
     <label for="Pseudonym">Pseudonym: </label>
     <input type="text" name="pseudonim" id="Pseudonym">
     <span class="emptySpan"></span>
+
     <label for="Venue">Lokalizacja: <span class="symbol-required">*</span></label>
     <select name="Venue" id="Venue" class="error-input">
       <option selected>Wybierz gdzie jest koncert</option>
@@ -42,9 +45,27 @@
       <option>Firleje Camp Festiwal</option>
     </select>
     <span id="errorVenue" class="errors-text">Pole jest wymagane</span>
+
     <label for="Duration">Ile trwa występ:</label>
     <input type="number" name="Duration" id="Duration">
     <span class="emptySpan"></span>
+
+    <label for="StartDate">Data początkowa: <span class="symbol-required">*</span></label>
+    <input type="date" class="error-input" name="StartDate" id="StartDate" required>
+    <span id="errorStartDate" class="errors-text">Pole jest wymagane</span>
+
+    <label for="FinishDate">Data końca: <span class="symbol-required">*</span></label>
+    <input type="date" class="error-input" name="FinishDate" id="FinishDate">
+    <span id="errorFinishDate" class="errors-text">Pole jest wymagane</span>
+
+    <label for="PerformanceId">Który to występ: <span class="symbol-required">*</span></label>
+    <input type="number" class="error-input" name="PerformanceId" id="PerformanceId">
+    <span id="errorPerformanceId" class="errors-text">Pole jest wymagane</span>
+
+    <label for="Birthdate">Data urodzenia: </label>
+    <input type="date" name="Data urodzenia" id="Birthdate">
+    <span class="emptySpan"></span>
+
   </form>
   <div class="form-buttons">
     <p id="errorsSummary" class="errors-text">Popraw błędy w formularzu</p>

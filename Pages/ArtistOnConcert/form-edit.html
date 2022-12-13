@@ -20,7 +20,7 @@
     </ul>
 </nav>
 <main>
-    <h2>Nowy występ</h2>
+    <h2>Edytuj występ</h2>
     <form class="form">
         <label for="Artist">Artysta: <span class="symbol-required">*</span></label>
         <select name="Artist" id="Artist">
@@ -42,9 +42,27 @@
             <option>Firleje Camp Festiwal</option>
         </select>
         <span class="emptySpan"></span>
+
         <label for="Duration">Ile trwa występ:</label>
         <input type="number" name="Duration" id="Duration" value="45">
         <span class="emptySpan"></span>
+
+        <label for="StartDate">Data początkowa: <span class="symbol-required">*</span></label>
+        <input type="date" name="StartDate" id="StartDate" value="2022-12-13" required>
+        <span class="emptySpan"></span>
+
+        <label for="FinishDate">Data końca: <span class="symbol-required">*</span></label>
+        <input type="date" name="FinishDate" id="FinishDate" value="2022-12-13" required>
+        <span class="emptySpan"></span>
+
+        <label for="PerformanceId">Który to występ: <span class="symbol-required">*</span></label>
+        <input type="number" name="PerformanceId" id="PerformanceId" value="1" required>
+        <span class="emptySpan"></span>
+
+        <label for="Birthdate">Data urodzenia: </label>
+        <input type="date" name="Data urodzenia" id="Birthdate">
+        <span class="emptySpan"></span>
+
     </form>
     <div class="form-buttons">
         <p>
