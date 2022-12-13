@@ -269,9 +269,9 @@ textarea {
   margin-bottom: 0.5rem;
 }
 
-.form input.error-inpute,
+.form input.error-input,
 .form select.error-input {
-  border: 3px solid #e74c3c;
+  border: 1px solid red;
 }
 
 .errors-text {
