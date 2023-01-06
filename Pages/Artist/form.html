@@ -5,6 +5,7 @@
     <title>Artyści i koncerty</title>
     <link rel ="stylesheet" href="../../css/style.css"/>
     <script type="application/javascript" src="../../JS/validationCommon.js"></script>
+    <script type="application/javascript" src="../../JS/validationArtistForm.js"></script>
 </head>
 <body>
 <header>
@@ -21,25 +22,25 @@
 </nav>
 <main>
     <h2>Nowy artysta</h2>
-    <form class="form">
+    <form class="form" onsubmit="return validateForm();" novalidate>
         <label for="FirstName">Imie: <span class="symbol-required">*</span></label>
-        <input type="text" name="imie" id="FirstName" required>
+        <input type="text" name="imie" id="FirstName" placeholder="2-50 znaków" required>
         <span class="emptySpan"></span>
         <label for="LastName">Nazwisko: <span class="symbol-required">*</span></label>
-        <input type="text" name="nazwisko" id="LastName" required>
+        <input type="text" name="nazwisko" id="LastName" placeholder="2-100 znaków" required>
         <span class="emptySpan"></span>
         <label for="Pseudonym">Pseudonym: </label>
-        <input type="text" name="pseudonim" id="Pseudonym">
+        <input type="text" name="pseudonim" id="Pseudonym" placeholder="2-200 znaków">
         <span class="emptySpan"></span>
         <label for="Birthdate">Data urodzenia: </label>
         <input type="date" name="Data urodzenia" id="Birthdate">
+        <div class="form-buttons">
+            <p>
+                <input type="submit" class="button-add" value="Dodaj">
+                <a href="../../index.html" class="form-button-cancel">Anuluj</a>
+            </p>
+        </div>
     </form>
-    <div class="form-buttons">
-        <p>
-            <input type="submit" class="button-add" value="Dodaj">
-            <a href="../../index.html" class="form-button-cancel">Anuluj</a>
-        </p>
-    </div>
 </main>
 <footer>
     Jakub Wudarski, s23291

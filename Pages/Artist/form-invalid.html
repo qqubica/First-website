@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Artyści i koncerty</title>
-    <link rel ="stylesheet" href="../../css/style.css"/>
+    <link rel="stylesheet" href="../../css/style.css"/>
     <script type="application/javascript" src="../../JS/validationCommon.js"></script>
+    <script type="application/javascript" src="../../JS/validationArtistForm.js"></script>
 </head>
 <body>
 <header>
@@ -33,12 +34,12 @@
         <span class="emptySpan"></span>
         <label for="Birthdate">Data urodzenia: </label>
         <input type="date" name="Data urodzenia" id="Birthdate">
+        <div class="form-buttons">
+            <p id="errorsSummary" class="errors-text">Popraw błędy w formularzu</p>
+            <input type="submit" class="button-add" value="Dodaj">
+            <a href="list.html" class="form-button-cancel">Anuluj</a>
+        </div>
     </form>
-    <div class="form-buttons">
-        <p id="errorsSummary" class="errors-text">Popraw błędy w formularzu</p>
-        <input type="submit" class="button-add" value="Dodaj">
-        <a href="list.html" class="form-button-cancel">Anuluj</a>
-    </div>
 </main>
 <footer>
     Jakub Wudarski, s23291
