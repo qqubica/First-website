@@ -1,3 +1,38 @@
+function checkNumber(number){
+    if(!value){
+        return false;
+    }
+    if (isNaN(value)){
+        return false;
+    }
+    return true;
+}
+
+function checkNumberBiggerThen(input, min){
+    let value = parseFloat(input);
+    if (value < min){
+        return false;
+    }
+    return true;
+}
+
+function checkDate(value){
+    if(!value){
+        return false;
+    }
+    const pattern = /(\d{4})-(\d{2})-(\d{2})/;
+    return pattern.test(value);
+}
+
+function chceckDateAfter(date, after){
+    const valueDate = new Date(date);
+    const compareToDate = new Date(after);
+    if(valueDate.getTime() < compareToDate.getTime()){
+        return false;
+    }
+    return true;
+}
+
 function resetErrors(inputs, errorTexts, errorInfo) {
     for (let i = 0; i < inputs.length; i++){
         inputs[i].classList.remove("error-input");
@@ -19,7 +54,7 @@ function checkRequired(value) {
     return true;
 }
 
-function chceckTextLengthRange(value, min, max) {
+function checkTextLengthRange(value, min, max) {
     if (!value){
         return false;
     }
