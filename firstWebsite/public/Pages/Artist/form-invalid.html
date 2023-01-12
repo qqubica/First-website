@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Artyści i koncerty</title>
-    <link rel ="stylesheet" href="../../css/style.css"/>
+    <link rel="stylesheet" href="../../css/style.css"/>
     <script type="application/javascript" src="../../JS/validationCommon.js"></script>
     <script type="application/javascript" src="../../JS/validationArtistForm.js"></script>
 </head>
@@ -15,30 +15,29 @@
 <nav>
     <ul>
         <li><a href ="../index.html">Strona główna</a></li>
-        <li><a href ="../Artist/list.html" class="active">Artysta</a></li>
-        <li><a href ="../Concert/list.html">Koncert</a></li>
+        <li><a href ="list.html" class="active">Artysta</a></li>
+        <li><a href ="list.html">Koncert</a></li>
         <li><a href ="../ArtistOnConcert/list.html">Kto występował</a></li>
     </ul>
 </nav>
 <main>
     <h2>Nowy artysta</h2>
-    <form class="form" onsubmit="return validateForm();" novalidate>
+    <form class="form">
         <label for="FirstName">Imie: <span class="symbol-required">*</span></label>
-        <input type="text" name="imie" id="FirstName" placeholder="2-50 znaków" required>
-        <span class="emptySpan"></span>
+        <input type="text" name="imie" id="FirstName" class="error-input" required>
+        <span id="errorFirstName" class="errors-text">Pole jest wymagane</span>
         <label for="LastName">Nazwisko: <span class="symbol-required">*</span></label>
-        <input type="text" name="nazwisko" id="LastName" placeholder="2-100 znaków" required>
-        <span class="emptySpan"></span>
+        <input type="text" name="nazwisko" id="LastName" class="error-input" required>
+        <span id="errorLastName" class="errors-text">Pole jest wymagane</span>
         <label for="Pseudonym">Pseudonym: </label>
-        <input type="text" name="pseudonim" id="Pseudonym" placeholder="2-200 znaków">
+        <input type="text" name="pseudonim" id="Pseudonym">
         <span class="emptySpan"></span>
         <label for="Birthdate">Data urodzenia: </label>
         <input type="date" name="Data urodzenia" id="Birthdate">
         <div class="form-buttons">
-            <p>
-                <input type="submit" class="button-add" value="Dodaj">
-                <a href="../index.html" class="form-button-cancel">Anuluj</a>
-            </p>
+            <p id="errorsSummary" class="errors-text">Popraw błędy w formularzu</p>
+            <input type="submit" class="button-add" value="Dodaj">
+            <a href="list.html" class="form-button-cancel">Anuluj</a>
         </div>
     </form>
 </main>
