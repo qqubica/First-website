@@ -1,24 +1,4 @@
-<!DOCTYPE html>
-<html lang="pl-PL">
-<head>
-  <meta charset="UTF-8">
-  <title>Artyści i koncerty</title>
-  <link rel ="stylesheet" href="../../css/style.css"/>
-  <script type="application/javascript" src="../../../public/JS/validationCommon.js"></script>
-</head>
-<body>
-<header>
-  <h1>Artyści i koncerty</h1>
-  <img src="../../../public/Images/logo.png" alt="Artysci i koncerty logo">
-</header>
-<nav>
-  <ul>
-    <li><a href ="../../index.html">Strona główna</a></li>
-    <li><a href ="../Artist/list.html">Artysta</a></li>
-    <li><a href ="../Concert/list.html">Koncert</a></li>
-    <li><a href ="list.html" class="active">Kto występował</a></li>
-  </ul>
-</nav>
+<%- include('./fragments/header.ejs') %>
 <main>
   <h2>Nowy występ</h2>
   <form class="form">
@@ -58,8 +38,4 @@
     </p>
   </div>
 </main>
-<footer>
-  Jakub Wudarski, s23291
-</footer>
-</body>
-</html>
+<%- include('./fragments/footer.ejs') %>

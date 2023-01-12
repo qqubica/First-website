@@ -13,9 +13,9 @@
 </header>
 <nav>
     <ul>
-        <li><a href ="/" class="active">Strona główna</a></li>
-        <li><a href ="/Artist">Artysta</a></li>
-        <li><a href ="/Concert">Koncert</a></li>
-        <li><a href ="ArtistOnConcert">Kto występował</a></li>
+        <li><a href ="/" class="<%= navLocation == 'main'? 'active': '' %>">Strona główna</a></li>
+        <li><a href ="/Artist" class="<%= navLocation == 'artist'? 'active': '' %>">Artysta</a></li>
+        <li><a href ="/Concert" class="<%= navLocation == 'concert'? 'active': '' %>">Koncert</a></li>
+        <li><a href ="/ArtistOnConcert" class="<%= navLocation == 'artistOnConcert'? 'active': '' %>">Kto występował</a></li>
     </ul>
 </nav>
