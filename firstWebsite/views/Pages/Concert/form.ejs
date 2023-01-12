@@ -4,12 +4,12 @@
         <meta charset="UTF-8">
         <title>Artyści i koncerty</title>
         <link rel ="stylesheet" href="../../css/style.css"/>
-        <script type="application/javascript" src="../../JS/validationCommon.js"></script>
+        <script type="application/javascript" src="../../../public/JS/validationCommon.js"></script>
     </head>
     <body>
         <header>
             <h1>Artyści i koncerty</h1>
-            <img src="../../Images/logo.png" alt="Artysci i koncerty logo">
+            <img src="../../../public/Images/logo.png" alt="Artysci i koncerty logo">
         </header>
         <nav>
             <ul>
@@ -20,21 +20,21 @@
             </ul>
         </nav>
         <main>
-            <h2>Edytuj koncert</h2>
+            <h2>Nowy koncert</h2>
             <form class="form">
                 <label for="Venue">Lokalizacja: <span class="symbol-required">*</span></label>
-                <input type="text" name="Venue" value="Smolna" id="Venue" required>
+                <input type="text" name="Venue" id="Venue" placeholder="2-200 znaków" required>
                 <span class="emptySpan"></span>
                 <label for="StartDate">Data początkowa: <span class="symbol-required">*</span></label>
-                <input type="date" name="StartDate" value="2022-10-20" id="StartDate" required>
+                <input type="date" name="StartDate" id="StartDate" required>
                 <span class="emptySpan"></span>
                 <label for="FinishDate">Data końca: <span class="symbol-required">*</span></label>
-                <input type="date" name="FinishDate" value="2022-10-20" id="FinishDate" required>
+                <input type="date" name="FinishDate" id="FinishDate">
             </form>
             <div class="form-buttons">
                 <p>
                     <input type="submit" class="button-add" value="Dodaj">
-                    <a href="list.html" class="form-button-cancel">Anuluj</a>
+                    <a href="../../index.html" class="form-button-cancel">Anuluj</a>
                 </p>
             </div>
         </main>
