@@ -3,9 +3,9 @@ exports.showArtistList = (req, res, next) => {
 }
 
 exports.showAddArtistForm = (req, res, next) => {
-    res.render('Pages/Artist/form' , { navLocation: 'artist' });
+    res.render('Pages/Artist/form', { navLocation: 'artist' });
 }
 
 exports.showArtistDetails = (req, res, next) => {
-    res.render('Pages/Artist/' , { navLocation: 'artist' });
+    res.render('Pages/Artist/', { navLocation: 'artist' });
 }
