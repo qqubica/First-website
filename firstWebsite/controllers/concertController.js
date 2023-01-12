@@ -7,5 +7,5 @@ exports.showAddConcertForm = (req, res, next) => {
 }
 
 exports.showConcertDetails= (req, res, next) => {
-    res.render('Pages/Consert/details' , { navLocation: 'concert' });
+    res.render('Pages/Concert/details' , { navLocation: 'concert' });
 }
