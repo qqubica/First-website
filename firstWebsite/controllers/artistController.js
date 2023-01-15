@@ -1,5 +1,14 @@
+const ArtistRepository = require('../repository/sequelize/ArtistRepository');
+
 exports.showArtistList = (req, res, next) => {
-    res.render('Pages/Artist/list', { navLocation: 'artist' })
+    ArtistRepository.getArtists()
+        .then(artists => {
+            // console.log(artists);
+            res.render('Pages/Artist/list', {
+                artists: artists,
+                navLocation: 'artist'
+            });
+        });
 };
 
 exports.showAddArtistForm = (req, res, next) => {
