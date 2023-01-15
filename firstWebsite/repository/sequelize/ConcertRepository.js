@@ -9,19 +9,7 @@ exports.getConcerts = () => {
 }
 
 exports.getConcertsById = (Id) => {
-    return Concert.findByPk(Id,
-        {
-            include: [
-                {
-                    model: ArtistOnConcert,
-                    as: 'artistOnConcert',
-                    include: [{
-                        model: Artist,
-                        as: 'artist',
-                    }]
-                }
-            ]
-        });
+    return Concert.findByPk(Id);
 };
 
 exports.createConcert = (data) => {
