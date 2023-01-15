@@ -38,8 +38,9 @@ exports.createArtist = (req, res, next) => {
 };
 
 exports.updateArtist = (req, res, next) => {
-    const artistIDd =req.params.id;
-    ArtistRepository.updateArtist(artistIDd, req.body)
+    const artistID = req.params.id;
+    console.log(artistID)
+    ArtistRepository.updateArtist(artistID, req.body)
         .then(result => {
             res.status(200).json({message: 'Artist updated', artist: result});
         })

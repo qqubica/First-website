@@ -19,13 +19,21 @@ exports.createArtist = (Data) => {
     });
 };
 
-exports.updateArtist = (Id, Data) => {
-    const firstName = Data.FirstName;
-    const lastName = Data.LastName;
-    const pseudonym = Data.Pseudonym;
-    const birthdate = Data.Birthdate;
+exports.updateArtist = (Id, data) => {
+    const artistId = Id;
+    const firstName = data.FirstName;
+    const lastName = data.LastName;
+    const pseudonym = data.Pseudonym;
+    const birthdate = data.Birthdate;
 
-    return Artist.update(data, {where: {id: Id}});
+    return Artist.update({
+        FirstName: firstName,
+        LastName: lastName,
+        Pseudonym: pseudonym,
+        Birthdate: birthdate
+    }, {
+        where: { id: artistId }
+    });
 }
 
 exports.deleteArtist = (Id) => {
