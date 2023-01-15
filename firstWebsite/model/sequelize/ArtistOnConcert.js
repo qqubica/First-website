@@ -1,41 +1,29 @@
 const Sequelize = require('sequelize')
 const sequelize = require('../../config/sequelize/sequelize');
 
-const notEmpty = {
-    msg: "Pole jest wymagane",
-}
-
-const isDate = {
-    msg: "Pole powinno być datą",
-}
-
-const Concert = sequelize.define('Concert', {
+const ArtistOnConcert = sequelize.define('ArtistOnConcert', {
     Id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         allowNull: false,
         autoIncrement: true,
     },
-    Venue: {
-        type: Sequelize.STRING(200),
+    ArtistId: {
+        type: Sequelize.INTEGER,
         allowNull: false,
-        len: {
-            args: [0,200],
-            msg: "Pole nie może mieć wiecej niż 200 znaków"
-        }
     },
-    StartDate: {
-        type: Sequelize.DATE,
+    ConcertId: {
+        type: Sequelize.INTEGER,
         allowNull: false,
-        validate: {
-            isDate,
-        },
     },
-    FinishDate: {
-        type: Sequelize.DATE,
+    PerformanceNumber: {
+        type: Sequelize.INTEGER,
         allowNull: false,
-        validate: {
-            isDate,
-        },
-    }
+    },
+    PerformanceTime: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+    },
 });
+
+module.exports = ArtistOnConcert;
