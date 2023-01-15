@@ -9,6 +9,10 @@ var artistRouter = require('./routes/artistRouter');
 var concertRouter = require('./routes/concertRouter');
 var artistOnConcertRouter = require('./routes/artistOnConcertRouter');
 
+const artistApiRouter = require('./routes/api/ArtistApiRoute');
+const concertApiRouter = require('./routes/api/ConcertApiRoute');
+const artistOnConcertApiRouter = require('./routes/api/ArtistOnConcertApiRoute');
+
 var app = express();
 
 // view engine setup
@@ -26,6 +30,9 @@ app.use('/artist', artistRouter);
 app.use('/concert', concertRouter);
 app.use('/artistOnConcert', artistOnConcertRouter);
 
+app.use('/api/artist', artistApiRouter);
+app.use('/api/concert', concertApiRouter);
+app.use('/api/artistOnConcert', artistOnConcertApiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
