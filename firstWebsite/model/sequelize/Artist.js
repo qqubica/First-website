@@ -3,7 +3,7 @@ const sequelize = require('../../config/sequelize/sequelize');
 
 const notEmpty = {
     msg: "Pole jest wymagane",
-}
+};
 
 const Artist = sequelize.define('Artist', {
     Id: {
@@ -53,3 +53,5 @@ const Artist = sequelize.define('Artist', {
         }
     },
 });
+
+model.exports = Artist;
