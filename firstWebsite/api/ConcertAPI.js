@@ -38,10 +38,14 @@ exports.createConcert = (req, res, next) => {
 };
 
 exports.updateConcert = (req, res, next) => {
+    console.log("concert apip")
+    console.log(req.params);
+    console.log(req.body);
     const concertId = req.params.id;
     ConcertRepository.updateConcert(concertId, req.body)
         .then(result => {
-            res.status(200).json({message: 'Artist updated', artist: result});
+            console.log("EQWA")
+            res.status(200).json({message: 'Concert updated', concert: result});
         })
         .catch(err => {
             if (!err.statusCode){
@@ -55,7 +59,7 @@ exports.deleteConcert = (req, res, next) => {
     const concertId = req.params.id;
     ConcertRepository.deleteConcert(concertId)
         .then(result => {
-            res.status(200).json({message: 'Removed artist', artist: result});
+            res.status(200).json({message: 'Removed Concert', concert: result});
         })
         .catch(err => {
             if (!err.statusCode){
