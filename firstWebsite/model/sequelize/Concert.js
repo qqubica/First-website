@@ -39,3 +39,5 @@ const Concert = sequelize.define('Concert', {
         },
     }
 });
+
+module.exports = Concert;
