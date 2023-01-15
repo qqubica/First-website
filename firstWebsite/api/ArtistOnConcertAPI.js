@@ -13,13 +13,13 @@ exports.getArtistsOnConcerts = (req, res, next) => {
 exports.getArtistsOnConcertsById = (req, res, next) => {
     const artistOnConcertId = req.params.id;
     ArtistOnConcertRepository.getArtistsOnConcertsById(artistOnConcertId)
-        .then((artists) => {
-            if(!artists) {
+        .then((artistOnConcertId) => {
+            if(!artistOnConcertId) {
                 res.status(404).json({
                     message: 'Artist with id: ' + artistOnConcertId + ' not found',
                 });
             } else {
-                res.status(200).json(artists)
+                res.status(200).json(artistOnConcertId)
             }
         });
 };

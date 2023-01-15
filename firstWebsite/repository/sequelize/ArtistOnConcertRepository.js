@@ -3,26 +3,11 @@ const Concert = require("../../model/sequelize/Concert");
 const ArtistOnConcert = require("../../model/sequelize/ArtistOnConcert");
 
 exports.getArtistsOnConcerts = () => {
-    return ArtistOnConcert.findAll({include: [
-            {
-                model: Artist,
-                as: 'artist',
-            },
-            {
-                model: Concert,
-                as: 'concert',
-            },
-        ]});
+    return ArtistOnConcert.findAll();
 };
 
 exports.getArtistsOnConcertsById = (artistOnConcertId) => {
-    return ArtistOnConcert.findByPk(artistOnConcertId,
-        {
-            include: [
-                {model: Artist, as: 'artists',},
-                {model: Concert, as: 'concerts'},
-            ]
-        });
+    return ArtistOnConcert.findByPk(artistOnConcertId);
 };
 
 exports.createArtistOnConcert = (newArtistOnConcert) => {
