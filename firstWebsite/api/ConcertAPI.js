@@ -1,7 +1,7 @@
-const ArtistRepository = require('../repository/sequelize/ArtistRepository');
+const ConcertRepository = require('../repository/sequelize/ConcertRepository');
 
-exports.getArtists = (req, res, next) => {
-    ArtistRepository.getArtists()
+exports.getConcerts = (req, res, next) => {
+    ConcertRepository.getConcerts()
         .then((artists) => {
             res.status(200).json(artists);
         })
@@ -10,13 +10,13 @@ exports.getArtists = (req, res, next) => {
         });
 };
 
-exports.getArtistsById = (req, res, next) => {
-    const id = req.params.id;
-    ArtistRepository.getArtistsById(id)
+exports.getConcertsById = (req, res, next) => {
+    const concertId = req.params.id;
+    ConcertRepository.getConcertsById(concertId)
         .then((artists) => {
             if(!artists) {
                 res.status(404).json({
-                    message: 'Artist with id: ' + id + ' not found',
+                    message: 'Artist with id: ' + concertId + ' not found',
                 });
             } else {
                 res.status(200).json(artists)
@@ -24,8 +24,8 @@ exports.getArtistsById = (req, res, next) => {
         });
 };
 
-exports.createArtist = (req, res, next) => {
-    ArtistRepository.createArtist(req.body)
+exports.createConcert = (req, res, next) => {
+    ConcertRepository.createConcert(req.body)
         .then(newObj => {
             res.status(201).json(newObj);
         })
@@ -37,9 +37,9 @@ exports.createArtist = (req, res, next) => {
         });
 };
 
-exports.updateArtist = (req, res, next) => {
-    const artistIDd =req.params.id;
-    ArtistRepository.updateArtist(artistIDd, req.body)
+exports.updateConcert = (req, res, next) => {
+    const concertId = req.params.id;
+    ConcertRepository.updateConcert(concertId, req.body)
         .then(result => {
             res.status(200).json({message: 'Artist updated', artist: result});
         })
@@ -51,9 +51,9 @@ exports.updateArtist = (req, res, next) => {
         });
 };
 
-exports.deleteArtist = (req, res, next) => {
-    const artistId = req.params.id;
-    ArtistRepository.deleteArtist(artistId)
+exports.deleteConcert = (req, res, next) => {
+    const concertId = req.params.id;
+    ConcertRepository.deleteConcert(concertId)
         .then(result => {
             res.status(200).json({message: 'Removed artist', artist: result});
         })
