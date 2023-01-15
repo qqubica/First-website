@@ -38,13 +38,27 @@ exports.createArtistOnConcert = (req, res, next) => {
 };
 
 exports.updateArtistOnConcert = (req, res, next) => {
-    const artistOnConcertId =req.params.id;
+    const artistOnConcertId = req.params.id;
     ArtistOnConcertRepository.updateArtistOnConcert(artistOnConcertId, req.body)
         .then(result => {
             res.status(200).json({message: 'Artist on concert updated', artistOnConcert: result});
         })
         .catch(err => {
             if (!err.statusCode){
+                err.statusCode = 500;
+            }
+            next(err);
+        });
+};
+
+exports.deleteArtistOnConcert = (req, res, next) => {
+    const artistOnConcertId = req.params.id;
+    ArtistOnConcertRepository.deleteArtistOnConcert(artistOnConcertId, req.body)
+        .then(result => {
+            res.status(200).json({message: 'Removed artist on concert', artistOnConcert: result});
+        })
+        .catch(err => {
+            if(!err.statusCode){
                 err.statusCode = 500;
             }
             next(err);
