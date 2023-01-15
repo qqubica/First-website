@@ -1,0 +1,418 @@
+{
+	"info": {
+		"_postman_id": "9ca82d17-b569-4ece-ac28-62ea6276f760",
+		"name": "TIN",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20187109"
+	},
+	"item": [
+		{
+			"name": "Concert",
+			"item": [
+				{
+					"name": "getAllConcerts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "0.0.0.0:3000/api/concert",
+							"host": [
+								"0",
+								"0",
+								"0",
+								"0"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"concert"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get1Concert",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "0.0.0.0:3000/api/concert/1",
+							"host": [
+								"0",
+								"0",
+								"0",
+								"0"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"concert",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createConcert",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Venue\":\"test\",\r\n    \"StartDate\":\"2022-01-01\",\r\n    \"FinishDate\":\"2022-01-01\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "0.0.0.0:3000/api/concert",
+							"host": [
+								"0",
+								"0",
+								"0",
+								"0"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"concert"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateConcert",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Venue\":\"tesadasdasst\",\r\n    \"StartDate\":\"2022-01-01\",\r\n    \"FinishDate\":\"2022-01-01\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "0.0.0.0:3000/api/concert/2",
+							"host": [
+								"0",
+								"0",
+								"0",
+								"0"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"concert",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteConcert",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "0.0.0.0:3000/api/concert/2",
+							"host": [
+								"0",
+								"0",
+								"0",
+								"0"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"concert",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Artist",
+			"item": [
+				{
+					"name": "getAllArtists",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "0.0.0.0:3000/api/artist",
+							"host": [
+								"0",
+								"0",
+								"0",
+								"0"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"artist"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get1Artist",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "0.0.0.0:3000/api/artist/3",
+							"host": [
+								"0",
+								"0",
+								"0",
+								"0"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"artist",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createArtist",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"FirstName\": \"Arek\",\r\n    \"LastName\": \"U\",\r\n    \"Pseudonym\": null,\r\n    \"Birthdate\": \"2012-09-20T00:00:00.000Z\",\r\n    \"createdAt\": \"2023-01-15T20:33:31.000Z\",\r\n    \"updatedAt\": \"2023-01-15T20:33:31.000Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "0.0.0.0:3000/api/artist",
+							"host": [
+								"0",
+								"0",
+								"0",
+								"0"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"artist"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateArtist",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"FirstName\": \"sad\",\r\n    \"LastName\": \"Tasdasd\",\r\n    \"Pseudonym\": \"T.asdasM\",\r\n    \"Birthdate\": \"2000-03-13\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "0.0.0.0:3000/api/artist/1",
+							"host": [
+								"0",
+								"0",
+								"0",
+								"0"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"artist",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteArtist",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "0.0.0.0:3000/api/artist/1",
+							"host": [
+								"0",
+								"0",
+								"0",
+								"0"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"artist",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ArtistOnConcert",
+			"item": [
+				{
+					"name": "getAllArtistOnConcert",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "0.0.0.0:3000/api/artistOnConcert",
+							"host": [
+								"0",
+								"0",
+								"0",
+								"0"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"artistOnConcert"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get1ArtistOnConcert",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "0.0.0.0:3000/api/artistOnConcert/1",
+							"host": [
+								"0",
+								"0",
+								"0",
+								"0"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"artistOnConcert",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createArtistOnConcert",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ArtistId\": 5,\r\n    \"ConcertId\": 1,\r\n    \"PerformanceNumber\": 2,\r\n    \"PerformanceTime\": 35\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "0.0.0.0:3000/api/artistOnConcert",
+							"host": [
+								"0",
+								"0",
+								"0",
+								"0"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"artistOnConcert"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateArtistOnConcert",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"PerformanceNumber\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "0.0.0.0:3000/api/artistOnConcert/1",
+							"host": [
+								"0",
+								"0",
+								"0",
+								"0"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"artistOnConcert",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteArtistOnConcert",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "0.0.0.0:3000/api/artistOnConcert/1",
+							"host": [
+								"0",
+								"0",
+								"0",
+								"0"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"artistOnConcert",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
