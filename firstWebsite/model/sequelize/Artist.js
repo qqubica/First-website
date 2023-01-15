@@ -54,4 +54,4 @@ const Artist = sequelize.define('Artist', {
     },
 });
 
-model.exports = Artist;
+module.exports = Artist;
