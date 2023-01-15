@@ -15,6 +15,12 @@ const artistOnConcertApiRouter = require('./routes/api/ArtistOnConcertApiRoute')
 
 var app = express();
 
+// const bodyParser = require('body-parser');
+// app.use(bodyParser);
+
+// const morgan = require('morgan');
+// app.use(morgan('combined'));
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
