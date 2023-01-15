@@ -15,12 +15,6 @@ const artistOnConcertApiRouter = require('./routes/api/ArtistOnConcertApiRoute')
 
 var app = express();
 
-// const bodyParser = require('body-parser');
-// app.use(bodyParser);
-
-// const morgan = require('morgan');
-// app.use(morgan('combined'));
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -30,6 +24,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// const morgan = require('morgan');
+// app.use(morgan((tokens, req, res) => {
+//     return [
+//         tokens.method(req, res),
+//         tokens.url(req, res),
+//         tokens.status(req, res),
+//         tokens['response-time'](req, res), 'ms',
+//         tokens.res(req, res, 'content-length'), '-',
+//         JSON.stringify(req.body)
+//     ].join(' ')
+// }));
 
 app.use('/', indexRouter);
 app.use('/artist', artistRouter);
