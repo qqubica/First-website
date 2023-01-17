@@ -2,7 +2,13 @@
 <main>
     <script type="application/javascript" src="./public/JS/validationArtistForm.js"></script>
     <h2><%= pageTitle %></h2>
-    <form class="form"  method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
+    <form
+    class="form"
+    method="post"
+    action="<%=formAction%>"
+    onsubmit="return validateForm();"
+    novalidate
+    >
         <input type="hidden" name="id" value="<%=artist.Id ? artist.Id: ''%>">
 
         <label for="FirstName">Imie: <span class="symbol-required">*</span></label>
