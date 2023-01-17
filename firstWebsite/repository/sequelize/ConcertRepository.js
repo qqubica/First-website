@@ -3,13 +3,13 @@ const Sequelize = require('sequelize');
 const Artist = require("../../model/sequelize/Artist");
 const Concert = require("../../model/sequelize/Concert");
 const ArtistOnConcert = require("../../model/sequelize/ArtistOnConcert");
-const {getConcertsById} = require("../../api/ConcertAPI");
+const {getConcertById} = require("../../api/ConcertAPI");
 
 exports.getConcerts = () => {
     return Concert.findAll();
 }
 
-exports.getConcertsById = (Id) => {
+exports.getConcertById = (Id) => {
     return Concert.findByPk(Id);
 };
 

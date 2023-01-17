@@ -20,6 +20,7 @@ exports.createArtist = (Data) => {
 };
 
 exports.updateArtist = (Id, data) => {
+    console.log("UPdating");
     const artistId = Id;
     const firstName = data.FirstName;
     const lastName = data.LastName;

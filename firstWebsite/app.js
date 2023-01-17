@@ -25,17 +25,17 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// const morgan = require('morgan');
-// app.use(morgan((tokens, req, res) => {
-//     return [
-//         tokens.method(req, res),
-//         tokens.url(req, res),
-//         tokens.status(req, res),
-//         tokens['response-time'](req, res), 'ms',
-//         tokens.res(req, res, 'content-length'), '-',
-//         JSON.stringify(req.body)
-//     ].join(' ')
-// }));
+const morgan = require('morgan');
+app.use(morgan((tokens, req, res) => {
+    return [
+        tokens.method(req, res),
+        tokens.url(req, res),
+        tokens.status(req, res),
+        tokens['response-time'](req, res), 'ms',
+        tokens.res(req, res, 'content-length'), '-',
+        JSON.stringify(req.body)
+    ].join(' ')
+}));
 
 app.use('/', indexRouter);
 app.use('/artist', artistRouter);

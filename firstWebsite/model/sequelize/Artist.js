@@ -15,6 +15,7 @@ const Artist = sequelize.define('Artist', {
     FirstName: {
         type: Sequelize.STRING(50),
         allowNull: false,
+        unique: false,
         validate: {
             notEmpty
         },
@@ -26,6 +27,8 @@ const Artist = sequelize.define('Artist', {
     LastName: {
         type: Sequelize.STRING(100),
         allowNull: false,
+        unique: false,
+
         validate: {
             notEmpty
         },
@@ -37,11 +40,11 @@ const Artist = sequelize.define('Artist', {
     Pseudonym: {
         type: Sequelize.STRING(200),
         allowNull: true,
-        unique: true,
+        unique: false,
         validate: {
             len: {
-                args: [1, 200],
-                msg: "Pole powinno zawierać od 1 do 200 znaków",
+                args: [0, 200],
+                msg: "Pole powinno zawierać do 200 znaków",
             },
         },
     },

@@ -14,7 +14,6 @@
         </thead>
         <tbody>
             <% artists.forEach(artist =>  { %>
-                <% console.log(artist.Birthdate) %>
                 <tr>
                     <td><%= artist.FirstName %></td>
                     <td><%= artist.LastName %></td>
@@ -27,7 +26,7 @@
                     </td>
                     <td>
                         <% if(artist.Birthdate) { %>
-                            <%= artist.Birthdate.toString().substring(4,15) %>
+                            <%= artist.Birthdate.toISOString().split('T')[0] %>
                         <% } else { %>
                             N/A
                         <% } %>
@@ -46,6 +45,6 @@
     <% } else { %>
         <p>Brak artystów do wyświetlenia</p>
     <% } %>
-    <p><a href="./list-empty.ejs" class="button-add">Dodaj nowego artystę</a></p>
+    <p><a href="/artist/add" class="button-add">Dodaj nowego artystę</a></p>
 </main>
 <%- include('../../fragments/footer.ejs') %>

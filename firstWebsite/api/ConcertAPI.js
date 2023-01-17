@@ -10,9 +10,9 @@ exports.getConcerts = (req, res, next) => {
         });
 };
 
-exports.getConcertsById = (req, res, next) => {
+exports.getConcertById = (req, res, next) => {
     const concertId = req.params.id;
-    ConcertRepository.getConcertsById(concertId)
+    ConcertRepository.getConcertById(concertId)
         .then((artists) => {
             if(!artists) {
                 res.status(404).json({
@@ -38,9 +38,6 @@ exports.createConcert = (req, res, next) => {
 };
 
 exports.updateConcert = (req, res, next) => {
-    console.log("concert apip")
-    console.log(req.params);
-    console.log(req.body);
     const concertId = req.params.id;
     ConcertRepository.updateConcert(concertId, req.body)
         .then(result => {

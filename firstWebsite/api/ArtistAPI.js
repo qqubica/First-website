@@ -30,17 +30,20 @@ exports.createArtist = (req, res, next) => {
             res.status(201).json(newObj);
         })
         .catch(err => {
+            console.log("Err")
             if(!err.statusCode){
                 err.statusCode = 500;
             }
             next(err);
-        });
+        })
 };
 
 exports.updateArtist = (req, res, next) => {
+    console.log("ASDASDAdawsd");
+
     const artistID = req.params.id;
-    console.log(artistID)
-    ArtistRepository.updateArtist(artistID, req.body)
+    const artistData = req.body;
+    ArtistRepository.updateArtist(artistID, artistData)
         .then(result => {
             res.status(200).json({message: 'Artist updated', artist: result});
         })
