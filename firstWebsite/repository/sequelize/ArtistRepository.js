@@ -7,7 +7,6 @@ exports.getArtists = () => {
 };
 
 exports.getArtistsById = (Id) => {
-    console.log(Id)
     return Artist.findByPk(Id);
 }
 

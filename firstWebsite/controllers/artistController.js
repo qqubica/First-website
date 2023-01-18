@@ -27,9 +27,9 @@ exports.showEditArtistDetails = (req, res, next) => {
         .then(artist => {
             res.render('Pages/Artist/form', {
                 artist: artist,
-                pageTitle: 'Edytuj artysta',
+                pageTitle: 'Edytuj artystę',
                 formMode: 'edit',
-                btnLabel: 'Edytuj pracownika',
+                btnLabel: 'Edytuj artystę',
                 formAction: '../edit',
                 navLocation: 'artist'
            });
@@ -45,7 +45,7 @@ exports.showArtistDetails = (req, res, next) => {
                 artist: artist.dataValues,
                 pageTitle: 'Szczegóły artysty',
                 formMode: 'showDetails',
-                formAction: 'artist/edit',
+                formAction: '',
                 navLocation: 'artist'
             });
         });
