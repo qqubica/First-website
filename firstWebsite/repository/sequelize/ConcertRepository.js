@@ -24,24 +24,24 @@ exports.createConcert = (data) => {
 exports.updateConcert = (id, data) => {
     const concertId = id
     const venue = data.Venue;
-    const startDate = data.StartDate;
-    const finishDate = data.FinishDate;
+    const startDate = data.StartDate == '' ? null: data.StartDate;
+    const finishDate = data.FinishDate == '' ? null: data.FinishDate;
 
     return Concert.update({
         Venue: venue,
         StartDate: startDate,
         FinishDate: finishDate
     },{
-        where: { id: concertId }
+        where: { Id: concertId }
     });
 };
 
 exports.deleteConcert = (id) => {
     return Concert.destroy({
-        where: { id: id }
+        where: { Id: id }
     });
 };
 
 exports.deleteManyArtistsOnConcert = (ids) => {
-    return ArtistOnConcert.find({ id: { [Sequelize.Op.in]: ids}});
+    return ArtistOnConcert.find({ Id: { [Sequelize.Op.in]: ids}});
 };
