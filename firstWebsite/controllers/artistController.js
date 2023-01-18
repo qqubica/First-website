@@ -30,7 +30,7 @@ exports.showEditArtistDetails = (req, res, next) => {
                 pageTitle: 'Edytuj artysta',
                 formMode: 'edit',
                 btnLabel: 'Edytuj pracownika',
-                formAction: 'artist/edit',
+                formAction: '../edit',
                 navLocation: 'artist'
            });
         });
@@ -65,8 +65,7 @@ exports.addArtist = (req, res, next) => {
 };
 
 exports.updateArtist = (req, res, next) => {
-    console.log("DLACZEGO")
-    console.log(req.body)
+    // console.log(req.body)
     ArtistRepository.updateArtist(req.params.id, req.body)
         .then((result) => {
             res.redirect('/artist');

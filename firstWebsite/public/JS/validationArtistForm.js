@@ -1,4 +1,6 @@
 function validateForm(){
+
+
     const firstNameInput = document.getElementById('FirstName');
     const lastNameInput = document.getElementById('LastName');
     const pseudonymInput = document.getElementById('Pseudonym');

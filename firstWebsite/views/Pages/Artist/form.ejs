@@ -1,13 +1,14 @@
 <%- include('../../fragments/header.ejs') %>
 <main>
     <script type="application/javascript" src="../../JS/validationArtistForm.js"></script>
-    <h2><%= pageTitle %></h2>
+
+    <h2><%= pageTitle %>></h2>
     <form
-    class="form"
-    method="post"
-    action="<%=formAction%>"
-    onsubmit="return validateForm();"
-    novalidate
+        class="form"
+        method="post"
+        action="<%=formAction%>"
+        onsubmit="return validateForm();"
+        novalidate
     >
         <input type="hidden" name="id" value="<%=artist.Id ? artist.Id: ''%>">
 
@@ -38,7 +39,7 @@
         <% }else{ %>
             <div class="form-buttons">
                 <p>
-                    <input href="/artist" type="submit" class="button-edit" value="Edytuj">
+                    <input href="/artist" action="<%=formAction%>" type="submit" class="button-edit" value="Edytuj">
                     <a href="/artist" class="form-button-cancel">Anuluj</a>
                 </p>
             </div>

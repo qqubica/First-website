@@ -7,6 +7,7 @@ exports.getArtists = () => {
 };
 
 exports.getArtistsById = (Id) => {
+    console.log(Id)
     return Artist.findByPk(Id);
 }
 
@@ -19,13 +20,17 @@ exports.createArtist = (Data) => {
     });
 };
 
-exports.updateArtist = (Id, data) => {
-    console.log("UPdating");
-    const artistId = Id;
-    const firstName = data.FirstName;
-    const lastName = data.LastName;
-    const pseudonym = data.Pseudonym;
-    const birthdate = data.Birthdate;
+exports.updateArtist = async (Id, data) => {
+    const artistId = data.id;
+
+    if(!await Artist.findByPk(artistId)){
+        return;
+    }
+
+    const firstName = data.firstName;
+    const lastName = data.lastName;
+    const pseudonym = data.pseudonym;
+    const birthdate = data.birthdate == '' ? null: data.birthdate;
 
     return Artist.update({
         FirstName: firstName,
@@ -33,7 +38,7 @@ exports.updateArtist = (Id, data) => {
         Pseudonym: pseudonym,
         Birthdate: birthdate
     }, {
-        where: { id: artistId }
+        where: { Id: artistId }
     });
 }
 

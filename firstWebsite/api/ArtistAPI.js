@@ -39,8 +39,6 @@ exports.createArtist = (req, res, next) => {
 };
 
 exports.updateArtist = (req, res, next) => {
-    console.log("ASDASDAdawsd");
-
     const artistID = req.params.id;
     const artistData = req.body;
     ArtistRepository.updateArtist(artistID, artistData)
