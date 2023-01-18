@@ -10,6 +10,6 @@ router.get('/details/:concertId', concertController.showConcertDetails);
 
 router.post('/add', concertController.addConcert);
 router.post('/edit', concertController.updateConcert);
-router.post('/delete/:id', concertController.deleteConcert);
+router.get('/delete/:id', concertController.deleteConcert);
 
 module.exports = router;
