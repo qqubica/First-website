@@ -1,6 +1,7 @@
 <%- include('../../fragments/header.ejs') %>
     <main>
         <h2>Lista koncertow</h2>
+        <% if(concerts.length >= 1){ %>
         <table class="table-list">
             <thead>
             <tr>
@@ -11,62 +12,25 @@
             </tr>
             </thead>
             <tbody>
+                <% concerts.forEach(concert => { %>
             <tr>
-                <td>Smolna</td>
-                <td>18-08-2022</td>
-                <td>18-08-2022</td>
+                <td><%= concert.Venue %></td>
+                <td><%= concert.StartDate.toISOString().split('T')[0] %></td>
+                <td><%= concert.FinishDate.toISOString().split('T')[0] %></td>
                 <td>
                     <ul class="list-actions">
-                        <li>
-                            <a href="form-details.html" class="list-actions-button-details">Szczegóły</a>
-                        </li>
-                        <li>
-                            <a href="form-edit.html" class="list-actions-button-edit">Edytuj</a>
-                        </li>
-                        <li>
-                            <a href="list.html" class="list-actions-button-delete">Usuń</a>
-                        </li>
+                        <li><a href="/concert/details/<%=concert.Id%>" class="list-actions-button-details">Szczegóły</a></li>
+                        <li> <a href="/concert/edit/<%=concert.Id%>" class="list-actions-button-edit">Edytuj</a></li>
+                        <li><a href="/concert/delete/<%=concert.Id%>" class="list-actions-button-delete">Usuń</a></li>
                     </ul>
                 </td>
             </tr>
-            <tr>
-                <td>Jasna 1</td>
-                <td>20-09-2022</td>
-                <td>21-09-2022</td>
-                <td>
-                    <ul class="list-actions">
-                        <li>
-                            <a href="form-details.html" class="list-actions-button-details">Szczegóły</a>
-                        </li>
-                        <li>
-                            <a href="form-edit.html" class="list-actions-button-edit">Edytuj</a>
-                        </li>
-                        <li>
-                            <a href="list.html" class="list-actions-button-delete">Usuń</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-            <tr>
-                <td>Firleje camp festiwal</td>
-                <td>10-08-2022</td>
-                <td>12-08-2022</td>
-                <td>
-                    <ul class="list-actions">
-                        <li>
-                            <a href="form-details.html" class="list-actions-button-details">Szczegóły</a>
-                        </li>
-                        <li>
-                            <a href="form-edit.html" class="list-actions-button-edit">Edytuj</a>
-                        </li>
-                        <li>
-                            <a href="list.html" class="list-actions-button-delete">Usuń</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
+            <% }); %>
             </tbody>
         </table>
+        <% }else{ %>
+            <p>Brak koncertów do wyświetlenia</p>
+        <% } %>
         <p><a href="form.html" class="button-add">Dodaj nowey koncert</a></p>
     </main>
 <%- include('../../fragments/footer.ejs') %>
