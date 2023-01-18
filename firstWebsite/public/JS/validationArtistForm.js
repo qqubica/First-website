@@ -1,6 +1,5 @@
 function validateForm(){
 
-
     const firstNameInput = document.getElementById('FirstName');
     const lastNameInput = document.getElementById('LastName');
     const pseudonymInput = document.getElementById('Pseudonym');
@@ -38,6 +37,7 @@ function validatePseudonym(pseudonymInput, isFormValid, error) {
         isFormValid = false;
         pseudonymInput.classList.add("error-input");
         error.innerText = "Pole może mieć od " + minimalLength + " do " + maximalLength;
+        return;
     }
 }
 function validateFirstName(firstNameInput, isFormValid, error) {
@@ -55,6 +55,7 @@ function validateFirstName(firstNameInput, isFormValid, error) {
         isFormValid = false;
         firstNameInput.classList.add("error-input");
         error.innerText = "Pole może mieć od " + minimalLength + " do " + maximalLength;
+        return;
     }
 }
 
@@ -73,6 +74,7 @@ function validateLastName(lastNameInput, isFormValid, error) {
         isFormValid = false;
         lastNameInput.classList.add("error-input");
         error.innerText = "Pole może mieć od " + minimalLength + " do " + maximalLength;
+        return;
     }
 }
 
@@ -81,5 +83,6 @@ function validateDate(date, isFormValid, error) {
         isFormValid = false;
         date.classList.add("error-input");
         error.innerText = "To nie jest data"
+        return;
     }
 }
