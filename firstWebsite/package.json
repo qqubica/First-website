@@ -1,7 +1,7 @@
 {
   "name": "firstwebsite",
-  "version": "0.0.0",
-  "private": true,
+  "version": "1.9.0",
+  "private": false,
   "scripts": {
     "start": "nodemon ./bin/www"
   },
