@@ -1,6 +1,9 @@
 <%- include('../../fragments/header.ejs') %>
         <main>
+            <script type="application/javascript" src="../../JS/validationConcertForm.js"></script>
+
             <h2><%= pageTitle %></h2>
+
             <form
                 class="form"
                 method="post"
@@ -8,7 +11,7 @@
                 onsubmit="return validateForm()"
                 novalidate
             >
-                <input type="hidden" name="id" value="<%=concert.Id ? concert.Id: ''%>">
+                <input type="hidden" name="Id" value="<%=concert.Id ? concert.Id: ''%>">
 
                 <label for="Venue">Lokalizacja: <span class="symbol-required">*</span></label>
                 <input type="text" name="Venue" id="Venue" placeholder="2-200 znaków" value="<%=concert.Venue%>" <%= formMode == 'showDetails' ? 'disabled': ''%>>
@@ -27,13 +30,12 @@
                    <%= formMode == 'showDetails' ? 'disabled': '' %>
                 >
 
-            </form>
             <% if(formMode == 'showDetails' || formMode == 'createNew'){ %>
                 <div class="form-buttons">
                     <p>
                         <% if(formMode == 'createNew'){ %>
                             <input
-                                    href="/concert/add"
+                                    href="/concert"
                                     type="submit"
                                     class="button-add"
                                     value="Dodaj"
@@ -50,5 +52,6 @@
                     </p>
                 </div>
             <% } %>
+            </form>
         </main>
 <%- include('../../fragments/footer.ejs') %>
