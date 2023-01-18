@@ -20,9 +20,7 @@ exports.createArtist = (Data) => {
 };
 
 exports.updateArtist = async (Id, data) => {
-    const artistId = data.id;
-
-    if(!await Artist.findByPk(artistId)){
+    if(!await Artist.findByPk(Id)){
         return;
     }
 
@@ -37,7 +35,7 @@ exports.updateArtist = async (Id, data) => {
         Pseudonym: pseudonym,
         Birthdate: birthdate
     }, {
-        where: { Id: artistId }
+        where: { Id: Id }
     });
 }
 

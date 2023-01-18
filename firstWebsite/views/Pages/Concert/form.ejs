@@ -30,28 +30,68 @@
                    <%= formMode == 'showDetails' ? 'disabled': '' %>
                 >
 
-            <% if(formMode == 'showDetails' || formMode == 'createNew'){ %>
-                <div class="form-buttons">
-                    <p>
-                        <% if(formMode == 'createNew'){ %>
-                            <input
+                <% if(formMode == 'showDetails' || formMode == 'createNew'){ %>
+                    <div class="form-buttons">
+                        <p>
+                            <% if(formMode == 'createNew'){ %>
+                                <input
                                     href="/concert"
                                     type="submit"
                                     class="button-add"
                                     value="Dodaj"
-                            >
-                        <% } %>
-                        <a href="/concert" class="form-button-cancel">Anuluj</a>
-                    </p>
-                </div>
-            <% }else{ %>
-                <div class="form-buttons">
-                    <p>
-                        <input href="/concert" action="<%=formAction%>" type="submit" class="button-edit" value="Edytuj">
-                        <a href="/concert" class="form-button-cancel">Anuluj</a>
-                    </p>
-                </div>
-            <% } %>
+                                >
+                            <% } %>
+                            <a href="/concert" class="form-button-cancel">Anuluj</a>
+                        </p>
+                    </div>
+                <% }else{ %>
+                    <div class="form-buttons">
+                        <p>
+                            <input href="/concert" action="<%=formAction%>" type="submit" class="button-edit" value="Edytuj">
+                            <a href="/concert" class="form-button-cancel">Anuluj</a>
+                        </p>
+                    </div>
+                <% } %>
             </form>
+            <% if(formMode == 'showDetails'){ %>
+
+                <h2>Szczegóły występów</h2>
+
+                <table class="table-list">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Imie</th>
+                            <th>Nazwisko</th>
+                            <th>Pseudonim</th>
+                            <th>Numer występu</th>
+                            <th>Czas występu</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <% performances.forEach(performance => { %>
+                            <tr>
+
+                                <td><%=performance.FirstName%></td>
+                                <td><%=performance.LastName%></td>
+                                <td><%=performance.Pseudonym%></td>
+                                <td><%=performance.PerformanceNumber%></td>
+                                <td><%=performance.PerformanceTime%></td>
+
+                            </tr>
+                        <% }); %>
+
+
+                    </tbody>
+
+                </table>
+
+            <% } %>
         </main>
 <%- include('../../fragments/footer.ejs') %>

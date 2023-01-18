@@ -65,8 +65,7 @@ exports.addArtist = (req, res, next) => {
 };
 
 exports.updateArtist = (req, res, next) => {
-    // console.log(req.body)
-    ArtistRepository.updateArtist(req.params.id, req.body)
+    ArtistRepository.updateArtist(req.body.id, req.body)
         .then((result) => {
             res.redirect('/artist');
         })

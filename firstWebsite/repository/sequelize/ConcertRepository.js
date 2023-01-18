@@ -1,9 +1,9 @@
 const Sequelize = require('sequelize');
 
-const Artist = require("../../model/sequelize/Artist");
+// const Artist = require("../../model/sequelize/Artist");
 const Concert = require("../../model/sequelize/Concert");
 const ArtistOnConcert = require("../../model/sequelize/ArtistOnConcert");
-const {getConcertById} = require("../../api/ConcertAPI");
+// const {getConcertById} = require("../../api/ConcertAPI");
 
 exports.getConcerts = () => {
     return Concert.findAll();
@@ -36,12 +36,12 @@ exports.updateConcert = (id, data) => {
     });
 };
 
-exports.deleteConcert = (id) => {
+exports.deleteConcert = (Id) => {
     return Concert.destroy({
-        where: { Id: id }
+        where: { id: Id }
     });
 };
 
 exports.deleteManyArtistsOnConcert = (ids) => {
-    return ArtistOnConcert.find({ Id: { [Sequelize.Op.in]: ids}});
+    return ArtistOnConcert.find({ Id: { [Sequelize.Op.in]: ids }});
 };

@@ -38,7 +38,7 @@ module.exports = () => {
     ArtistOnConcert.belongsTo(
         Concert,
         {
-            as: 'ArtistOnConcert',
+            as: 'performedDuring',
             foreignKey: { name: 'ConcertId' },
         }
     );

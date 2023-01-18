@@ -1,5 +1,6 @@
 function validateForm(){
 
+
     const venueInput = document.getElementById('Venue');
     const startDateInput = document.getElementById('StartDate');
     const finishDateInput= document.getElementById('FinishDate');
