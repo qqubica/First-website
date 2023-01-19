@@ -25,10 +25,12 @@ exports.showAddConcertForm = (req, res, next) => {
 
 exports.showEditConcertForm = (req, res, next) => {
     const concertId = req.params.concertId;
+
     ConcertRepository.getConcertById(concertId)
         .then(concert => {
             res.render('Pages/Concert/form', {
                 concert: concert,
+                performances: [],
                 pageTitle: 'Edytuj koncert',
                 formMode: 'edit',
                 btnLabel: 'Edytuj koncert',
