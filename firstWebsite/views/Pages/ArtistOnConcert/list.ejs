@@ -14,16 +14,22 @@
                         </thead>
                         <tbody>
                             <% artistsOnConcerts.forEach( data => { %>
-                            <%console.log(data)%>
                                 <tr>
 
                                     <td><%=data.firstName%></td>
                                     <td><%=data.lastName%></td>
                                     <td><%=data.pseudonym%></td>
                                     <td><%=data.venue%></td>
+
                                     <td>
 
-                                        <li></li>
+                                        <ul class="list-actions">
+
+                                            <li><a class="list-actions-button-details" href="/artistOnConcert/details/<%=data.id%>">Szczegóły</a></li>
+                                            <li><a class="list-actions-button-edit" href="/artistOnConcert/edit/<%=data.id%>">Edytuj</a></li>
+                                            <li><a class="list-actions-button-delete" href="/artistOnConcert/delete/<%=data.id%>">Usuń</a></li>
+
+                                        </ul>
 
                                     </td>
 
@@ -34,6 +40,6 @@
                 <% }else{ %>
                     <p>Nie ma nic do wyświetlenia</p>
                 <% } %>
-            <p><a href="form.html" class="button-add">Dodaj nowy występ</a></p>
+            <p><a href="/artistOnConcert/add" class="button-add">Dodaj nowy występ</a></p>
         </main>
 <%- include('../../fragments/footer.ejs') %>

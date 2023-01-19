@@ -23,7 +23,7 @@ exports.showAddConcertForm = (req, res, next) => {
     });
 };
 
-exports.showEditConcertDetails= (req, res, next) => {
+exports.showEditConcertForm = (req, res, next) => {
     const concertId = req.params.concertId;
     ConcertRepository.getConcertById(concertId)
         .then(concert => {
@@ -38,7 +38,7 @@ exports.showEditConcertDetails= (req, res, next) => {
         });
 };
 
-exports.showConcertDetails =   (req, res, next) => {
+exports.showDetailsConcertForm =   (req, res, next) => {
     const concertId = req.params.concertId;
     ArtistOnConcerRepository.getArtistsOnConcerts()
         .then(performers => {
@@ -68,17 +68,6 @@ exports.showConcertDetails =   (req, res, next) => {
                 navLocation: 'concert',
             })
         })
-    // ConcertRepository.getConcertById(concertId)
-    //     .then(concert => {
-    //         res.render('Pages/Concert/form', {
-    //             concert: concert.dataValues,
-    //             performances: performances.dataValues,
-    //             pageTitle: 'Szczegóły koncertu',
-    //             formMode: 'showDetails',
-    //             formAction: 'artist',
-    //             navLocation: 'concert',
-    //         })
-    //     });
 };
 
 exports.addConcert = (req, res, next) => {

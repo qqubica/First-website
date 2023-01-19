@@ -1,40 +1,99 @@
 <%- include('../../fragments/header.ejs') %>
 <main>
-    <h2>Nowy występ</h2>
-    <form class="form">
+    <script type="application/javascript" scr="../../JS/validationConcertForm.js"></script>
+
+    <h2><%= pageTitle %></h2>
+
+    <form
+        class="form"
+        method="post"
+        action="<%=formAction%>"
+        onsubmit="return validateForm()"
+        novalidate
+    >
+        <input type="hidden" name="Id"
+            value="<%=artisOnConcert.Id ? artisOnConcert.Id: ''%>"
+        >
+
         <label for="Artysta">Artysta: <span class="symbol-required">*</span></label>
-        <select name="Artysta" id="Artysta">
-            <option selected>Wybierz artystę</option>
-            <option>Kuba Wudarski (qqubica)</option>
-            <option>Hotel Plaza</option>
-            <option>Marek K</option>
-            <option >Arek</option>
+        <select name="Artysta" id="Artysta"
+            <%= formMode == 'showDetails' ? 'disabled': ''%>
+        >
+            <option <%= formMode == 'createNew' ? 'selected': '' %>>Wybierz artystę</option>
+            <% artists.forEach(x => { %>
+                <option
+                    <%= formMode == 'edit' ? 'selected': '' %>
+                    <%= formMode == 'showDetails' ? 'selected': ''%>
+                >
+                    <%=(x.FirstName+' '+x.LastName) + (x.Pseudonym ? ' ('+x.Pseudonym+')': '') %>
+                </option>
+            <% }) %>
         </select>
         <span class="emptySpan"></span>
 
         <label for="Venue">Lokalizacja: <span class="symbol-required">*</span></label>
-        <select name="Venue" id="Venue">
-            <option selected>Wybierz gdzie jest koncert</option>
-            <option>Smolna</option>
-            <option>Jasna 1</option>
-            <option>Firleje Camp Festiwal</option>
+        <select name="Venue" id="Venue"
+            <%=formMode == 'showDetails' ? 'disabled':''%>
+        >
+            <option <%= formMode == 'createNew' ? 'selected': ''%>>Wybierz gdzie jest koncert</option>
+
+            <% concerts.forEach(x=>{ %>
+                <option
+                    <%=formMode == 'edit' ? 'selected': ''%>
+                    <%=formMode == 'showDetails' ? 'selected': ''%>
+                >
+                    <%=x.Venue%>
+                </option>
+            <% }); %>
+
         </select>
+
         <span class="emptySpan"></span>
 
         <label for="Duration">Ile trwa występ:</label>
-        <input type="number" name="Duration" id="Duration">
+        <input type="number" name="Duration" id="Duration"
+            value="<%=artisOnConcert.PerformanceTime ? artisOnConcert.PerformanceTime: ''%>"
+            <%=formMode == 'showDetails' ? 'disabled': ''%>
+        >
         <span class="emptySpan"></span>
 
         <label for="PerformanceId">Który to występ: <span class="symbol-required">*</span></label>
-        <input type="number" name="PerformanceId" id="PerformanceId">
+        <input type="number" name="PerformanceId" id="PerformanceId"
+            value="<%=artisOnConcert.PerformanceNumber ? artisOnConcert.PerformanceNumber: ''%>"
+            <%=formMode == 'showDetails' ? 'disabled': ''%>
+        >
         <span class="emptySpan"></span>
 
+        <% if(formMode == 'showDetails' || formMode == 'createNew'){ %>
+
+            <div class="form-buttons">
+                <p>
+                    <% if(formMode == 'createNew'){ %>
+                        <input
+                            href="/artistOnConcert"
+                            type="submit"
+                            class="button-add"
+                            value="<%=btnLabel%>"
+                        >
+                    <% } %>
+                    <a href="/artistOnConcert" class="form-button-cancel">Anuluj</a>
+                </p>
+            </div>
+
+        <% }else{ %>
+
+            <div class="form-buttons">
+
+                <p>
+
+                    <input href="/artistOnConcert" action="<%=formAction%>" type="submit" class="button-edit" value="Edytuj">
+                    <a href="/artistOnConcert" class="form-button-cancel">Anuluj</a>
+
+                </p>
+
+            </div>
+
+        <% } %>
     </form>
-    <div class="form-buttons">
-        <p>
-        <input type="submit" class="button-add" value="Dodaj">
-        <a href="list.html" class="form-button-cancel">Anuluj</a>
-        </p>
-    </div>
 </main>
 <%- include('../../fragments/footer.ejs') %>

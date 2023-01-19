@@ -5,8 +5,8 @@ const concertController = require('../controllers/concertController');
 
 router.get('/', concertController.showConcertList);
 router.get('/add', concertController.showAddConcertForm);
-router.get('/edit/:concertId', concertController.showEditConcertDetails);
-router.get('/details/:concertId', concertController.showConcertDetails);
+router.get('/edit/:concertId', concertController.showEditConcertForm);
+router.get('/details/:concertId', concertController.showDetailsConcertForm);
 
 router.post('/add', concertController.addConcert);
 router.post('/edit', concertController.updateConcert);
