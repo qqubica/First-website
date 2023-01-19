@@ -1,5 +1,4 @@
 const Artist = require("../../model/sequelize/Artist");
-const artistSchema = require("../../model/joi/Artist")
 
 exports.getArtists = () => {
     return Artist.findAll();
@@ -15,14 +14,6 @@ exports.createArtist = (Data) => {
         LastName: Data.LastName,
         Pseudonym: Data.Pseudonym,
         Birthdate: Data.Birthdate,
-    }
-
-    const vRev = artistSchema.validate(newData, {
-        abortEarly: false,
-    });
-
-    if(vRev.error){
-        return Promise.reject(vRes.error);
     }
 
     return Artist.create(newData);

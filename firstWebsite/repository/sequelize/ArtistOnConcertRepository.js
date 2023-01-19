@@ -1,7 +1,6 @@
 const Artist = require("../../model/sequelize/Artist");
 const Concert = require("../../model/sequelize/Concert");
 const ArtistOnConcert = require("../../model/sequelize/ArtistOnConcert");
-const artistOnConcertsSchema = require("../../model/joi/ArtistOnConcert")
 
 exports.getArtistsOnConcerts = () => {
     return ArtistOnConcert.findAll({
