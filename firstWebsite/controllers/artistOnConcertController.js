@@ -125,5 +125,8 @@ exports.updateArtistOnConcert = (req, res, next) => {
 };
 
 exports.deleteArtistOnConcert = (req, res, next) => {
-
+    ArtistOnConcerRepository.deleteArtistOnConcert(req.params.id)
+        .then(result => {
+            res.redirect('/artistOnConcert');
+        })
 };

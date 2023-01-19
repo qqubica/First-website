@@ -10,6 +10,6 @@ router.get('/details/:artistOnConcertId', artistOnConcertController.showDetailsA
 
 router.post('/add', artistOnConcertController.addArtistOnConcert);
 router.post('/edit', artistOnConcertController.updateArtistOnConcert);
-// router.get('/delete/:id', artistOnConcertController.);
+router.get('/delete/:id', artistOnConcertController.deleteArtistOnConcert);
 
 module.exports = router;

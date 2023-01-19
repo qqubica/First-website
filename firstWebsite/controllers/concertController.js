@@ -92,7 +92,6 @@ exports.updateConcert = (req, res, next) => {
 };
 
 exports.deleteConcert = (req, res, next) => {
-    console.log("deleting");
     ConcertRepository.deleteConcert(req.params.id)
         .then((result) => {
             res.redirect('/concert');
