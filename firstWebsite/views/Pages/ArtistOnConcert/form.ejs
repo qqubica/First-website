@@ -12,7 +12,7 @@
         novalidate
     >
         <input type="hidden" name="Id"
-            value="<%=artisOnConcert.Id ? artisOnConcert.Id: ''%>"
+            value="<%=artistOnConcert.Id ? artistOnConcert.Id: ''%>"
         >
 
         <label for="Artysta">Artysta: <span class="symbol-required">*</span></label>
@@ -26,7 +26,7 @@
                 <option
                     value="<%=x.Id%>"
                     label="<%=(x.FirstName+' '+x.LastName) + (x.Pseudonym ? ' ('+x.Pseudonym+')': '') %>"
-                    <%= formMode == 'edit' ? 'selected': '' %>
+                    <%= formMode == 'edit' && x.Id == artistOnConcert.artistOnConcert.Id ? 'selected': '' %>
                     <%= formMode == 'showDetails' ? 'selected': ''%>
                 ></option>
             <% }) %>
@@ -43,7 +43,7 @@
                 <option
                     value="<%=x.Id%>"
                     label="<%=x.Venue%>"
-                    <%=formMode == 'edit' ? 'selected': ''%>
+                    <%=formMode == 'edit' && x.Id == artistOnConcert.performedDuring.dataValues.Id ? 'selected': ''%>
                     <%=formMode == 'showDetails' ? 'selected': ''%>
                 >
                     <%=x.Venue%>
@@ -56,14 +56,14 @@
 
         <label for="Duration">Ile trwa występ:</label>
         <input type="number" name="Duration" id="Duration"
-            value="<%=artisOnConcert.PerformanceTime ? artisOnConcert.PerformanceTime: ''%>"
+            value="<%=artistOnConcert.PerformanceTime ? artistOnConcert.PerformanceTime: ''%>"
             <%=formMode == 'showDetails' ? 'disabled': ''%>
         >
         <span class="emptySpan"></span>
 
         <label for="PerformanceId">Który to występ: <span class="symbol-required">*</span></label>
         <input type="number" name="PerformanceId" id="PerformanceId"
-            value="<%=artisOnConcert.PerformanceNumber ? artisOnConcert.PerformanceNumber: ''%>"
+            value="<%=artistOnConcert.PerformanceNumber ? artistOnConcert.PerformanceNumber: ''%>"
             <%=formMode == 'showDetails' ? 'disabled': ''%>
         >
         <span class="emptySpan"></span>

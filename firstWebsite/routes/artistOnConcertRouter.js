@@ -5,11 +5,11 @@ const artistOnConcertController = require('../controllers/artistOnConcertControl
 
 router.get('/', artistOnConcertController.showArtistOnConcertList);
 router.get('/add', artistOnConcertController.showAddArtistOnConcertForm);
-// router.get('/edit/:artistOnConcertId', artistOnConcertController.show);
+router.get('/edit/:artistOnConcertId', artistOnConcertController.showEditArtistOnConcertForm);
 router.get('/details/:artistOnConcertId', artistOnConcertController.showDetailsArtistOnConcertForm);
 
 router.post('/add', artistOnConcertController.addArtistOnConcert);
-// router.post('/edit', artistOnConcertController.);
+router.post('/edit', artistOnConcertController.updateArtistOnConcert);
 // router.get('/delete/:id', artistOnConcertController.);
 
 module.exports = router;

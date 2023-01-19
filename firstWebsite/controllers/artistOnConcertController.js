@@ -32,7 +32,7 @@ exports.showAddArtistOnConcertForm = (req, res, next) => {
         .then(concerts => {
             allConcerts = concerts.map(x=>x.dataValues);
             res.render('Pages/ArtistOnConcert/form', {
-                artisOnConcert: {},
+                artistOnConcert: {},
                 concerts: allConcerts,
                 artists: allArtists,
                 pageTitle: 'Nowy występ podczas koncertu',
@@ -46,25 +46,33 @@ exports.showAddArtistOnConcertForm = (req, res, next) => {
 
 exports.showEditArtistOnConcertForm = (req, res, next) => {
     const id = req.params.artistOnConcertId
-
-    ArtistOnConcerRepository.getArtistsOnConcertsById(id)
-        .then(aOc => {
-            const artists = []
-            const concerts = []
-            artists.push(aOc.dataValues.artistOnConcert.dataValues)
-            concerts.push(aOc.dataValues.performedDuring.dataValues)
-
+    console.log("showing")
+    ArtistRepository.getArtists()
+        .then(artists => {
+            allArtists = artists.map(x=>x.dataValues);
+            return ConcertRepository.getConcerts()
+        })
+        .then(concerts => {
+            allConcerts = concerts.map(x=>x.dataValues)
+            return ArtistOnConcerRepository.getArtistsOnConcertsById(id)
+        })
+        .then((aOc)=>{
+            console.log(aOc.dataValues)
             res.render('Pages/ArtistOnConcert/form', {
-                artisOnConcert: aOc.dataValues,
-                artists: artists,
-                concerts: concerts,
+                artistOnConcert: aOc.dataValues,
+                artists: allArtists,
+                concerts: allConcerts,
                 pageTitle: 'Szczegóły występu',
                 formMode: 'edit',
                 btnLabel: 'Edytuj występ',
                 formAction: '../edit',
                 navLocation: 'artistOnConcert'
             });
-        });
+        })
+    // ArtistOnConcerRepository.getArtistsOnConcertsById(id)
+    //     .then(aOc => {
+    //
+    //     });
 };
 
 exports.showDetailsArtistOnConcertForm = (req, res, next) => {
@@ -75,7 +83,7 @@ exports.showDetailsArtistOnConcertForm = (req, res, next) => {
             certenConcert = [x.dataValues.performedDuring.dataValues]
 
             res.render('Pages/ArtistOnConcert/form', {
-                artisOnConcert: x.dataValues,
+                artistOnConcert: x.dataValues,
                 artists: certenArtist,
                 concerts: certenConcert,
                 pageTitle: 'Szczegóły występu',
@@ -104,6 +112,16 @@ exports.addArtistOnConcert = (req, res, next) => {
 
 exports.updateArtistOnConcert = (req, res, next) => {
 
+    const data = {
+        ArtistId: req.body.Artysta,
+        ConcertId: req.body.Venue,
+        PerformanceNumber: req.body.PerformanceId,
+        PerformanceTime: req.body.Duration,
+    }
+    ArtistOnConcerRepository.updateArtistOnConcert(req.body.Id, data)
+        .then(result => {
+            res.redirect('/artistOnConcert')
+        })
 };
 
 exports.deleteArtistOnConcert = (req, res, next) => {
