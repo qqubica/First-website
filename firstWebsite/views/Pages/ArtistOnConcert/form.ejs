@@ -19,14 +19,16 @@
         <select name="Artysta" id="Artysta"
             <%= formMode == 'showDetails' ? 'disabled': ''%>
         >
+
             <option <%= formMode == 'createNew' ? 'selected': '' %>>Wybierz artystę</option>
+
             <% artists.forEach(x => { %>
                 <option
+                    value="<%=x.Id%>"
+                    label="<%=(x.FirstName+' '+x.LastName) + (x.Pseudonym ? ' ('+x.Pseudonym+')': '') %>"
                     <%= formMode == 'edit' ? 'selected': '' %>
                     <%= formMode == 'showDetails' ? 'selected': ''%>
-                >
-                    <%=(x.FirstName+' '+x.LastName) + (x.Pseudonym ? ' ('+x.Pseudonym+')': '') %>
-                </option>
+                ></option>
             <% }) %>
         </select>
         <span class="emptySpan"></span>
@@ -39,6 +41,8 @@
 
             <% concerts.forEach(x=>{ %>
                 <option
+                    value="<%=x.Id%>"
+                    label="<%=x.Venue%>"
                     <%=formMode == 'edit' ? 'selected': ''%>
                     <%=formMode == 'showDetails' ? 'selected': ''%>
                 >

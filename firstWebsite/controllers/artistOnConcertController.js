@@ -87,7 +87,19 @@ exports.showDetailsArtistOnConcertForm = (req, res, next) => {
 };
 
 exports.addArtistOnConcert = (req, res, next) => {
+    console.log(req.body)
+    const data = {
+        ArtistId: req.body.Artysta,
+        ConcertId: req.body.Venue,
+        PerformanceNumber: req.body.PerformanceId,
+        PerformanceTime: req.body.Duration,
+    };
 
+    ArtistOnConcerRepository.createArtistOnConcert(data)
+        .then((result) => {
+            res.body = result
+            res.redirect('/artistOnConcert');
+        })
 };
 
 exports.updateArtistOnConcert = (req, res, next) => {
