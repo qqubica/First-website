@@ -41,14 +41,6 @@ exports.createArtistOnConcert = (newArtistOnConcert) => {
         PerformanceTime: newArtistOnConcert.PerformanceTime,
     }
 
-    const vRev = artistOnConcertsSchema.validate(newData, {
-        abortEarly: false,
-    });
-
-    if(vRev.error){
-        return Promise.reject(vRev.error)
-    }
-
     return ArtistOnConcert.create(newData);
 
     // return ArtistOnConcert.create({
@@ -60,17 +52,6 @@ exports.createArtistOnConcert = (newArtistOnConcert) => {
 };
 
 exports.updateArtistOnConcert = async (artistOnConcertId, data) => {
-
-    const vRev = artistOnConcertsSchema.validate(data, {
-        abortEarly: false,
-    });
-
-    if (vRev.error){
-        return Promise.reject(vRev.error);
-    }
-
-    // if (await)
-
     return ArtistOnConcert.update(data, {
         where: {id: artistOnConcertId}
     });

@@ -38,28 +38,13 @@ exports.createArtist = (Data) => {
 //     });
 // };
 
-exports.updateArtist = async (Id, data) => {
+exports.updateArtist = (Id, data) => {
     const newData = {
         FirstName: data.firstName,
         LastName: data.lastName,
         Pseudonym: data.pseudonym,
         Birthdate: data.birthdate == '' ? null: data.birthdate,
     };
-
-    const vRev = artistSchema.validate(newData, {
-        abortEarly: false,
-    });
-
-    if (vRev.error){
-        return Promise.reject(vRev.error);
-    }
-
-    const artExist = await Artist.findByPk(Id);
-    console.log(!artExist);
-    if(!artExist){
-        console.log("true")
-        return;
-    }
 
     return Artist.update(newData, {
         where: { Id: Id}

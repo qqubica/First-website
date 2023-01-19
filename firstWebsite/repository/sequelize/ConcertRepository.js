@@ -20,14 +20,6 @@ exports.createConcert = (data) => {
         FinishDate: data.FinishDate,
     }
 
-    const vRev = concertSchema.validate(newData, {
-        abortEarly: false,
-    })
-
-    if(vRev.error){
-        return Promise.reject(vRev.error);
-    }
-
     return Concert.create(newData);
 };
 
@@ -38,14 +30,6 @@ exports.updateConcert = (id, data) => {
         StartDate: data.StartDate == '' ? null: data.StartDate,
         FinishDate: data.FinishDate == '' ? null: data.FinishDate,
     };
-
-    const vRev = concertSchema.validate(newData,{
-        abortEarly: false
-    });
-
-    if (vRev.error){
-        return Promise.reject(vRev.error);
-    }
 
     return Concert.update(newData, {
         where: {Id: concertId}
