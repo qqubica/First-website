@@ -67,6 +67,8 @@ exports.addArtist = (req, res, next) => {
             res.redirect('/artist');
         })
         .catch(err => {
+            console.log(err.errors)
+
             res.render('Pages/Artist/form', {
                 artist: artistData,
                 pageTitle: 'Nowy artysta',
@@ -74,7 +76,7 @@ exports.addArtist = (req, res, next) => {
                 btnLabel: 'Dodaj pracownika',
                 formAction: '/artist/add',
                 navLocation: 'artist',
-                validationErrors: err.error,
+                validationErrors: err.errors
             })
         })
 };
@@ -91,7 +93,7 @@ exports.updateArtist = (req, res, next) => {
                 btnLabel: 'Edytuj artystę',
                 formAction: '../edit',
                 navLocation: 'artist',
-                validationErrors: err.error,
+                validationErrors: err.errors
             });
     })
 };

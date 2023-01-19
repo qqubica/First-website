@@ -35,7 +35,8 @@ exports.showEditConcertForm = (req, res, next) => {
                 formMode: 'edit',
                 btnLabel: 'Edytuj koncert',
                 formAction: '../edit',
-                navLocation: 'concert'
+                navLocation: 'concert',
+                validationErrors: [],
             });
         });
 };
@@ -68,6 +69,7 @@ exports.showDetailsConcertForm =   (req, res, next) => {
                 formMode: 'showDetails',
                 formAction: 'artist',
                 navLocation: 'concert',
+                validationErrors: [],
             })
         })
 };
@@ -83,6 +85,17 @@ exports.addConcert = (req, res, next) => {
         .then((result) => {
             res.redirec('/concert');
         })
+        .catch(err=>{
+            res.render('Pages/Concert/form', {
+                concert: concertData,
+                performances: performers,
+                pageTitle: 'Szczegóły koncertu',
+                formMode: 'showDetails',
+                formAction: 'artist',
+                navLocation: 'concert',
+                validationErrors: err.errors,
+            })
+        })
 };
 
 exports.updateConcert = (req, res, next) => {
@@ -90,6 +103,17 @@ exports.updateConcert = (req, res, next) => {
     ConcertRepository.updateConcert(req.body.Id, req.body)
         .then((result) => {
             res.redirect('/concert');
+        })
+        .catch(err=>{
+            res.render('Pages/Concert/form', {
+                concert: req.body,
+                performances: performers,
+                pageTitle: 'Szczegóły koncertu',
+                formMode: 'showDetails',
+                formAction: 'artist',
+                navLocation: 'concert',
+                validationErrors: err.errors,
+            })
         })
 };
 
