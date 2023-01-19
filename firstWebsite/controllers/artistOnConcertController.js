@@ -39,7 +39,8 @@ exports.showAddArtistOnConcertForm = (req, res, next) => {
                 formMode: 'createNew',
                 btnLabel: 'Dodaj występ',
                 formAction: '/artistOnConcert/add',
-                navLocation: 'artistOnConcert'
+                navLocation: 'artistOnConcert',
+                validationErrors: [],
             });
         })
 };
@@ -66,7 +67,8 @@ exports.showEditArtistOnConcertForm = (req, res, next) => {
                 formMode: 'edit',
                 btnLabel: 'Edytuj występ',
                 formAction: '../edit',
-                navLocation: 'artistOnConcert'
+                navLocation: 'artistOnConcert',
+                validationErrors: [],
             });
         })
     // ArtistOnConcerRepository.getArtistsOnConcertsById(id)
@@ -90,6 +92,7 @@ exports.showDetailsArtistOnConcertForm = (req, res, next) => {
                 formMode: 'showDetails',
                 formAction: 'artistOnConcert',
                 navLocation: 'artistOnConcert',
+                validationErrors: [],
             })
         })
 };
@@ -108,6 +111,18 @@ exports.addArtistOnConcert = (req, res, next) => {
             res.body = result
             res.redirect('/artistOnConcert');
         })
+        .catch(err=>{
+            res.render('Pages/ArtistOnConcert/form', {
+                artistOnConcert: data,
+                artists: certenArtist,
+                concerts: certenConcert,
+                pageTitle: 'Szczegóły występu',
+                formMode: 'showDetails',
+                formAction: 'artistOnConcert',
+                navLocation: 'artistOnConcert',
+                validationErrors: err.errors,
+            });
+        });
 };
 
 exports.updateArtistOnConcert = (req, res, next) => {
@@ -121,7 +136,18 @@ exports.updateArtistOnConcert = (req, res, next) => {
     ArtistOnConcerRepository.updateArtistOnConcert(req.body.Id, data)
         .then(result => {
             res.redirect('/artistOnConcert')
+        }).catch(err => {
+            res.render('Pages/ArtistOnConcert/form', {
+                artistOnConcert: data,
+                artists: certenArtist,
+                concerts: certenConcert,
+                pageTitle: 'Szczegóły występu',
+                formMode: 'showDetails',
+                formAction: 'artistOnConcert',
+                navLocation: 'artistOnConcert',
+                validationErrors: err.errors,
         })
+    })
 };
 
 exports.deleteArtistOnConcert = (req, res, next) => {
