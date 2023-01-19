@@ -53,7 +53,7 @@
                     </div>
                 <% } %>
             </form>
-            <% if(formMode == 'showDetails'){ %>
+            <% if(formMode == 'showDetails' && performances.length >= 1){ %>
 
                 <h2>Szczegóły występów</h2>
 
@@ -87,10 +87,14 @@
                             </tr>
                         <% }); %>
 
-
                     </tbody>
 
                 </table>
+
+            <% } %>
+            <% if(performances.length == 0){ %>
+
+                <h2>Brak występów na koncercie</h2>
 
             <% } %>
         </main>

@@ -1,76 +1,39 @@
 <%- include('../../fragments/header.ejs') %>
         <main>
             <h2>Lista artystów na koncertach</h2>
-            <table class="table-list">
-                <thead>
-                <tr>
-                    <th>Imie</th>
-                    <th>Nazwisko</th>
-                    <th>Pseudonim</th>
-                    <th>Koncert</th>
-                    <th>Akcje</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>Kuba</td>
-                    <td>Wudarski</td>
-                    <td>qqubica</td>
-                    <td>Smolna</td>
-                    <td>
-                        <ul class="list-actions">
-                            <li>
-                              <a href="../Artist/form-details.html" class="list-actions-button-details">Szczegóły</a>
-                            </li>
-                            <li>
-                              <a href="../Artist/form-edit.html" class="list-actions-button-edit">Edytuj</a>
-                            </li>
-                            <li>
-                              <a href="list.html" class="list-actions-button-delete">Usuń</a>
-                            </li>
-                          </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Marek</td>
-                    <td>T</td>
-                    <td>wqe</td>
-                    <td>Smolna</td>
-                    <td>
-                        <ul class="list-actions">
-                            <li>
-                                <a href="../Artist/form-details.html" class="list-actions-button-details">Szczegóły</a>
-                            </li>
-                            <li>
-                                <a href="../Artist/form-edit.html" class="list-actions-button-edit">Edytuj</a>
-                            </li>
-                            <li>
-                                <a href="list.html" class="list-actions-button-delete">Usuń</a>
-                            </li>
-                          </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Ela</td>
-                    <td>K</td>
-                    <td>ELKA</td>
-                    <td>Firleje camp festiwal</td>
-                    <td>
-                        <ul class="list-actions">
-                            <li>
-                                <a href="../Artist/form-details.html" class="list-actions-button-details">Szczegóły</a>
-                            </li>
-                            <li>
-                                <a href="../Artist/form-edit.html" class="list-actions-button-edit">Edytuj</a>
-                            </li>
-                            <li>
-                                <a href="list.html" class="list-actions-button-delete">Usuń</a>
-                            </li>
-                          </ul>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+                <% if(artistsOnConcerts.length > 0){ %>
+                    <table class="table-list">
+                        <thead>
+                            <tr>
+                                <th>Imie</th>
+                                <th>Nazwisko</th>
+                                <th>Pseudonim</th>
+                                <th>Koncert</th>
+                                <th>Akcje</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% artistsOnConcerts.forEach( data => { %>
+                            <%console.log(data)%>
+                                <tr>
+
+                                    <td><%=data.firstName%></td>
+                                    <td><%=data.lastName%></td>
+                                    <td><%=data.pseudonym%></td>
+                                    <td><%=data.venue%></td>
+                                    <td>
+
+                                        <li></li>
+
+                                    </td>
+
+                                </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                <% }else{ %>
+                    <p>Nie ma nic do wyświetlenia</p>
+                <% } %>
             <p><a href="form.html" class="button-add">Dodaj nowy występ</a></p>
         </main>
 <%- include('../../fragments/footer.ejs') %>
