@@ -17,7 +17,8 @@ exports.showAddArtistForm = (req, res, next) => {
         formMode: 'createNew',
         btnLabel: 'Dodaj pracownika',
         formAction: '/artist/add',
-        navLocation: 'artist'
+        navLocation: 'artist',
+        validationErrors: [],
     });
 };
 
@@ -31,7 +32,8 @@ exports.showEditArtistDetails = (req, res, next) => {
                 formMode: 'edit',
                 btnLabel: 'Edytuj artystę',
                 formAction: '../edit',
-                navLocation: 'artist'
+                navLocation: 'artist',
+                validationErrors: [],
            });
         });
 };
@@ -46,7 +48,8 @@ exports.showArtistDetails = (req, res, next) => {
                 pageTitle: 'Szczegóły artysty',
                 formMode: 'showDetails',
                 formAction: '',
-                navLocation: 'artist'
+                navLocation: 'artist',
+                validationErrors: [],
             });
         });
 };
@@ -58,9 +61,21 @@ exports.addArtist = (req, res, next) => {
         Pseudonym: req.body.pseudonym,
         Birthdate: req.body.birthdate == '' ? null: req.body.birthdate,
     };
+
     ArtistRepository.createArtist(artistData)
         .then((result) => {
             res.redirect('/artist');
+        })
+        .catch(err => {
+            res.render('Pages/Artist/form', {
+                artist: artistData,
+                pageTitle: 'Nowy artysta',
+                formMode: 'createNew',
+                btnLabel: 'Dodaj pracownika',
+                formAction: '/artist/add',
+                navLocation: 'artist',
+                validationErrors: err.error,
+            })
         })
 };
 
@@ -68,7 +83,17 @@ exports.updateArtist = (req, res, next) => {
     ArtistRepository.updateArtist(req.body.id, req.body)
         .then((result) => {
             res.redirect('/artist');
-        })
+        }).catch(err => {
+            res.render('Pages/Artist/form', {
+                artist: req.body,
+                pageTitle: 'Edytuj artystę',
+                formMode: 'edit',
+                btnLabel: 'Edytuj artystę',
+                formAction: '../edit',
+                navLocation: 'artist',
+                validationErrors: err.error,
+            });
+    })
 };
 
 exports.deleteArtist = (req, res, next) => {

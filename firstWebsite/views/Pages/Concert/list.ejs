@@ -15,8 +15,10 @@
                 <% concerts.forEach(concert => { %>
             <tr>
                 <td><%= concert.Venue %></td>
-                <td><%= concert.StartDate.toISOString().split('T')[0] %></td>
-                <td><%= concert.FinishDate.toISOString().split('T')[0] %></td>
+
+
+                <td><%= fmt.formatDate(concert.StartDate) %></td>
+                <td><%= fmt.formatDate(concert.FinishDate) %></td>
                 <td>
                     <ul class="list-actions">
                         <li><a href="/concert/details/<%=concert.Id%>" class="list-actions-button-details">Szczegóły</a></li>

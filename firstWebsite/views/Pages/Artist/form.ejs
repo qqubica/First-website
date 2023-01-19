@@ -14,22 +14,63 @@
         <input type="hidden" name="id" value="<%=artist.Id ? artist.Id: ''%>">
 
         <label for="FirstName">Imie: <span class="symbol-required">*</span></label>
-        <input type="text" name="firstName" id="firstName" placeholder="2-50 znaków" value="<%=artist.FirstName%>" <%= (formMode == 'showDetails') ? 'disabled': '' %>>
-        <span class="emptySpan"></span>
+        <input type="text" name="firstName" id="firstName"
+               placeholder="2-50 znaków"
+               value="<%=artist.FirstName%>" <%= (formMode == 'showDetails') ? 'disabled': '' %>
+                class="<%= validationErrors.find(e=>e.path.includes('firstName')) ? 'error-input':''%>"
+        >
+        <% if (validationErrors.find(e=>e.path.includes('firstName'))){%>
+            <span id="errorFirstName" class="errors-text">
+                <%=validationErrors.find(e=>e.path.includes('firstName')).message%>
+            </span>
+        <%}else{%>
+            <span class="emptySpan"></span>
+        <%}%>
 
         <label for="LastName">Nazwisko: <span class="symbol-required">*</span></label>
-        <input type="text" name="lastName" id="LastName" placeholder="2-100 znaków" value="<%=artist.LastName%>" <%= (formMode == 'showDetails') ? 'disabled': ''%>>
-        <span class="emptySpan"></span>
+        <input type="text" name="lastName" id="LastName"
+            placeholder="2-100 znaków"
+            value="<%=artist.LastName%>" <%= (formMode == 'showDetails') ? 'disabled': ''%>
+            class="<%= validationErrors.find(e=>e.path.includes('lastName')) ? 'error-input':''%>"
+        >
+        <% if (validationErrors.find(e=>e.path.includes('lastName'))){ %>
+            <span id="errorLastName" class="errors-text">
+                <%=validationErrors.find(e=>e.path.includes('lastName')).message%>
+            </span>
+        <%}else{%>
+            <span class="emptySpan"></span>
+        <%}%>
 
         <label for="Pseudonym">Pseudonym: </label>
-        <input type="text" name="pseudonym" id="Pseudonym" placeholder="do 200 znaków" value="<%=artist.Pseudonym%>" <%= (formMode == 'showDetails') ? 'disabled': ''%>>
-        <span class="emptySpan"></span>
+        <input type="text" name="pseudonym" id="Pseudonym"
+            placeholder="do 200 znaków"
+            value="<%=artist.Pseudonym%>"
+            <%= (formMode == 'showDetails') ? 'disabled': ''%>
+            class="<%= validationErrors.find(e=>e.path.includes('pseudonym')) ? 'error-input':''%>"
+        >
+        <% if (validationErrors.find(e=>e.path.includes('pseudonym'))){ %>
+            <span id="errorPseudonym" class="errors-text">
+                <%= validationErrors.find(e=>e.path.includes('pseudonym')).message %>
+            </span>
+        <% }else{%>
+                <span class="emptySpan"></span>
+        <%}%>
 
         <label for="Birthdate">Data urodzenia: </label>
         <input type="date" name="birthdate" id="Birthdate" placeholder="2011-11-11"
-               value="<%= artist.Birthdate ? artist.Birthdate.toISOString().split('T')[0]: ''%>"
+               value="<% fmt.formatDate(artist.Brithdate) %>"
                 <%= (formMode == 'showDetails') ? 'disabled': ''%>
+                class="<%= validationErrors.find(e=>e.path.includes('lastName')) ? 'error-input':''%>"
         >
+
+        <% if (validationErrors.find(e=>e.path.includes('birthdate'))){ %>
+            <span id="errorPseudonym" class="errors-text">
+                <%= validationErrors.find(e=>e.path.includes('birthdate')).message %>
+            </span>
+        <% }else{%>
+            <span class="emptySpan"></span>
+        <%}%>
+
         <% if(formMode == 'showDetails' || formMode =='createNew'){ %>
             <div class="form-buttons">
                 <p>

@@ -37,6 +37,12 @@ app.use(morgan((tokens, req, res) => {
     ].join(' ')
 }));
 
+const fmt = require('./utils/dateFormatting');
+app.use((req, res, next) => {
+    res.locals.fmt = fmt;
+    next();
+});
+
 app.use('/', indexRouter);
 app.use('/artist', artistRouter);
 app.use('/concert', concertRouter);
