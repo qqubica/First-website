@@ -41,13 +41,9 @@ exports.createArtistOnConcert = (newArtistOnConcert) => {
     }
 
     return ArtistOnConcert.create(newData);
-
-    // return ArtistOnConcert.create({
-    //     ArtistId: newArtistOnConcert.ArtistId,
-    //     ConcertId: newArtistOnConcert.ConcertId,
-    //     PerformanceNumber: newArtistOnConcert.PerformanceNumber,
-    //     PerformanceTime: newArtistOnConcert.PerformanceTime,
-    // });
+    // return ArtistOnConcert.build(newData).validate()
+    //     .then(()=>{
+    //     })
 };
 
 exports.updateArtistOnConcert = async (artistOnConcertId, data) => {

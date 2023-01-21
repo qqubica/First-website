@@ -20,7 +20,8 @@ exports.showAddConcertForm = (req, res, next) => {
         formMode: 'createNew',
         btnLabel: 'Dodaj koncert',
         formAction: '/concert/add',
-        navLocation: 'concert'
+        navLocation: 'concert',
+        validationErrors: [],
     });
 };
 
@@ -76,7 +77,6 @@ exports.showDetailsConcertForm =   (req, res, next) => {
 };
 
 exports.addConcert = (req, res, next) => {
-    console.log(req.body)
     const concertData = {
         Venue: req.body.Venue,
         StartDate: req.body.StartDate == '' ? null: req.body.StartDate,

@@ -61,17 +61,11 @@ exports.addArtist = (req, res, next) => {
         Pseudonym: req.body.pseudonym,
         Birthdate: req.body.birthdate == '' ? null: req.body.birthdate,
     };
-
     ArtistRepository.createArtist(artistData)
         .then((result) => {
             res.redirect('/artist');
         })
         .catch(err => {
-
-            console.log("logiing errrsad")
-            err.errors.forEach(e=> console.log(e.path))
-            console.log("loginsdefs errr ")
-
             res.render('Pages/Artist/form', {
                 artist: artistData,
                 pageTitle: 'Nowy artysta',

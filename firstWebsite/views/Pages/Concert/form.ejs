@@ -14,13 +14,24 @@
                 <input type="hidden" name="Id" value="<%=concert.Id ? concert.Id: ''%>">
 
                 <label for="Venue">Lokalizacja: <span class="symbol-required">*</span></label>
-                <input type="text" name="Venue" id="Venue" placeholder="2-200 znaków" value="<%=concert.Venue%>" <%= formMode == 'showDetails' ? 'disabled': ''%>>
-                <span class="emptySpan"></span>
+                <input type="text" name="Venue" id="Venue"
+                       placeholder="2-200 znaków"
+                       value="<%=concert.Venue%>" <%= formMode == 'showDetails' ? 'disabled': ''%>
+                       class="<%= validationErrors.find(e=>e.path.includes('Venue')) ? 'error-input': '' %>"
+                >
+                <% if (validationErrors.find(e=>e.path.includes('Venue'))){ %>
+                    <span id="errorPseudonym" class="errors-text">
+                <%= validationErrors.find(e=>e.path.includes('Venue')).message %>
+                    </span>
+                <% }else{%>
+                    <span class="emptySpan"></span>
+                <%}%>
 
                 <label for="StartDate">Data początkowa: <span class="symbol-required">*</span></label>
                 <input type="date" name="StartDate" id="StartDate"
                    value="<%= concert.StartDate ? concert.StartDate.toISOString().split('T')[0]: '' %>"
                    <%= formMode == 'showDetails' ? 'disabled': '' %>
+                   class="<%= validationErrors.find(e=>e.path.includes('StartDate')) ? 'error-input': '' %>"
                 >
                 <% if (validationErrors.find(e=>e.path.includes('StartDate'))){ %>
                     <span id="errorPseudonym" class="errors-text">
@@ -35,6 +46,7 @@
                 <input type="date" name="FinishDate" id="FinishDate"
                     value="<%= concert.FinishDate ? concert.FinishDate.toISOString().split('T')[0]: ''%>"
                    <%= formMode == 'showDetails' ? 'disabled': '' %>
+                   class="<%= validationErrors.find(e=>e.path.includes('FinishDate')) ? 'error-input': '' %>"
                 >
                 <% if (validationErrors.find(e=>e.path.includes('FinishDate'))){ %>
                     <span id="errorPseudonym" class="errors-text">

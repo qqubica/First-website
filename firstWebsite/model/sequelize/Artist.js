@@ -1,10 +1,6 @@
 const Sequelize = require('sequelize')
 const sequelize = require('../../config/sequelize/sequelize');
 
-const notEmpty = {
-    msg: "Pole jest wymagane",
-};
-
 const Artist = sequelize.define('Artist', {
     Id: {
         type: Sequelize.INTEGER,
@@ -17,12 +13,18 @@ const Artist = sequelize.define('Artist', {
         allowNull: false,
         unique: false,
         validate: {
-            notEmpty
+            notNull: {
+                msg: "Pole jest wymagane",
+            },
+            notEmpty: {
+                msg: "Pole jest wymagane",
+            },
+            len: {
+                args: [2, 50],
+                msg: "Pole powinno zawierać od 2 do 50 znaków"
+            },
         },
-        len: {
-            args: [2, 50],
-            msg: "Pole powinno zawierać od 2 do 50 znaków"
-        },
+
     },
     LastName: {
         type: Sequelize.STRING(100),
@@ -30,12 +32,18 @@ const Artist = sequelize.define('Artist', {
         unique: false,
 
         validate: {
-            notEmpty
+            notNull: {
+                msg: "Pole jest wymagane",
+            },
+            notEmpty: {
+                msg: "Pole jest wymagane",
+            },
+            len: {
+                args: [2, 100],
+                msg: "Pole powinno zawierać od 2 do 100 znaków",
+            },
         },
-        len: {
-            args: [2, 100],
-            msg: "Pole powinno zawierać od 2 do 100 znaków",
-        },
+
     },
     Pseudonym: {
         type: Sequelize.STRING(200),
@@ -51,8 +59,10 @@ const Artist = sequelize.define('Artist', {
     Birthdate: {
         type: Sequelize.DATE,
         allowNull: true,
-        isDate: {
-            msg: 'Pole powinno być datą'
+        validate: {
+            isDate: {
+                msg: 'Pole powinno być datą'
+            },
         },
     },
 });
