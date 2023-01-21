@@ -15,6 +15,7 @@ exports.showConcertList = (req, res, next) => {
 exports.showAddConcertForm = (req, res, next) => {
     res.render('Pages/Concert/form', {
         concert: {},
+        performances: [],
         pageTitle: 'Nowy koncert',
         formMode: 'createNew',
         btnLabel: 'Dodaj koncert',
@@ -88,7 +89,7 @@ exports.addConcert = (req, res, next) => {
         .catch(err=>{
             res.render('Pages/Concert/form', {
                 concert: concertData,
-                performances: performers,
+                performances: [],
                 pageTitle: 'Szczegóły koncertu',
                 formMode: 'showDetails',
                 formAction: 'artist',
@@ -107,7 +108,7 @@ exports.updateConcert = (req, res, next) => {
         .catch(err=>{
             res.render('Pages/Concert/form', {
                 concert: req.body,
-                performances: performers,
+                performances: [],
                 pageTitle: 'Szczegóły koncertu',
                 formMode: 'showDetails',
                 formAction: 'artist',
