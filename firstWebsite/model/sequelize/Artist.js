@@ -30,7 +30,6 @@ const Artist = sequelize.define('Artist', {
         type: Sequelize.STRING(100),
         allowNull: false,
         unique: false,
-
         validate: {
             notNull: {
                 msg: "Pole jest wymagane",
@@ -48,7 +47,10 @@ const Artist = sequelize.define('Artist', {
     Pseudonym: {
         type: Sequelize.STRING(200),
         allowNull: true,
-        unique: false,
+        unique: {
+            args: true,
+            msg: "Pseudonim musi być unikalny"
+        },
         validate: {
             len: {
                 args: [0, 200],
