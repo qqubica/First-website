@@ -87,8 +87,6 @@ exports.addConcert = (req, res, next) => {
             res.redirec('/concert');
         })
         .catch(err=>{
-            console.log(err.errors)
-
             res.render('Pages/Concert/form', {
                 concert: concertData,
                 performances: [],
@@ -102,20 +100,18 @@ exports.addConcert = (req, res, next) => {
 };
 
 exports.updateConcert = (req, res, next) => {
+    console.log(req.body)
     ConcertRepository.updateConcert(req.body.Id, req.body)
         .then((result) => {
             res.redirect('/concert');
         })
         .catch(err=>{
-            console.log(err.errors)
-
             res.render('Pages/Concert/form', {
                 concert: req.body,
                 performances: [],
-                pageTitle: 'Nowy koncert',
-                formMode: 'createNew',
-                btnLabel: 'Nowy koncert',
-                formAction: '/concert/add',
+                pageTitle: 'Szczegóły koncertu',
+                formMode: 'showDetails',
+                formAction: 'artist',
                 navLocation: 'concert',
                 validationErrors: err.errors,
             })
