@@ -18,7 +18,7 @@ exports.showAddConcertForm = (req, res, next) => {
         performances: [],
         pageTitle: 'Nowy koncert',
         formMode: 'createNew',
-        btnLabel: 'Nowy koncert',
+        btnLabel: 'Dodaj koncert',
         formAction: '/concert/add',
         navLocation: 'concert'
     });
@@ -68,7 +68,7 @@ exports.showDetailsConcertForm =   (req, res, next) => {
                 performances: performers,
                 pageTitle: 'Szczegóły koncertu',
                 formMode: 'showDetails',
-                formAction: 'add',
+                formAction: 'artist',
                 navLocation: 'concert',
                 validationErrors: [],
             })
@@ -92,6 +92,7 @@ exports.addConcert = (req, res, next) => {
                 performances: [],
                 pageTitle: 'Nowy koncert',
                 formMode: 'createNew',
+                btnLabel: 'Dodaj koncert',
                 formAction: '/concert/add',
                 navLocation: 'concert',
                 validationErrors: err.errors,

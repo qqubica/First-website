@@ -20,8 +20,8 @@ const Concert = sequelize.define('Concert', {
         type: Sequelize.STRING(200),
         allowNull: false,
         len: {
-            args: [1,200],
-            msg: "Pole nie może mieć wiecej niż 200 znaków"
+            args: [2,200],
+            msg: "Pole nie może mieć od 2 do 200 znaków"
         }
     },
     StartDate: {

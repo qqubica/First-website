@@ -123,14 +123,11 @@ exports.addArtistOnConcert = (req, res, next) => {
                         validationErrors: err.errors,
                     });
                 })
-
-
         });
 };
 
 exports.updateArtistOnConcert = (req, res, next) => {
 
-    console.log("HERRE")
 
     const data = {
         ArtistId: req.body.Artysta,
@@ -143,6 +140,7 @@ exports.updateArtistOnConcert = (req, res, next) => {
         .then(result => {
             res.redirect('/artistOnConcert')
         }).catch(err => {
+            console.log(err.errors)
 
             ArtistRepository.getArtists()
                 .then(artists => {
@@ -150,8 +148,6 @@ exports.updateArtistOnConcert = (req, res, next) => {
                     return ConcertRepository.getConcerts()
                 })
                 .then(concerts => {
-                    allConcerts = concerts.map(x=>x.dataValues)
-
                     enteredData = {
                         Id: req.body.Artysta,
                         ArtistId: req.body.Artysta,
@@ -170,7 +166,7 @@ exports.updateArtistOnConcert = (req, res, next) => {
 
                     res.render('Pages/ArtistOnConcert/form', {
                         artistOnConcert: enteredData,
-                        artists: allArtists,
+                        artists: concerts.map(x=>x.dataValues),
                         concerts: allConcerts,
                         pageTitle: 'Szczegóły występu',
                         formMode: 'edit',

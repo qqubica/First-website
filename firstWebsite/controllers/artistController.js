@@ -67,7 +67,10 @@ exports.addArtist = (req, res, next) => {
             res.redirect('/artist');
         })
         .catch(err => {
-            console.log(err.errors)
+
+            console.log("logiing errrsad")
+            err.errors.forEach(e=> console.log(e.path))
+            console.log("loginsdefs errr ")
 
             res.render('Pages/Artist/form', {
                 artist: artistData,

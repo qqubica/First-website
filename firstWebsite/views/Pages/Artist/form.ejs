@@ -17,7 +17,6 @@
                placeholder="2-50 znaków"
                value="<%=artist.FirstName%>" <%= (formMode == 'showDetails') ? 'disabled': '' %>
                class="<%= validationErrors.find(e=>e.path.includes('FirstName')) ? 'error-input':''%>"
-               <%console.log(validationErrors.find(e=>e.path.includes('FirstName')) ? 'error-input':'xd')%>"
         >
         <% if (validationErrors.find(e=>e.path.includes('FirstName'))){%>
             <span id="errorFirstName" class="errors-text">
@@ -60,7 +59,7 @@
         <input type="date" name="birthdate" id="Birthdate" placeholder="2011-11-11"
                value="<% fmt.formatDate(artist.Brithdate) %>"
                 <%= (formMode == 'showDetails') ? 'disabled': ''%>
-                class="<%= validationErrors.find(e=>e.path.includes('lastName')) ? 'error-input':''%>"
+                class="<%= validationErrors.find(e=>e.path.includes('Birthdate')) ? 'error-input':''%>"
         >
 
         <% if (validationErrors.find(e=>e.path.includes('Birthdate'))){ %>
