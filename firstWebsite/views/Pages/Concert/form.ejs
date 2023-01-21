@@ -9,7 +9,7 @@
                 method="post"
                 action="<%=formAction%>"
                 onsubmit="return validateForm()"
-                novalidate
+                
             >
                 <input type="hidden" name="Id" value="<%=concert.Id ? concert.Id: ''%>">
 
@@ -17,18 +17,33 @@
                 <input type="text" name="Venue" id="Venue" placeholder="2-200 znaków" value="<%=concert.Venue%>" <%= formMode == 'showDetails' ? 'disabled': ''%>>
                 <span class="emptySpan"></span>
 
+
                 <label for="StartDate">Data początkowa: <span class="symbol-required">*</span></label>
                 <input type="date" name="StartDate" id="StartDate"
                    value="<%= concert.StartDate ? concert.StartDate.toISOString().split('T')[0]: '' %>"
                    <%= formMode == 'showDetails' ? 'disabled': '' %>
                 >
-                <span class="emptySpan"></span>
+                <% if (validationErrors.find(e=>e.path.includes('StartDate'))){ %>
+                    <span id="errorPseudonym" class="errors-text">
+                <%= validationErrors.find(e=>e.path.includes('StartDate')).message %>
+                    </span>
+                <% }else{%>
+                    <span class="emptySpan"></span>
+                <%}%>
+
 
                 <label for="FinishDate">Data końca: <span class="symbol-required">*</span></label>
                 <input type="date" name="FinishDate" id="FinishDate"
                     value="<%= concert.FinishDate ? concert.FinishDate.toISOString().split('T')[0]: ''%>"
                    <%= formMode == 'showDetails' ? 'disabled': '' %>
                 >
+                <% if (validationErrors.find(e=>e.path.includes('FinishDate'))){ %>
+                    <span id="errorPseudonym" class="errors-text">
+                <%= validationErrors.find(e=>e.path.includes('FinishDate')).message %>
+                    </span>
+                <% }else{%>
+                    <span class="emptySpan"></span>
+                <%}%>
 
                 <% if(formMode == 'showDetails' || formMode == 'createNew'){ %>
                     <div class="form-buttons">
@@ -91,7 +106,7 @@
                 </table>
 
             <% } %>
-            <% if(formMode != 'edit' && performances.length == 0){ %>
+            <% if(formMode != 'edit' && formMode != 'createNew' && performances.length == 0){ %>
 
                 <h2>Brak występów na koncercie</h2>
 

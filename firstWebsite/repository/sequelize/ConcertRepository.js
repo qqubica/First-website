@@ -32,19 +32,6 @@ exports.updateConcert = (id, data) => {
     return Concert.update(newData, {
         where: {Id: concertId}
     });
-
-    // const concertId = id
-    // const venue = data.Venue;
-    // const startDate = data.StartDate == '' ? null: data.StartDate;
-    // const finishDate = data.FinishDate == '' ? null: data.FinishDate;
-    //
-    // return Concert.update({
-    //     Venue: venue,
-    //     StartDate: startDate,
-    //     FinishDate: finishDate
-    // },{
-    //     where: { Id: concertId }
-    // });
 };
 
 exports.deleteConcert = (Id) => {

@@ -15,9 +15,10 @@ exports.showConcertList = (req, res, next) => {
 exports.showAddConcertForm = (req, res, next) => {
     res.render('Pages/Concert/form', {
         concert: {},
+        performances: [],
         pageTitle: 'Nowy koncert',
         formMode: 'createNew',
-        btnLabel: 'Dodaj koncert',
+        btnLabel: 'Nowy koncert',
         formAction: '/concert/add',
         navLocation: 'concert'
     });
@@ -67,7 +68,7 @@ exports.showDetailsConcertForm =   (req, res, next) => {
                 performances: performers,
                 pageTitle: 'Szczegóły koncertu',
                 formMode: 'showDetails',
-                formAction: 'artist',
+                formAction: 'add',
                 navLocation: 'concert',
                 validationErrors: [],
             })
@@ -86,12 +87,14 @@ exports.addConcert = (req, res, next) => {
             res.redirec('/concert');
         })
         .catch(err=>{
+            console.log(err.errors)
+
             res.render('Pages/Concert/form', {
                 concert: concertData,
-                performances: performers,
-                pageTitle: 'Szczegóły koncertu',
-                formMode: 'showDetails',
-                formAction: 'artist',
+                performances: [],
+                pageTitle: 'Nowy koncert',
+                formMode: 'createNew',
+                formAction: '/concert/add',
                 navLocation: 'concert',
                 validationErrors: err.errors,
             })
@@ -99,18 +102,20 @@ exports.addConcert = (req, res, next) => {
 };
 
 exports.updateConcert = (req, res, next) => {
-    console.log(req.body)
     ConcertRepository.updateConcert(req.body.Id, req.body)
         .then((result) => {
             res.redirect('/concert');
         })
         .catch(err=>{
+            console.log(err.errors)
+
             res.render('Pages/Concert/form', {
                 concert: req.body,
-                performances: performers,
-                pageTitle: 'Szczegóły koncertu',
-                formMode: 'showDetails',
-                formAction: 'artist',
+                performances: [],
+                pageTitle: 'Nowy koncert',
+                formMode: 'createNew',
+                btnLabel: 'Nowy koncert',
+                formAction: '/concert/add',
                 navLocation: 'concert',
                 validationErrors: err.errors,
             })

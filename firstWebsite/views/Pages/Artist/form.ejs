@@ -16,11 +16,12 @@
         <input type="text" name="firstName" id="firstName"
                placeholder="2-50 znaków"
                value="<%=artist.FirstName%>" <%= (formMode == 'showDetails') ? 'disabled': '' %>
-                class="<%= validationErrors.find(e=>e.path.includes('firstName')) ? 'error-input':''%>"
+               class="<%= validationErrors.find(e=>e.path.includes('FirstName')) ? 'error-input':''%>"
+               <%console.log(validationErrors.find(e=>e.path.includes('FirstName')) ? 'error-input':'xd')%>"
         >
-        <% if (validationErrors.find(e=>e.path.includes('firstName'))){%>
+        <% if (validationErrors.find(e=>e.path.includes('FirstName'))){%>
             <span id="errorFirstName" class="errors-text">
-                <%=validationErrors.find(e=>e.path.includes('firstName')).message%>
+                <%=validationErrors.find(e=>e.path.includes('FirstName')).message%>
             </span>
         <%}else{%>
             <span class="emptySpan"></span>
@@ -30,11 +31,11 @@
         <input type="text" name="lastName" id="LastName"
             placeholder="2-100 znaków"
             value="<%=artist.LastName%>" <%= (formMode == 'showDetails') ? 'disabled': ''%>
-            class="<%= validationErrors.find(e=>e.path.includes('lastName')) ? 'error-input':''%>"
+            class="<%= validationErrors.find(e=>e.path.includes('LastName')) ? 'error-input':''%>"
         >
-        <% if (validationErrors.find(e=>e.path.includes('lastName'))){ %>
+        <% if (validationErrors.find(e=>e.path.includes('LastName'))){ %>
             <span id="errorLastName" class="errors-text">
-                <%=validationErrors.find(e=>e.path.includes('lastName')).message%>
+                <%=validationErrors.find(e=>e.path.includes('LastName')).message%>
             </span>
         <%}else{%>
             <span class="emptySpan"></span>
@@ -45,11 +46,11 @@
             placeholder="do 200 znaków"
             value="<%=artist.Pseudonym%>"
             <%= (formMode == 'showDetails') ? 'disabled': ''%>
-            class="<%= validationErrors.find(e=>e.path.includes('pseudonym')) ? 'error-input':''%>"
+            class="<%= validationErrors.find(e=>e.path.includes('Pseudonym')) ? 'error-input':''%>"
         >
-        <% if (validationErrors.find(e=>e.path.includes('pseudonym'))){ %>
+        <% if (validationErrors.find(e=>e.path.includes('Pseudonym'))){ %>
             <span id="errorPseudonym" class="errors-text">
-                <%= validationErrors.find(e=>e.path.includes('pseudonym')).message %>
+                <%= validationErrors.find(e=>e.path.includes('Pseudonym')).message %>
             </span>
         <% }else{%>
                 <span class="emptySpan"></span>
@@ -62,9 +63,9 @@
                 class="<%= validationErrors.find(e=>e.path.includes('lastName')) ? 'error-input':''%>"
         >
 
-        <% if (validationErrors.find(e=>e.path.includes('birthdate'))){ %>
+        <% if (validationErrors.find(e=>e.path.includes('Birthdate'))){ %>
             <span id="errorPseudonym" class="errors-text">
-                <%= validationErrors.find(e=>e.path.includes('birthdate')).message %>
+                <%= validationErrors.find(e=>e.path.includes('Birthdate')).message %>
             </span>
         <% }else{%>
             <span class="emptySpan"></span>

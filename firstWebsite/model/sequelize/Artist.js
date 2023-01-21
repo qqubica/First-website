@@ -53,7 +53,7 @@ const Artist = sequelize.define('Artist', {
         allowNull: true,
         isDate: {
             msg: 'Pole powinno być datą'
-        }
+        },
     },
 });
 

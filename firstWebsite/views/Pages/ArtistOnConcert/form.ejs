@@ -9,7 +9,6 @@
         method="post"
         action="<%=formAction%>"
         onsubmit="return validateForm()"
-        novalidate
     >
         <input type="hidden" name="Id"
             value="<%=artistOnConcert.Id ? artistOnConcert.Id: ''%>"
@@ -19,9 +18,7 @@
         <select name="Artysta" id="Artysta"
             <%= formMode == 'showDetails' ? 'disabled': ''%>
         >
-
             <option <%= formMode == 'createNew' ? 'selected': '' %>>Wybierz artystę</option>
-
             <% artists.forEach(x => { %>
                 <option
                     value="<%=x.Id%>"
@@ -31,7 +28,13 @@
                 ></option>
             <% }) %>
         </select>
-        <span class="emptySpan"></span>
+        <%if(validationErrors.find(e=>e.path.includes('ArtistId'))){%>
+            <span id="errorArtistId" class="errors-text">
+                <%=validationErrors.find(e=>e.path.includes('ArtistId')).message%>
+            </span>
+        <%}else{%>
+            <span class="emptySpan"></span>
+        <%}%>
 
         <label for="Venue">Lokalizacja: <span class="symbol-required">*</span></label>
         <select name="Venue" id="Venue"
@@ -51,14 +54,20 @@
             <% }); %>
 
         </select>
-
-        <span class="emptySpan"></span>
+        <%if(validationErrors.find(e=>e.path.includes('Venue'))){%>
+        <span id="errorArtistId" class="errors-text">
+                <%=validationErrors.find(e=>e.path.includes('Venue')).message%>
+            </span>
+        <%}else{%>
+            <span class="emptySpan"></span>
+        <%}%>
 
         <label for="Duration">Ile trwa występ:</label>
         <input type="number" name="Duration" id="Duration"
             value="<%=artistOnConcert.PerformanceTime ? artistOnConcert.PerformanceTime: ''%>"
             <%=formMode == 'showDetails' ? 'disabled': ''%>
         >
+
         <span class="emptySpan"></span>
 
         <label for="PerformanceId">Który to występ: <span class="symbol-required">*</span></label>
