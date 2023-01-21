@@ -47,7 +47,6 @@ exports.showAddArtistOnConcertForm = (req, res, next) => {
 
 exports.showEditArtistOnConcertForm = (req, res, next) => {
     const id = req.params.artistOnConcertId
-    console.log("showing")
     ArtistRepository.getArtists()
         .then(artists => {
             allArtists = artists.map(x=>x.dataValues);
@@ -58,7 +57,6 @@ exports.showEditArtistOnConcertForm = (req, res, next) => {
             return ArtistOnConcerRepository.getArtistsOnConcertsById(id)
         })
         .then((aOc)=>{
-            console.log(aOc.dataValues)
             res.render('Pages/ArtistOnConcert/form', {
                 artistOnConcert: aOc.dataValues,
                 artists: allArtists,
@@ -71,10 +69,6 @@ exports.showEditArtistOnConcertForm = (req, res, next) => {
                 validationErrors: [],
             });
         })
-    // ArtistOnConcerRepository.getArtistsOnConcertsById(id)
-    //     .then(aOc => {
-    //
-    //     });
 };
 
 exports.showDetailsArtistOnConcertForm = (req, res, next) => {
@@ -98,7 +92,6 @@ exports.showDetailsArtistOnConcertForm = (req, res, next) => {
 };
 
 exports.addArtistOnConcert = (req, res, next) => {
-    console.log(req.body)
     const data = {
         ArtistId: req.body.Artysta,
         ConcertId: req.body.Venue,
@@ -112,41 +105,80 @@ exports.addArtistOnConcert = (req, res, next) => {
             res.redirect('/artistOnConcert');
         })
         .catch(err=>{
-            res.render('Pages/ArtistOnConcert/form', {
-                artistOnConcert: data,
-                artists: certenArtist,
-                concerts: certenConcert,
-                pageTitle: 'Szczegóły występu',
-                formMode: 'showDetails',
-                formAction: 'artistOnConcert',
-                navLocation: 'artistOnConcert',
-                validationErrors: err.errors,
-            });
+
+            ArtistOnConcerRepository.getArtistsOnConcertsById(artistOnConcertId)
+                .then(x =>{
+                    certenArtist = [x.dataValues.artistOnConcert.dataValues];
+                    certenConcert = [x.dataValues.performedDuring.dataValues];
+                })
+                .then(y => {
+                    res.render('Pages/ArtistOnConcert/form', {
+                        artistOnConcert: data,
+                        artists: certenArtist,
+                        concerts: certenConcert,
+                        pageTitle: 'Szczegóły występu',
+                        formMode: 'showDetails',
+                        formAction: 'artistOnConcert',
+                        navLocation: 'artistOnConcert',
+                        validationErrors: err.errors,
+                    });
+                })
+
+
         });
 };
 
 exports.updateArtistOnConcert = (req, res, next) => {
+
+    console.log("HERRE")
 
     const data = {
         ArtistId: req.body.Artysta,
         ConcertId: req.body.Venue,
         PerformanceNumber: req.body.PerformanceId,
         PerformanceTime: req.body.Duration,
-    }
+    };
+
     ArtistOnConcerRepository.updateArtistOnConcert(req.body.Id, data)
         .then(result => {
             res.redirect('/artistOnConcert')
         }).catch(err => {
-            res.render('Pages/ArtistOnConcert/form', {
-                artistOnConcert: data,
-                artists: certenArtist,
-                concerts: certenConcert,
-                pageTitle: 'Szczegóły występu',
-                formMode: 'showDetails',
-                formAction: 'artistOnConcert',
-                navLocation: 'artistOnConcert',
-                validationErrors: err.errors,
-        })
+
+            ArtistRepository.getArtists()
+                .then(artists => {
+                    allArtists = artists.map(x=>x.dataValues);
+                    return ConcertRepository.getConcerts()
+                })
+                .then(concerts => {
+                    allConcerts = concerts.map(x=>x.dataValues)
+
+                    enteredData = {
+                        Id: req.body.Artysta,
+                        ArtistId: req.body.Artysta,
+                        ConcertId: req.body.Venue,
+                        PerformanceTime: req.body.Duration,
+                        PerformanceNumber: req.body.PerformanceId,
+                        artistOnConcert: {
+                            Id: req.body.Artysta,
+                        },
+                        performedDuring: {
+                            dataValues: {
+                                Id: req.body.Venue,
+                            },
+                        },
+                    }
+
+                    res.render('Pages/ArtistOnConcert/form', {
+                        artistOnConcert: enteredData,
+                        artists: allArtists,
+                        concerts: allConcerts,
+                        pageTitle: 'Szczegóły występu',
+                        formMode: 'edit',
+                        formAction: './edit',
+                        navLocation: 'artistOnConcert',
+                        validationErrors: err.errors,
+                    });
+                })
     })
 };
 

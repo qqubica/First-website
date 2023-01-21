@@ -21,7 +21,6 @@
         >
 
             <option <%= formMode == 'createNew' ? 'selected': '' %>>Wybierz artystę</option>
-
             <% artists.forEach(x => { %>
                 <option
                     value="<%=x.Id%>"
