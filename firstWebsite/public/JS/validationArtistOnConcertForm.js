@@ -1,87 +1,74 @@
 function validateForm() {
 
-    console.log("aocXD");
-
     const artistSelect = document.getElementById('Artysta');
     const locationSelect = document.getElementById('Venue');
     const durationInput = document.getElementById('Duration');
     const orderInput = document.getElementById('PerformanceId');
 
-    const errorArtistSelect = document.getElementById('errorArtist');
-    const errorLocationSelect = document.getElementById('errorVenue');
+    const errorArtistSelect = document.getElementById('errorArtistId');
+    const errorLocationSelect = document.getElementById('errorConcertId');
     const errorDurationInput = document.getElementById('errorDuration');
     const errorOrderInput = document.getElementById('errorPerformanceId');
     const errorsSummary = document.getElementById('errorsSummary');
 
-    resetErrors([artistSelect, locationSelect, durationInput, orderInput],[errorArtistSelect, errorLocationSelect, errorDurationInput, errorOrderInput], errorsSummary);
+    resetErrors([artistSelect, locationSelect, durationInput, orderInput], [errorArtistSelect, errorLocationSelect, errorDurationInput, errorOrderInput], errorsSummary);
 
     let valid = true;
-    validateArtistSelect(artistSelect, valid, errorArtistSelect);
-    validateLocationSelect(locationSelect, valid, errorLocationSelect);
-    validateDurationInput(durationInput, valid, errorDurationInput);
-    validteOrderInput(orderInput, valid, errorOrderInput);
-    if (!valid){
-        errorsSummary.innerText = "Formularz zwiera błędy";
-    }
 
-    return valid;
-}
-
-function validteOrderInput(orderInput, valid, error){
-    if(!checkRequired(orderInput)){
-        valid = false;
-        orderInput.classList.add("error-input");
-        error.innerText = "Pole jest wymagane";
-        return;
-    }
-    if(!checkNumber(orderInput)){
-        valid = false;
-        orderInput.classList.add("errr-input");
-        error.innerText = "Wartość musi być liczbą";
-        return;
-    }
-    if(checkNumberBiggerThen(orderInput, 0)){
-        valid = false;
-        orderInput.classList.add("error-input");
-        error.innerText = "Wartość musi być większa od 0"
-        return;
-    }
-}
-
-function validateDurationInput(durationInput, valid, error){
-    if(!checkRequired(durationInput)){
-        valid = false;
-        durationInput.classList.add("error-input");
-        error.innerText = "Pole jest wymagane";
-        return;
-    }
-    if(!checkNumber(durationInput)){
-        valid = false;
-        durationInput.classList.add("error-input");
-        error.innerText = "Wartość musi być liczbą";
-        return;
-    }
-    if(checkNumberBiggerThen(durationInput, 0)){
-        valid = false;
-        durationInput.classList.add("error-input");
-        error.innerText = "Wartość musi być większ od 0"
-        return;
-    }
-}
-
-function validateLocationSelect(locationSelect, valid, error){
-    if(!checkRequired(locationSelect)){
-        valid = false;
-        locationSelect.classList.add("error-input");
-        error.innerText = "Pole jest wymagane";
-        return;
-    }
-}
-function validateArtistSelect(artistSelect, valid, error){
-    if(!checkRequired(artistSelect)){
+    // validate artistSelect
+    if (!checkRequired(artistSelect.value)) {
         valid = false;
         artistSelect.classList.add("error-input");
-        error.innerText = "Pole jet wymagane"
-        return;
+        errorArtistSelect.innerText = "Pole jet wymagane"
     }
+
+    // validate locationSelect
+    if (!checkRequired(locationSelect.value)) {
+        valid = false;
+        locationSelect.classList.add("error-input");
+        errorLocationSelect.innerText = "Pole jest wymagane";
+    }
+
+    // validate durationInput
+    if (!checkNumber(durationInput.value)) {
+        valid = false;
+        durationInput.classList.add("error-input");
+        errorDurationInput.innerText = "Wartość musi być liczbą";
+    }
+    if (checkNumberBiggerThen(durationInput.value, 0)) {
+        valid = false;
+        durationInput.classList.add("error-input");
+        errorDurationInput.innerText = "Wartość musi być większ od 0"
+    }
+    if (!checkRequired(durationInput.value)) {
+        valid = false;
+        durationInput.classList.add("error-input");
+        errorDurationInput.innerText = "Pole jest wymagane";
+    }
+
+    // validate orderInput
+    if (checkNumberBiggerThen(orderInput.value, 0)) {
+        valid = false;
+        orderInput.classList.add("error-input");
+        errorOrderInput.innerText = "Wartość musi być większa od 0"
+        console.log("small")
+    }
+    if (!checkNumber(orderInput.value)) {
+        valid = false;
+        orderInput.classList.add("error-input");
+        errorOrderInput.innerText = "Wartość musi być liczbą";
+        console.log("num")
+    }
+    if (!checkRequired(orderInput.value)) {
+        valid = false;
+        orderInput.classList.add("error-input");
+        errorOrderInput.innerText = "Pole jest wymagane";
+        console.log("req")
+    }
+
+
+    if (!valid) {
+        errorsSummary.innerText = "Formularz zwiera błędy";
+    }
+    return valid;
 }

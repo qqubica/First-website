@@ -1,4 +1,4 @@
-function checkNumber(number){
+function checkNumber(value){
     if(!value){
         return false;
     }
@@ -10,13 +10,14 @@ function checkNumber(number){
 
 function checkNumberBiggerThen(input, min){
     let value = parseFloat(input);
-    if (value < min){
+    if (value > min){
         return false;
     }
     return true;
 }
 
 function checkDate(value){
+    console.log(value)
     if(!value){
         return false;
     }

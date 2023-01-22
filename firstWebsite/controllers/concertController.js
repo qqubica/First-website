@@ -84,7 +84,7 @@ exports.addConcert = (req, res, next) => {
     };
     ConcertRepository.createConcert(concertData)
         .then((result) => {
-            res.redirec('/concert');
+            res.redirect('/concert');
         })
         .catch(err=>{
             res.render('Pages/Concert/form', {

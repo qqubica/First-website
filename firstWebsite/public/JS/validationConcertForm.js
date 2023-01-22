@@ -1,72 +1,61 @@
-function validateForm(){
-
+function validateForm() {
 
     const venueInput = document.getElementById('Venue');
     const startDateInput = document.getElementById('StartDate');
-    const finishDateInput= document.getElementById('FinishDate');
+    const finishDateInput = document.getElementById('FinishDate');
 
     const errorVenue = document.getElementById('errorVenue');
     const errorStartDate = document.getElementById('errorStartDate');
     const errorFinishDate = document.getElementById('errorFinishDate');
     const errorsSummary = document.getElementById('errorsSummary');
 
-    console.log("beff")
     resetErrors([venueInput, startDateInput, finishDateInput], [errorVenue, errorStartDate, errorFinishDate, errorsSummary], errorsSummary);
-    console.log("after")
 
     let valid = true;
 
-    validateVenue(venueInput, valid, errorVenue);
-
-    validateStartDate(startDateInput, valid, errorStartDate);
-
-    validateFinishDate(finishDateInput, valid, errorFinishDate);
-
-    if (!valid){
-        errorsSummary.innerText = "Formularz zawiera błędy";
-    }
-
-
-    return valid;
-
-}
-
-function validateVenue(venueInput, valid, error){
-    if (!checkRequired(venueInput)){
+    // validate venue
+    if (!checkTextLengthRange(venueInput.value, 2,200)){
         valid = false;
         venueInput.classList.add("error-input");
-        error.innerText = "Pole jest wymagane";
-        return;
+        errorVenue.innerText = "Pole może mieć od 2 do 200 znaków";
     }
-}
+    if (!checkRequired(venueInput.value)) {
+        valid = false;
+        venueInput.classList.add("error-input");
+        errorVenue.innerText = "Pole jest wymagane";
+    }
 
-function  validateStartDate(startDateInput, valid, error){
-    if (!checkRequired(startDateInput)) {
+    // validate startDate
+    if (!checkRequired(startDateInput.value)) {
+        console.log(startDateInput.value)
+
         valid = false;
         startDateInput.classList.add("error-input");
-        error.innerText = "Pole jest wymagane";
-        return;
+        errorStartDate.innerText = "Pole jest wymagane";
     }
-    if (isNaN(Date.parse(startDateInput.toString()))) {
+    if (isNaN(Date.parse(startDateInput.value))) {
+        console.log(startDateInput.value)
+
         valid = false;
         startDateInput.classList.add("error-input");
-        error.innerText = "To nie jest data"
-        return;
-    }
-}
-
-function  validateFinishDate(finishDateInput, valid, error) {
-    if (!checkRequired(finishDateInput)) {
-        valid = false;
-        finishDateInput.classList.add("error-input");
-        error.innerText = "Pole jest wymagane";
-        return;
+        errorStartDate.innerText = "To nie jest data"
     }
 
-    if (isNaN(Date.parse(finishDateInput.toString()))) {
+    // validate finishDate
+    if (!checkRequired(finishDateInput.value)) {
         valid = false;
         finishDateInput.classList.add("error-input");
-        error.innerText = "To nie jest data"
-        return;
+        errorFinishDate.innerText = "Pole jest wymagane";
     }
+    if (isNaN(Date.parse(finishDateInput.value))) {
+        valid = false;
+        finishDateInput.classList.add("error-input");
+        errorFinishDate.innerText = "To nie jest data"
+    }
+
+
+    if (!valid) {
+        errorsSummary.innerText = "Formularz zawiera błędy";
+    }
+    return valid;
 }

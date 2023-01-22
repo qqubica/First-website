@@ -6,7 +6,7 @@
         class="form"
         method="post"
         action="<%=formAction%>"
-        onsubmit="return validateForm"
+        onsubmit="return validateForm()"
     >
         <input type="hidden" name="Id"
             value="<%=artistOnConcert.Id ? artistOnConcert.Id: ''%>"
@@ -28,13 +28,11 @@
                 ></option>
             <% }) %>
         </select>
-        <%if(validationErrors.find(e=>e.path.includes('ArtistId'))){%>
-            <span id="errorArtistId" class="errors-text">
-                <%=validationErrors.find(e=>e.path.includes('ArtistId')).message%>
-            </span>
-        <%}else{%>
-            <span class="emptySpan"></span>
-        <%}%>
+        <span id="errorArtistId"
+              class="errors-text"
+        >
+            <%=validationErrors.find(e=>e.path.includes('ArtistId')) ? validationErrors.find(e=>e.path.includes('ArtistId')).message: ''%>
+        </span>
 
         <label for="Venue">Lokalizacja: <span class="symbol-required">*</span></label>
         <select name="Venue" id="Venue"
@@ -42,7 +40,6 @@
             class="<%= validationErrors.find(e=>e.path.includes('ConcertId')) ? 'error-input': ''%>"
         >
             <option <%= formMode == 'createNew' ? 'selected': ''%> label="Wybierz gdzie jest koncert" value></option>
-
             <% concerts.forEach(x=>{ %>
                 <option
                     value="<%=x.Id%>"
@@ -54,15 +51,12 @@
                     <%=x.Venue%>
                 </option>
             <% }); %>
-
         </select>
-        <%if(validationErrors.find(e=>e.path.includes('ConcertId'))){%>
-        <span id="errorArtistId" class="errors-text">
-                <%=validationErrors.find(e=>e.path.includes('ConcertId')).message%>
-            </span>
-        <%}else{%>
-            <span class="emptySpan"></span>
-        <%}%>
+        <span id="errorConcertId"
+              class="errors-text"
+        >
+            <%=validationErrors.find(e=>e.path.includes('ConcertId')) ? validationErrors.find(e=>e.path.includes('ConcertId')).message: ''%>
+        </span>
 
         <label for="Duration">Ile trwa występ:<span class="symbol-required">*</span></label>
         <input type="number" name="Duration" id="Duration"
@@ -70,13 +64,11 @@
             <%=formMode == 'showDetails' ? 'disabled': ''%>
             class="<%= validationErrors.find(e=>e.path.includes('PerformanceTime')) ? 'error-input':''%>"
         >
-        <%if(validationErrors.find(e=>e.path.includes('PerformanceTime'))){%>
-        <span id="errorArtistId" class="errors-text">
-                <%=validationErrors.find(e=>e.path.includes('PerformanceTime')).message%>
-            </span>
-        <%}else{%>
-            <span class="emptySpan"></span>
-        <%}%>
+        <span id="errorDuration"
+              class="errors-text"
+        >
+            <%=validationErrors.find(e=>e.path.includes('PerformanceTime')) ? validationErrors.find(e=>e.path.includes('PerformanceTime')).message: '' %>
+        </span>
 
         <label for="PerformanceId">Który to występ: <span class="symbol-required">*</span></label>
         <input type="number" name="PerformanceId" id="PerformanceId"
@@ -84,42 +76,30 @@
             <%=formMode == 'showDetails' ? 'disabled': ''%>
             class="<%= validationErrors.find(e=>e.path.includes('PerformanceNumber')) ? 'error-input':''%>"
         >
-        <%if(validationErrors.find(e=>e.path.includes('PerformanceNumber'))){%>
-        <span id="errorArtistId" class="errors-text">
-                <%=validationErrors.find(e=>e.path.includes('PerformanceNumber')).message%>
-            </span>
-        <%}else{%>
-            <span class="emptySpan"></span>
-        <%}%>
+        <span id="errorPerformanceId" class="errors-text">
+            <%=validationErrors.find(e=>e.path.includes('PerformanceNumber')) ? validationErrors.find(e=>e.path.includes('PerformanceNumber')).message: ''%>
+        </span>
 
-        <% if(formMode == 'showDetails' || formMode == 'createNew'){ %>
-
-            <div class="form-buttons">
-                <p id="errorsSummary" class="errors-text">
-                    <%=validationErrors.length > 0 ? 'Błędy w formularzu': ''%>
-                </p>
-                <% if(formMode == 'createNew'){ %>
-                    <input
-                        href="/artistOnConcert"
-                        type="submit"
-                        class="button-add"
-                        value="<%=btnLabel%>"
-                    >
-                <% } %>
-                <a href="/artistOnConcert" class="form-button-cancel">Anuluj</a>
-            </div>
-
-        <% }else{ %>
-
-            <div class="form-buttons">
-                <p id="errorsSummary" class="errors-text">
-                    <%=validationErrors.length > 0 ? 'Błędy w formularzu': ''%>
-                </p>
-                <input href="/artistOnConcert" action="<%=formAction%>" type="submit" class="button-edit" value="Edytuj">
-                <a href="/artistOnConcert" class="form-button-cancel">Anuluj</a>
-            </div>
-
-        <% } %>
+        <div class="form-buttons">
+            <p id="errorsSummary" class="errors-text">
+                <%=validationErrors.length > 0 ? 'Błędy w formularzu': ''%>
+            </p>
+            <% if (formMode == 'createNew'){%>
+                <input href="/artistOnConcert"
+                       type="submit"
+                       class="button-add"
+                       value="<%=btnLabel%>"
+                >
+            <%}else{%>
+                <input href="/artistOnConcert"
+                       action="<%=formAction%>"
+                       type="submit"
+                       class="button-edit"
+                       value="Edytuj"
+                >
+            <%}%>
+            <a href="/artistOnConcert" class="form-button-cancel">Anuluj</a>
+        </div>
     </form>
     <script type="application/javascript" src="/JS/validationArtistOnConcertForm.js"></script>
 </main>

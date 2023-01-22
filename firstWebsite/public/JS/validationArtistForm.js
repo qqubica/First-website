@@ -1,7 +1,5 @@
 function validateForm(){
 
-    console.log("artistXD");
-
     const firstNameInput = document.getElementById('firstName');
     const lastNameInput = document.getElementById('LastName');
     const pseudonymInput = document.getElementById('Pseudonym');
@@ -17,74 +15,46 @@ function validateForm(){
 
     let valid = true;
 
-    validateFirstName(firstNameInput, valid, errorFirstName);
+    // validate firstName
+    if (!checkRequired(firstNameInput.value)){
+        valid = false;
+        firstNameInput.classList.add("error-input");
+        errorFirstName.innerText = "Pole jest wymagane";
+    }
+    if (!checkTextLengthRange(firstNameInput.value, 2, 50)) {
+        valid = false;
+        firstNameInput.classList.add("error-input");
+        errorFirstName.innerText = "Pole może mieć od " + 2 + " do " + 50;
+    }
 
-    validateLastName(lastNameInput, valid, errorLastName);
+    // validate lastName
+    if (!checkRequired(lastNameInput.value)){
+        valid = false;
+        lastNameInput.classList.add("error-input");
+        errorLastName.innerText = "Pole jest wymagane"
+    }
+    if (!checkTextLengthRange(lastNameInput.value, 2, 100)){
+        valid = false;
+        lastNameInput.classList.add("error-input");
+        errorLastName.innerText = "Pole może mieć od " + 2 + " do " + 100;
+    }
 
-    validatePseudonym(pseudonymInput, valid, errorPseudonym);
+    // validate pseudonym
+    if(!checkTextLengthRange(pseudonymInput.value, 0, 50)){
+        valid = false;
+        pseudonymInput.classList.add("error-input");
+        errorPseudonym.innerText = "Pole może mieć od " + 0 + " do " + 50;
+    }
 
-    validateDate(birthdateInput, valid, errorBirthdate);
+    // validate birthdate
+    if (isNaN(Date.parse(birthdateInput.value))){
+        valid = false;
+        birthdateInput.classList.add("error-input");
+        errorBirthdate.innerText = "To nie jest data"
+    }
 
     if(!valid){
         errorsSummary.innerText = "Formularz zawiera błędy";
     }
-    console.log(valid);
     return valid;
-}
-function validatePseudonym(pseudonymInput, isFormValid, error) {
-    let minimalLength = 2;
-    let maximalLength = 50;
-
-    if(!checkTextLengthRange(pseudonymInput, minimalLength, maximalLength)){
-        isFormValid = false;
-        pseudonymInput.classList.add("error-input");
-        error.innerText = "Pole może mieć od " + minimalLength + " do " + maximalLength;
-        return;
-    }
-}
-function validateFirstName(firstNameInput, isFormValid, error) {
-    let minimalLength = 2;
-    let maximalLength = 50;
-
-    if (!checkRequired(firstNameInput)){
-        isFormValid = false;
-        firstNameInput.classList.add("error-input");
-        error.innerText = "Pole jest wymagane";
-        return;
-    }
-
-    if (!checkTextLengthRange(firstNameInput, minimalLength, maximalLength)) {
-        isFormValid = false;
-        firstNameInput.classList.add("error-input");
-        error.innerText = "Pole może mieć od " + minimalLength + " do " + maximalLength;
-        return;
-    }
-}
-
-function validateLastName(lastNameInput, isFormValid, error) {
-    let minimalLength = 2;
-    let maximalLength = 100;
-
-    if (!checkRequired(lastNameInput)){
-        isFormValid = false;
-        lastNameInput.classList.add("error-input");
-        error.innerText = "Pole jest wymagane"
-        return;
-    }
-
-    if (!checkTextLengthRange(lastNameInput, minimalLength, maximalLength)){
-        isFormValid = false;
-        lastNameInput.classList.add("error-input");
-        error.innerText = "Pole może mieć od " + minimalLength + " do " + maximalLength;
-        return;
-    }
-}
-
-function validateDate(date, isFormValid, error) {
-    if (isNaN(Date.parse(date.toString()))){
-        isFormValid = false;
-        date.classList.add("error-input");
-        error.innerText = "To nie jest data"
-        return;
-    }
 }

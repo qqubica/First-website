@@ -7,7 +7,7 @@
         class="form"
         method="post"
         action="<%=formAction%>"
-        onsubmit="return validateForm"
+        onsubmit="return validateForm()"
     >
         <input type="hidden" name="id" value="<%=artist.Id ? artist.Id: ''%>">
 
@@ -17,13 +17,11 @@
                value="<%=artist.FirstName%>" <%= (formMode == 'showDetails') ? 'disabled': '' %>
                class="<%= validationErrors.find(e=>e.path.includes('FirstName')) ? 'error-input':''%>"
         >
-        <% if (validationErrors.find(e=>e.path.includes('FirstName'))){%>
-            <span id="errorFirstName" class="errors-text">
-                <%=validationErrors.find(e=>e.path.includes('FirstName')).message%>
-            </span>
-        <%}else{%>
-            <span class="emptySpan"></span>
-        <%}%>
+        <span id="errorFirstName"
+              class="errors-text"
+        >
+            <%= validationErrors.find(e=>e.path.includes('FirstName')) ? validationErrors.find(e=>e.path.includes('FirstName')).message: ''%>
+        </span>
 
         <label for="LastName">Nazwisko: <span class="symbol-required">*</span></label>
         <input type="text" name="lastName" id="LastName"
@@ -31,13 +29,11 @@
             value="<%=artist.LastName%>" <%= (formMode == 'showDetails') ? 'disabled': ''%>
             class="<%= validationErrors.find(e=>e.path.includes('LastName')) ? 'error-input':''%>"
         >
-        <% if (validationErrors.find(e=>e.path.includes('LastName'))){ %>
-            <span id="errorLastName" class="errors-text">
-                <%=validationErrors.find(e=>e.path.includes('LastName')).message%>
-            </span>
-        <%}else{%>
-            <span class="emptySpan"></span>
-        <%}%>
+        <span id="errorLastName"
+              class="errors-text"
+        >
+            <%= validationErrors.find(e=>e.path.includes('LastName')) ? validationErrors.find(e=>e.path.includes('LastName')).message: ''%>
+        </span>
 
         <label for="Pseudonym">Pseudonym: </label>
         <input type="text" name="pseudonym" id="Pseudonym"
@@ -46,13 +42,11 @@
             <%= (formMode == 'showDetails') ? 'disabled': ''%>
             class="<%= validationErrors.find(e=>e.path.includes('Pseudonym')) ? 'error-input':''%>"
         >
-        <% if (validationErrors.find(e=>e.path.includes('Pseudonym'))){ %>
-            <span id="errorPseudonym" class="errors-text">
-                <%= validationErrors.find(e=>e.path.includes('Pseudonym')).message %>
-            </span>
-        <% }else{%>
-                <span class="emptySpan"></span>
-        <%}%>
+        <span id="errorPseudonym"
+              class="errors-text"
+        >
+            <%= validationErrors.find(e=>e.path.includes('Pseudonym')) ? validationErrors.find(e=>e.path.includes('Pseudonym')).message: ''%>
+        </span>
 
         <label for="Birthdate">Data urodzenia: </label>
         <input type="date" name="birthdate" id="Birthdate" placeholder="2011-11-11"
@@ -60,39 +54,34 @@
                 <%= (formMode == 'showDetails') ? 'disabled': ''%>
                 class="<%= validationErrors.find(e=>e.path.includes('Birthdate')) ? 'error-input':''%>"
         >
+        <span id="errorBirthdate"
+              class="errors-text"
+        >
+            <%= validationErrors.find(e=>e.path.includes('Birthdate')) ? validationErrors.find(e=>e.path.includes('Birthdate')).message: ''%>
+        </span>
 
-        <% if (validationErrors.find(e=>e.path.includes('Birthdate'))){ %>
-            <span id="errorPseudonym" class="errors-text">
-                <%= validationErrors.find(e=>e.path.includes('Birthdate')).message %>
-            </span>
-        <% }else{%>
-            <span class="emptySpan"></span>
-        <%}%>
 
-        <% if(formMode == 'showDetails' || formMode =='createNew'){ %>
-            <div class="form-buttons">
-                <p id="errorsSummary" class="errors-text">
-                    <%=validationErrors.length > 0 ? 'Błędy w formularzu': ''%>
-                </p>
-                <% if(formMode == 'createNew'){ %>
-                <input
-                    href="/artist/add"
-                    type="submit"
-                    class="button-add"
-                    value="Dodaj"
+
+        <div class="form-buttons">
+            <p id="errorsSummary" class="errors-text">
+                <%=validationErrors.length > 0 ? 'Błędy w formularzu': ''%>
+            </p>
+            <% if (formMode == 'createNew'){%>
+                <input href="/artist/add"
+                       type="submit"
+                       class="button-add"
+                       value="Dodaj"
                 >
-                <% } %>
-                <a href="/artist" class="form-button-cancel">Anuluj</a>
-            </div>
-        <% }else{ %>
-            <div class="form-buttons">
-                <p id="errorsSummary" class="errors-text">
-                    <%=validationErrors.length > 0 ? 'Błędy w formularzu': ''%>
-                </p>
-                <input href="/artist" action="<%=formAction%>" type="submit" class="button-edit" value="Edytuj">
-                <a href="/artist" class="form-button-cancel">Anuluj</a>
-            </div>
-        <% } %>
+            <%}else{%>
+                <input href="/artist"
+                       action="<%formAction%>"
+                       type="submit"
+                       class="button-edit"
+                       value="Edytuj"
+                >
+            <%}%>
+            <a href="/artist" class="form-button-cancel">Anuluj</a>
+        </div>
     </form>
     <script type="application/javascript" src="/JS/validationArtistForm.js"></script>
 </main>
