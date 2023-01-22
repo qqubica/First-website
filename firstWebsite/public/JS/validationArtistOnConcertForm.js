@@ -1,4 +1,7 @@
 function validateForm() {
+
+    console.log("aocXD");
+
     const artistSelect = document.getElementById('Artysta');
     const locationSelect = document.getElementById('Venue');
     const durationInput = document.getElementById('Duration');
@@ -20,6 +23,7 @@ function validateForm() {
     if (!valid){
         errorsSummary.innerText = "Formularz zwiera błędy";
     }
+
     return valid;
 }
 

@@ -1,5 +1,7 @@
 function validateForm(){
 
+    console.log("artistXD");
+
     const firstNameInput = document.getElementById('firstName');
     const lastNameInput = document.getElementById('LastName');
     const pseudonymInput = document.getElementById('Pseudonym');
@@ -26,7 +28,7 @@ function validateForm(){
     if(!valid){
         errorsSummary.innerText = "Formularz zawiera błędy";
     }
-
+    console.log(valid);
     return valid;
 }
 function validatePseudonym(pseudonymInput, isFormValid, error) {

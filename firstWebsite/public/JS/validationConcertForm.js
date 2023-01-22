@@ -11,6 +11,7 @@ function validateForm(){
     const errorsSummary = document.getElementById('errorsSummary');
 
     resetErrors([venueInput, startDateInput, finishDateInput], [errorVenue, errorStartDate, errorFinishDate, errorsSummary], errorsSummary);
+    console.log("ASFDASDas")
 
     let valid = true;
 
@@ -23,6 +24,7 @@ function validateForm(){
     if (!valid){
         errorsSummary.innerText = "Formularz zawiera błędy";
     }
+
 
     return valid;
 

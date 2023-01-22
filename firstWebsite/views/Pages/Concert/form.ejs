@@ -1,126 +1,125 @@
 <%- include('../../fragments/header.ejs') %>
-        <main>
-            <script type="application/javascript" src="../../JS/validationConcertForm.js"></script>
+<main>
 
-            <h2><%= pageTitle %></h2>
+    <h2><%= pageTitle %></h2>
+    <form
+        class="form"
+        method="post"
+        action="<%=formAction%>"
+        onsubmit="return validateForm()"
+    >
+        <input type="hidden" name="Id" value="<%=concert.Id ? concert.Id: ''%>">
 
-            <form
-                class="form"
-                method="post"
-                action="<%=formAction%>"
-                onsubmit="return validateForm()"
-                novalidate
-            >
-                <input type="hidden" name="Id" value="<%=concert.Id ? concert.Id: ''%>">
+        <label for="Venue">Lokalizacja: <span class="symbol-required">*</span></label>
+        <input type="text" name="Venue" id="Venue"
+               placeholder="2-200 znaków"
+               value="<%=concert.Venue%>" <%= formMode == 'showDetails' ? 'disabled': ''%>
+               class="<%= validationErrors.find(e=>e.path.includes('Venue')) ? 'error-input': '' %>"
+        >
+        <% if (validationErrors.find(e=>e.path.includes('Venue'))){ %>
+            <span id="errorVenue" class="errors-text">
+        <%= validationErrors.find(e=>e.path.includes('Venue')).message %>
+            </span>
+        <% }else{%>
+            <span class="emptySpan"></span>
+        <%}%>
 
-                <label for="Venue">Lokalizacja: <span class="symbol-required">*</span></label>
-                <input type="text" name="Venue" id="Venue"
-                       placeholder="2-200 znaków"
-                       value="<%=concert.Venue%>" <%= formMode == 'showDetails' ? 'disabled': ''%>
-                       class="<%= validationErrors.find(e=>e.path.includes('Venue')) ? 'error-input': '' %>"
-                >
-                <% if (validationErrors.find(e=>e.path.includes('Venue'))){ %>
-                    <span id="errorPseudonym" class="errors-text">
-                <%= validationErrors.find(e=>e.path.includes('Venue')).message %>
-                    </span>
-                <% }else{%>
-                    <span class="emptySpan"></span>
-                <%}%>
-
-                <label for="StartDate">Data początkowa: <span class="symbol-required">*</span></label>
-                <input type="date" name="StartDate" id="StartDate"
-                   value="<%= concert.StartDate ? concert.StartDate.toISOString().split('T')[0]: '' %>"
-                   <%= formMode == 'showDetails' ? 'disabled': '' %>
-                   class="<%= validationErrors.find(e=>e.path.includes('StartDate')) ? 'error-input': '' %>"
-                >
-                <% if (validationErrors.find(e=>e.path.includes('StartDate'))){ %>
-                    <span id="errorPseudonym" class="errors-text">
-                <%= validationErrors.find(e=>e.path.includes('StartDate')).message %>
-                    </span>
-                <% }else{%>
-                    <span class="emptySpan"></span>
-                <%}%>
+        <label for="StartDate">Data początkowa: <span class="symbol-required">*</span></label>
+        <input type="date" name="StartDate" id="StartDate"
+           value="<%= concert.StartDate ? concert.StartDate.toISOString().split('T')[0]: '' %>"
+           <%= formMode == 'showDetails' ? 'disabled': '' %>
+           class="<%= validationErrors.find(e=>e.path.includes('StartDate')) ? 'error-input': '' %>"
+        >
+        <% if (validationErrors.find(e=>e.path.includes('StartDate'))){ %>
+            <span id="errorStartDate" class="errors-text">
+        <%= validationErrors.find(e=>e.path.includes('StartDate')).message %>
+            </span>
+        <% }else{%>
+            <span class="emptySpan"></span>
+        <%}%>
 
 
-                <label for="FinishDate">Data końca: <span class="symbol-required">*</span></label>
-                <input type="date" name="FinishDate" id="FinishDate"
-                    value="<%= concert.FinishDate ? concert.FinishDate.toISOString().split('T')[0]: ''%>"
-                   <%= formMode == 'showDetails' ? 'disabled': '' %>
-                   class="<%= validationErrors.find(e=>e.path.includes('FinishDate')) ? 'error-input': '' %>"
-                >
-                <% if (validationErrors.find(e=>e.path.includes('FinishDate'))){ %>
-                    <span id="errorPseudonym" class="errors-text">
-                <%= validationErrors.find(e=>e.path.includes('FinishDate')).message %>
-                    </span>
-                <% }else{%>
-                    <span class="emptySpan"></span>
-                <%}%>
+        <label for="FinishDate">Data końca: <span class="symbol-required">*</span></label>
+        <input type="date" name="FinishDate" id="FinishDate"
+            value="<%= concert.FinishDate ? concert.FinishDate.toISOString().split('T')[0]: ''%>"
+           <%= formMode == 'showDetails' ? 'disabled': '' %>
+           class="<%= validationErrors.find(e=>e.path.includes('FinishDate')) ? 'error-input': '' %>"
+        >
+        <% if (validationErrors.find(e=>e.path.includes('FinishDate'))){ %>
+            <span id="errorFinishDate" class="errors-text">
+        <%= validationErrors.find(e=>e.path.includes('FinishDate')).message %>
+            </span>
+        <% }else{%>
+            <span class="emptySpan"></span>
+        <%}%>
 
-                <% if(formMode == 'showDetails' || formMode == 'createNew'){ %>
-                    <div class="form-buttons">
-                        <p>
-                            <% if(formMode == 'createNew'){ %>
-                                <input
-                                    href="/concert"
-                                    type="submit"
-                                    class="button-add"
-                                    value="Dodaj"
-                                >
-                            <% } %>
-                            <a href="/concert" class="form-button-cancel">Anuluj</a>
-                        </p>
-                    </div>
-                <% }else{ %>
-                    <div class="form-buttons">
-                        <p>
-                            <input href="/concert" action="<%=formAction%>" type="submit" class="button-edit" value="Edytuj">
-                            <a href="/concert" class="form-button-cancel">Anuluj</a>
-                        </p>
-                    </div>
-                <% } %>
-            </form>
-            <% if(formMode == 'showDetails' && performances.length >= 1){ %>
+        <% if(formMode == 'showDetails' || formMode == 'createNew'){ %>
+            <div class="form-buttons">
+                <p>
+                    <% if(formMode == 'createNew'){ %>
+                        <input
+                            href="/concert"
+                            type="submit"
+                            class="button-add"
+                            value="Dodaj"
+                        >
+                    <% } %>
+                    <a href="/concert" class="form-button-cancel">Anuluj</a>
+                </p>
+            </div>
+        <% }else{ %>
+            <div class="form-buttons">
+                <p>
+                    <input href="/concert" action="<%=formAction%>" type="submit" class="button-edit" value="Edytuj">
+                    <a href="/concert" class="form-button-cancel">Anuluj</a>
+                </p>
+            </div>
+        <% } %>
+    </form>
+    <% if(formMode == 'showDetails' && performances.length >= 1){ %>
 
-                <h2>Szczegóły występów</h2>
+        <h2>Szczegóły występów</h2>
 
-                <table class="table-list">
+        <table class="table-list">
 
-                    <thead>
+            <thead>
 
-                        <tr>
+                <tr>
 
-                            <th>Imie</th>
-                            <th>Nazwisko</th>
-                            <th>Pseudonim</th>
-                            <th>Numer występu</th>
-                            <th>Czas występu</th>
+                    <th>Imie</th>
+                    <th>Nazwisko</th>
+                    <th>Pseudonim</th>
+                    <th>Numer występu</th>
+                    <th>Czas występu</th>
 
-                        </tr>
+                </tr>
 
-                    </thead>
+            </thead>
 
-                    <tbody>
-                        <% performances.forEach(performance => { %>
-                            <tr>
+            <tbody>
+                <% performances.forEach(performance => { %>
+                    <tr>
 
-                                <td><%=performance.FirstName%></td>
-                                <td><%=performance.LastName%></td>
-                                <td><%=performance.Pseudonym%></td>
-                                <td><%=performance.PerformanceNumber%></td>
-                                <td><%=performance.PerformanceTime%></td>
+                        <td><%=performance.FirstName%></td>
+                        <td><%=performance.LastName%></td>
+                        <td><%=performance.Pseudonym%></td>
+                        <td><%=performance.PerformanceNumber%></td>
+                        <td><%=performance.PerformanceTime%></td>
 
-                            </tr>
-                        <% }); %>
+                    </tr>
+                <% }); %>
 
-                    </tbody>
+            </tbody>
 
-                </table>
+        </table>
 
-            <% } %>
-            <% if(formMode == 'showDetails' && performances.length == 0){ %>
+    <% } %>
+    <% if(formMode == 'showDetails' && performances.length == 0){ %>
 
-                <h2>Brak występów na koncercie</h2>
+        <h2>Brak występów na koncercie</h2>
 
-            <% } %>
-        </main>
+    <% } %>
+    <script type="application/javascript" src="/JS/validationConcertForm.js"></script>
+
+</main>
 <%- include('../../fragments/footer.ejs') %>

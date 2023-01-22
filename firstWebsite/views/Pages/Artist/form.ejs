@@ -1,6 +1,5 @@
 <%- include('../../fragments/header.ejs') %>
 <main>
-    <script type="application/javascript" src="../../JS/validationArtistForm.js"></script>
 
     <h2><%= pageTitle %></h2>
 
@@ -8,7 +7,7 @@
         class="form"
         method="post"
         action="<%=formAction%>"
-        onsubmit="return validateForm();"
+        onsubmit="return validateForm"
     >
         <input type="hidden" name="id" value="<%=artist.Id ? artist.Id: ''%>">
 
@@ -93,5 +92,6 @@
             </div>
         <% } %>
     </form>
+    <script type="application/javascript" src="/JS/validationArtistForm.js"></script>
 </main>
 <%- include('../../fragments/footer.ejs') %>
