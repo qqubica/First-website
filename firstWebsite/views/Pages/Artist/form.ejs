@@ -1,13 +1,11 @@
 <%- include('../../fragments/header.ejs') %>
 <main>
-
     <h2><%= pageTitle %></h2>
-
     <form
         class="form"
-        method="post"
+        method="<%=formMode=='showDetails'?'get':'post'%>"
         action="<%=formAction%>"
-        onsubmit="return validateForm()"
+        onsubmit="<%= formMode=='createNew' || formMode=='edit' ? 'return validateForm()': ''%>"
     >
         <input type="hidden" name="id" value="<%=artist.Id ? artist.Id: ''%>">
 
@@ -50,7 +48,7 @@
 
         <label for="Birthdate">Data urodzenia: </label>
         <input type="date" name="birthdate" id="Birthdate" placeholder="2011-11-11"
-               value="<% fmt.formatDate(artist.Brithdate) %>"
+               value="<%= fmt.formatDate(artist.Birthdate) %>"
                 <%= (formMode == 'showDetails') ? 'disabled': ''%>
                 class="<%= validationErrors.find(e=>e.path.includes('Birthdate')) ? 'error-input':''%>"
         >

@@ -1,12 +1,11 @@
 <%- include('../../fragments/header.ejs') %>
 <main>
     <h2><%= pageTitle %></h2>
-
     <form
         class="form"
-        method="post"
+        method="<%=formMode=='showDetails'?'get':'post'%>"
         action="<%=formAction%>"
-        onsubmit="return validateForm()"
+        onsubmit="<%= formMode=='createNew' || formMode=='edit' ? 'return validateForm()': ''%>"
     >
         <input type="hidden" name="Id"
             value="<%=artistOnConcert.Id ? artistOnConcert.Id: ''%>"

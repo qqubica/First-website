@@ -121,7 +121,7 @@ exports.showDetailsArtistOnConcertForm = (req, res, next) => {
                 concerts: certenConcert,
                 pageTitle: 'Szczegóły występu',
                 formMode: 'showDetails',
-                formAction: 'artistOnConcert',
+                formAction: '../edit/' + artistOnConcertId,
                 navLocation: 'artistOnConcert',
                 validationErrors: [],
             })

@@ -42,12 +42,11 @@ exports.showArtistDetails = (req, res, next) => {
     const artistId = req.params.artistId;
     ArtistRepository.getArtistsById(artistId)
         .then(artist => {
-            console.log(artist);
             res.render('Pages/Artist/form', {
                 artist: artist.dataValues,
                 pageTitle: 'Szczegóły artysty',
                 formMode: 'showDetails',
-                formAction: '',
+                formAction: '../edit/' + artistId,
                 navLocation: 'artist',
                 validationErrors: [],
             });

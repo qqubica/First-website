@@ -40,10 +40,10 @@ function validateForm(){
     }
 
     // validate pseudonym
-    if(!checkTextLengthRange(pseudonymInput.value, 0, 50)){
+    if(!checkTextLengthRange(pseudonymInput.value, 0, 200)){
         valid = false;
         pseudonymInput.classList.add("error-input");
-        errorPseudonym.innerText = "Pole może mieć od " + 0 + " do " + 50;
+        errorPseudonym.innerText = "Pole może mieć od " + 0 + " do " + 200;
     }
 
     // validate birthdate

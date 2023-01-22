@@ -17,7 +17,6 @@ function checkNumberBiggerThen(input, min){
 }
 
 function checkDate(value){
-    console.log(value)
     if(!value){
         return false;
     }
@@ -56,9 +55,6 @@ function checkRequired(value) {
 }
 
 function checkTextLengthRange(value, min, max) {
-    if (!value){
-        return false;
-    }
     value = value.toString().trim();
     const length = value.length;
     if (max && length > max){

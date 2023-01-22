@@ -45,6 +45,8 @@ exports.showEditConcertForm = (req, res, next) => {
 
 exports.showDetailsConcertForm =   (req, res, next) => {
     const concertId = req.params.concertId;
+    console.log(concertId)
+
     ArtistOnConcerRepository.getArtistsOnConcerts()
         .then(performers => {
             return performers.map(x => x.dataValues)
@@ -69,7 +71,7 @@ exports.showDetailsConcertForm =   (req, res, next) => {
                 performances: performers,
                 pageTitle: 'Szczegóły koncertu',
                 formMode: 'showDetails',
-                formAction: 'artist',
+                formAction: '../edit/' + concertId,
                 navLocation: 'concert',
                 validationErrors: [],
             })
