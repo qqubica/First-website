@@ -10,8 +10,9 @@ function validateForm(){
     const errorFinishDate = document.getElementById('errorFinishDate');
     const errorsSummary = document.getElementById('errorsSummary');
 
+    console.log("beff")
     resetErrors([venueInput, startDateInput, finishDateInput], [errorVenue, errorStartDate, errorFinishDate, errorsSummary], errorsSummary);
-    console.log("ASFDASDas")
+    console.log("after")
 
     let valid = true;
 

@@ -16,13 +16,12 @@
                value="<%=concert.Venue%>" <%= formMode == 'showDetails' ? 'disabled': ''%>
                class="<%= validationErrors.find(e=>e.path.includes('Venue')) ? 'error-input': '' %>"
         >
-        <% if (validationErrors.find(e=>e.path.includes('Venue'))){ %>
-            <span id="errorVenue" class="errors-text">
-        <%= validationErrors.find(e=>e.path.includes('Venue')).message %>
-            </span>
-        <% }else{%>
-            <span class="emptySpan"></span>
-        <%}%>
+
+        <span id="errorVenue"
+              class="<%=validationErrors.find(e=>e.path.includes('Venue')) ? 'errors-text': 'emptySpan'%>"
+        >
+            <%=validationErrors.find(e=>e.path.includes('Venue')) ? validationErrors.find(e=>e.path.includes('StartDate')).message: ''%>
+        </span>
 
         <label for="StartDate">Data początkowa: <span class="symbol-required">*</span></label>
         <input type="date" name="StartDate" id="StartDate"
@@ -30,14 +29,12 @@
            <%= formMode == 'showDetails' ? 'disabled': '' %>
            class="<%= validationErrors.find(e=>e.path.includes('StartDate')) ? 'error-input': '' %>"
         >
-        <% if (validationErrors.find(e=>e.path.includes('StartDate'))){ %>
-            <span id="errorStartDate" class="errors-text">
-        <%= validationErrors.find(e=>e.path.includes('StartDate')).message %>
-            </span>
-        <% }else{%>
-            <span class="emptySpan"></span>
-        <%}%>
 
+        <span id="errorStartDate"
+              class="<%=validationErrors.find(e=>e.path.includes('StartDate')) ? 'errors-text': 'emptySpan'%>"
+        >
+            <%=validationErrors.find(e=>e.path.includes('StartDate')) ? validationErrors.find(e=>e.path.includes('StartDate')).message: ''%>
+        </span>
 
         <label for="FinishDate">Data końca: <span class="symbol-required">*</span></label>
         <input type="date" name="FinishDate" id="FinishDate"
@@ -45,13 +42,12 @@
            <%= formMode == 'showDetails' ? 'disabled': '' %>
            class="<%= validationErrors.find(e=>e.path.includes('FinishDate')) ? 'error-input': '' %>"
         >
-        <% if (validationErrors.find(e=>e.path.includes('FinishDate'))){ %>
-            <span id="errorFinishDate" class="errors-text">
-        <%= validationErrors.find(e=>e.path.includes('FinishDate')).message %>
-            </span>
-        <% }else{%>
-            <span class="emptySpan"></span>
-        <%}%>
+
+        <span id="errorFinishDate"
+              class="<%= validationErrors.find(e=>e.path.includes('FinishDate')) ? 'errors-text': 'emptySpan'%>"
+        >
+            <%= validationErrors.find(e=>e.path.includes('FinishDate')) ? validationErrors.find(e=>e.path.includes('FinishDate')).message: ''%>
+        </span>
 
         <% if(formMode == 'showDetails' || formMode == 'createNew'){ %>
             <div class="form-buttons">
@@ -120,6 +116,5 @@
 
     <% } %>
     <script type="application/javascript" src="/JS/validationConcertForm.js"></script>
-
 </main>
 <%- include('../../fragments/footer.ejs') %>
