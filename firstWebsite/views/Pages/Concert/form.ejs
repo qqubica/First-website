@@ -51,24 +51,26 @@
 
         <% if(formMode == 'showDetails' || formMode == 'createNew'){ %>
             <div class="form-buttons">
-                <p>
-                    <% if(formMode == 'createNew'){ %>
-                        <input
-                            href="/concert"
-                            type="submit"
-                            class="button-add"
-                            value="Dodaj"
-                        >
-                    <% } %>
-                    <a href="/concert" class="form-button-cancel">Anuluj</a>
+                <p id="errorsSummary" class="errors-text">
+                    <%=validationErrors.length > 0 ? 'Błędy w formularzu': ''%>
                 </p>
+                <% if(formMode == 'createNew'){ %>
+                    <input
+                        href="/concert"
+                        type="submit"
+                        class="button-add"
+                        value="Dodaj"
+                    >
+                <% } %>
+                <a href="/concert" class="form-button-cancel">Anuluj</a>
             </div>
         <% }else{ %>
             <div class="form-buttons">
-                <p>
-                    <input href="/concert" action="<%=formAction%>" type="submit" class="button-edit" value="Edytuj">
-                    <a href="/concert" class="form-button-cancel">Anuluj</a>
+                <p id="errorsSummary" class="errors-text">
+                    <%=validationErrors.length > 0 ? 'Błędy w formularzu': ''%>
                 </p>
+                <input href="/concert" action="<%=formAction%>" type="submit" class="button-edit" value="Edytuj">
+                <a href="/concert" class="form-button-cancel">Anuluj</a>
             </div>
         <% } %>
     </form>

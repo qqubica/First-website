@@ -95,30 +95,28 @@
         <% if(formMode == 'showDetails' || formMode == 'createNew'){ %>
 
             <div class="form-buttons">
-                <p>
-                    <% if(formMode == 'createNew'){ %>
-                        <input
-                            href="/artistOnConcert"
-                            type="submit"
-                            class="button-add"
-                            value="<%=btnLabel%>"
-                        >
-                    <% } %>
-                    <a href="/artistOnConcert" class="form-button-cancel">Anuluj</a>
+                <p id="errorsSummary" class="errors-text">
+                    <%=validationErrors.length > 0 ? 'Błędy w formularzu': ''%>
                 </p>
+                <% if(formMode == 'createNew'){ %>
+                    <input
+                        href="/artistOnConcert"
+                        type="submit"
+                        class="button-add"
+                        value="<%=btnLabel%>"
+                    >
+                <% } %>
+                <a href="/artistOnConcert" class="form-button-cancel">Anuluj</a>
             </div>
 
         <% }else{ %>
 
             <div class="form-buttons">
-
-                <p>
-
-                    <input href="/artistOnConcert" action="<%=formAction%>" type="submit" class="button-edit" value="Edytuj">
-                    <a href="/artistOnConcert" class="form-button-cancel">Anuluj</a>
-
+                <p id="errorsSummary" class="errors-text">
+                    <%=validationErrors.length > 0 ? 'Błędy w formularzu': ''%>
                 </p>
-
+                <input href="/artistOnConcert" action="<%=formAction%>" type="submit" class="button-edit" value="Edytuj">
+                <a href="/artistOnConcert" class="form-button-cancel">Anuluj</a>
             </div>
 
         <% } %>
