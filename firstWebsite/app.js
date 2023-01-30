@@ -13,6 +13,8 @@ const artistApiRouter = require('./routes/api/ArtistApiRoute');
 const concertApiRouter = require('./routes/api/ConcertApiRoute');
 const artistOnConcertApiRouter = require('./routes/api/ArtistOnConcertApiRoute');
 
+const cors = require('cors')
+
 var app = express();
 
 // view engine setup
@@ -24,6 +26,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(cors({
+    origin: 'http://localhost:8000',
+}))
 
 const morgan = require('morgan');
 app.use(morgan((tokens, req, res) => {
