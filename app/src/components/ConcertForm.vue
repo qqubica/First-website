@@ -51,6 +51,31 @@
                 @click="cancelForm"
             >{{ $t('cancel') }}</v-btn>
           </div>
+          
+          <div v-if="formMode=='details'">
+          <h2>{{ $t('performanceDetails') }}</h2>
+            <table class="table-list">
+              <thead>
+                <tr>
+                  <th>{{ $t('name') }}</th>
+                  <th>{{ $t('lastName') }}</th>
+                  <th>{{ $t('pseudonim') }}</th>
+                  <th>{{ $t('performanceId') }}</th>
+                  <th>{{ $t('performanceTime') }}</th>
+                </tr>
+              </thead>
+              <tbody>
+              <tr v-for="performance in performances" :key="performance.id">
+                <td>{{ performance.firstName }}</td>
+                <td>{{ performance.lastName }}</td>
+                <td>{{ performance.pseudonym }}</td>
+                <td>{{ performance.performanceNumber }}</td>
+                <td>{{ performance.performanceTime }}</td>
+  
+              </tr>
+              </tbody>
+            </table>
+          </div>
         </v-container>
       </v-form>
     </v-sheet>
@@ -66,6 +91,7 @@ export default {
   data(){
     return {
       formData: {},
+      performances: [],
       venueRules: [
         (v) => v ? true: this.$t('required'),
         (v) => v?.length <= 200 ? true: this.$t('max200'),
@@ -94,9 +120,35 @@ export default {
           .then(apiResponse => {
             this.formData = this.adaptData(apiResponse.data)
           })
+      this.getArtistOnConcertFromApi()
+          .then(apiResponse => {
+            this.performances = this.adaptPerformances(apiResponse.data)
+          })
     }
   },
   methods: {
+    async getArtistOnConcertFromApi(){
+      return axios
+          .get('http://localhost:3000/api/artistOnConcert')
+          .catch(err => {
+            console.log(err)
+          })
+    },
+    adaptPerformances(apiData){
+      let data = apiData.filter(p => {
+        return p.ConcertId == this.concertId
+      }).map(performance => {
+        return {
+          id: performance.Id,
+          firstName: performance.artistOnConcert.FirstName,
+          lastName: performance.artistOnConcert.LastName,
+          pseudonym: performance.artistOnConcert.Pseudonym,
+          performanceNumber: performance.PerformanceNumber,
+          performanceTime: performance.PerformanceTime,
+        }
+      })
+      return data
+    },
     async getConcertFromApi(){
       return axios
           .get('http://localhost:3000/api/concert/' + this.concertId)
@@ -382,8 +434,13 @@ textarea {
     "detailsButton": "Edytuj",
     "editButton": "Zapisz zmiany",
     "undefinedButton": "Dodaj",
-    "addButton": "Dodaj"
-
+    "addButton": "Dodaj",
+    "name":"Imie",
+    "lastName":"Nazwisko",
+    "pseudonim":"Pseudonim",
+    "performanceId":"Nr występu",
+    "performanceTime":"Czas występu",
+    "performanceDetails":"Szczegóły występu",
   },
   "en": {
     "title": "Add concert",
@@ -403,7 +460,13 @@ textarea {
     "detailsButton": "Edit",
     "editButton": "Save changes",
     "undefinedButton": "Add",
-    "addButton": "Add"
+    "addButton": "Add",
+    "name":"Name",
+    "lastName":"Lastname",
+    "pseudonim":"Pseudonym",
+    "performanceId":"Performance number",
+    "performanceTime":"Performance time",
+    "performanceDetails":"Performance details",
   }
 }
 </i18n>
