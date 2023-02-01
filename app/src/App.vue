@@ -91,18 +91,18 @@ export default {
     handleLogin(data){
       localStorage.setItem('user', data)
       this.$router.push({name: 'home'})
-      this.logedIn = this.isLogedIn
+      this.logedIn = this.checkLogin()
     },
     handleLogout(){
       localStorage.removeItem('user')
       this.logedIn = false
       this.$router.push({name: 'home'})
+    },
+    checkLogin(){
+      return localStorage.getItem('user') != null
     }
   },
   computed: {
-    isLogedIn(){
-      return localStorage.getItem('user') != null
-    },
     includesConcert(){
       return this.$route.name?.includes("concert")
     },
@@ -116,8 +116,8 @@ export default {
       return this.$route.name?.includes("login")
     },
   },
-  created() {
-    this.logedIn = this.isLogedIn
+  mounted() {
+    this.logedIn = this.checkLogin()
   }
 }
 </script>
