@@ -1,7 +1,14 @@
 const Artist = require("../../model/sequelize/Artist");
 
+exports.findByName = (name) => {
+    return Artist.findOne({
+        where: {
+            FirstName: name
+        }
+    })
+}
+
 exports.getArtists = () => {
-    console.log("GETTING")
     return Artist.findAll();
 };
 
