@@ -44,11 +44,6 @@
         {{ $t('addNewArtist') }}
       </router-link>
     </p>
-    <v-btn
-        @click="logPar"
-    >
-      parent
-    </v-btn>
   </main>
 </template>
 
