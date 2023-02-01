@@ -66,7 +66,9 @@
           </li>
         </ul>
       </nav>
-      <router-view v-on:loggedIn="(data) => handleLogin(data)"/>
+      <router-view
+          v-on:loggedIn="(data) => handleLogin(data)"
+      />
       <footer>
         Jakub Wudarski, s23291
       </footer>
