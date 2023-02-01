@@ -11,7 +11,7 @@
           <th>{{ $t('surname') }}</th>
           <th>{{ $t('pseudonym') }}</th>
           <th>{{ $t('concert') }}</th>
-          <th>{{ $t('actions') }}</th>
+          <th v-if="logedIn">{{ $t('actions') }}</th>
         </tr>
       </thead>
       <tbody>
@@ -23,7 +23,7 @@
           <td>{{ artistOnConcert.lastName }}</td>
           <td>{{ artistOnConcert.pseudonym }}</td>
           <td>{{ artistOnConcert.venue }}</td>
-          <td>
+          <td v-if="logedIn">
             <ul class="list-actions">
               <li><a class="list-actions-button-details" @click="details(artistOnConcert.id)">{{ $t('details') }}</a></li>
               <li><a class="list-actions-button-edit" @click="edit(artistOnConcert.id)">{{ $t('edit') }}</a></li>
@@ -36,7 +36,7 @@
 
     <p v-else>{{ $t('emptyList') }}</p>
 
-    <p>
+    <p v-if="logedIn">
       <router-link
           :to="{name: 'artistOnConcertFormEmpty'}"
           class="button-add"
@@ -57,6 +57,7 @@ export default {
   data(){
     return{
       artistsOnConcerts: [],
+      logedIn: false,
     }
   },
   mounted(){
@@ -64,6 +65,7 @@ export default {
         .then(apiResponse => {
           this.artistsOnConcerts = this.adaptData(apiResponse.data)
         })
+    this.logedIn = this.$checkLogin()
   },
   methods:{
     async getArtistOnConcertFromApi(){

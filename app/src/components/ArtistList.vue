@@ -11,7 +11,7 @@
           <th>{{ $t('surname') }}</th>
           <th>{{ $t('pseudonym') }}</th>
           <th>{{ $t('birthdate') }}</th>
-          <th>{{ $t('actions') }}</th>
+          <th v-if="logedIn">{{ $t('actions') }}</th>
         </tr>
       </thead>
       <tbody>
@@ -23,7 +23,7 @@
           <td>{{ artist.lastName }}</td>
           <td>{{ artist.pseudonym }}</td>
           <td>{{ artist.birthdate }}</td>
-          <td>
+          <td v-if="logedIn">
             <ul class="list-actions">
               <li><a class="list-actions-button-details" @click="details(artist.id)">{{ $t('details') }}</a></li>
               <li><a class="list-actions-button-edit" @click="edit(artist.id)">{{ $t('edit') }}</a></li>
@@ -36,7 +36,7 @@
 
     <p v-else>{{ $t('emptyList') }}</p>
 
-    <p>
+    <p v-if="logedIn">
       <router-link
           :to="{name: 'artistFormEmpty'}"
           class="button-add"
@@ -57,6 +57,7 @@ export default {
   data() {
     return{
       artists:[],
+      logedIn: false,
     }
   },
   mounted() {
@@ -64,12 +65,10 @@ export default {
         .then(apiResponse => {
           this.artists = this.adaptData(apiResponse.data)
         });
+    this.logedIn = this.$checkLogin()
   },
+
   methods: {
-    logPar(){
-      console.log(this.logedIn)
-      console.log(this.logedIn)
-    },
     async getArtistsFromApi(){
       return axios
           .get('http://localhost:3000/api/artist')
