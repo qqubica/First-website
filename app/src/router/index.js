@@ -6,12 +6,18 @@ import ConcertList from "@/components/ConcertList.vue";
 import ArtistForm from "@/components/ArtistForm.vue";
 import ConcertForm from "@/components/ConcertForm.vue";
 import ArtistOnConcertForm from "@/components/ArtistOnConcertForm.vue";
+import loginView from "@/views/LoginView.vue";
 
 const routes = [
   {
     path: '/',
     name: 'home',
     component: HomeView
+  },
+  {
+    path:'/login',
+    name:'login',
+    component: loginView,
   },
   {
     path: '/artist',

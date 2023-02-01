@@ -39,14 +39,34 @@
               {{ $t('artistOnConcert') }}
             </router-link>
           </li>
-          <li @click="changeLanguage('pl')">
+          <li
+              @click="changeLanguage('pl')"
+              style="padding-left: 10px"
+          >
             <a :class="{active: this.$i18n.locale == 'pl'}">PL</a></li>
-          <li @click="changeLanguage('en')">
+          <li
+              @click="changeLanguage('en')"
+              style="padding-right: 10px"
+          >
             <a :class="{active: this.$i18n.locale == 'en'}">EN</a>
+          </li>
+          <li style="padding-left: 10px">
+
+            <router-link
+                v-if="!logedIn"
+                :class="{active: includesLogin}"
+                :to="{name: 'login'}"
+            >
+              {{ $t('loginPage') }}
+            </router-link>
+            <a
+                v-else
+                @click="handleLogout"
+            >{{ $t('logout')}}</a>
           </li>
         </ul>
       </nav>
-      <router-view/>
+      <router-view v-on:loggedIn="(data) => handleLogin(data)"/>
       <footer>
         Jakub Wudarski, s23291
       </footer>
@@ -60,14 +80,27 @@ export default {
   name: 'App',
 
   data: () => ({
-
+    logedIn: false
   }),
   methods: {
     changeLanguage(lang) {
       this.$i18n.locale = lang
+    },
+    handleLogin(data){
+      localStorage.setItem('user', data)
+      this.$router.push({name: 'home'})
+      this.logedIn = this.isLogedIn
+    },
+    handleLogout(){
+      localStorage.removeItem('user')
+      this.logedIn = false
+      this.$router.push({name: 'home'})
     }
   },
   computed: {
+    isLogedIn(){
+      return localStorage.getItem('user') == null ? false: true
+    },
     includesConcert(){
       return this.$route.name?.includes("concert")
     },
@@ -77,6 +110,12 @@ export default {
     includesArtistOnConcert(){
       return this.$route.name?.includes("artistOnConcert")
     },
+    includesLogin(){
+      return this.$route.name?.includes("login")
+    },
+  },
+  created() {
+    this.logedIn = this.isLogedIn
   }
 }
 </script>
@@ -366,10 +405,14 @@ textarea {
 <i18n>
 {
   "pl": {
-    "title": "Artysci i koncert"
+    "title": "Artysci i koncert",
+    "loginPage": "Login",
+    "logout": "Wyloguj",
   },
   "en": {
-    "title": "Artists and concerts"
+    "title": "Artists and concerts",
+    "loginPage": "Login",
+    "logout": "Logout"
   }
 }
 </i18n>

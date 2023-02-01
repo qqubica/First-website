@@ -16,7 +16,7 @@ exports.login = (req, res) => {
             bcrypt.compare(password, user.password)
                 .then(isEqual => {
                     if (!isEqual) {
-                        return res.status(401).send({ message: "Nieprawidłowy email lub hasło! w bcrypt" })
+                        return res.status(401).send({ message: "Nieprawidłowy email lub hasło!" })
                     }
                     const token = jwt.sign(
                         {
@@ -26,7 +26,6 @@ exports.login = (req, res) => {
                         config.secret,
                         { expiresIn: '1h' }
                     )
-                    console.log(token)
                     res.status(200).json({ token: token, userId: user.Id })
                 })
                 .catch(err => {
@@ -34,4 +33,8 @@ exports.login = (req, res) => {
                     res.status(501)
                 })
         })
+}
+
+exports.logout = (req, res) => {
+
 }

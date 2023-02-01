@@ -2,16 +2,13 @@
   <main>
     <h2>{{ $t('mainPage') }}</h2>
     <p>{{ $t('description') }}</p>
-    <LoginView></LoginView>
   </main>
 </template>
 
 <script>
-import LoginView from "@/views/LoginView.vue";
 
 export default {
   name: "HomeView",
-  components: {LoginView}
 }
 </script>
 
