@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <meta charset="UTF-8">
+    <title>Artyści i koncerty</title>
+    <link rel ="stylesheet" href="../../css/style.css"/>
+    <script type="application/javascript" src="/JS/validationCommon.js"></script>
+</head>
+<body>
+<header>
+    <h1>Artyści i koncerty</h1>
+    <img src="../../Images/logo.png" alt="Artysci i koncerty logo">
+</header>
+<nav>
+    <ul>
+        <li><a href ="/" class="<%= navLocation == 'main'? 'active': '' %>">Strona główna</a></li>
+        <li><a href ="/Artist" class="<%= navLocation == 'artist'? 'active': '' %>">Artysta</a></li>
+        <li><a href ="/Concert" class="<%= navLocation == 'concert'? 'active': '' %>">Koncert</a></li>
+        <li><a href ="/ArtistOnConcert" class="<%= navLocation == 'artistOnConcert'? 'active': '' %>">Kto występował</a></li>
+    </ul>
+</nav>

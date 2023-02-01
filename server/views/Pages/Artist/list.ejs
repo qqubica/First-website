@@ -1,0 +1,50 @@
+<%- include('../../fragments/header.ejs') %>
+<main>
+    <h2>Lista artystów</h2>
+    <% if(artists.length >= 1){ %>
+    <table class="table-list">
+        <thead>
+            <tr>
+                <th>Imie</th>
+                <th>Nazwisko</th>
+                <th>Pseudonim</th>
+                <th>Data Urodzenia</th>
+                <th>Akcje</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% artists.forEach(artist =>  { %>
+                <tr>
+                    <td><%= artist.FirstName %></td>
+                    <td><%= artist.LastName %></td>
+                    <td>
+                        <% if(artist.Pseudonym){ %>
+                            <%= artist.Pseudonym %>
+                        <% } else { %>
+                            Brak
+                        <% } %>
+                    </td>
+                    <td>
+                        <% if(artist.Birthdate) { %>
+                            <%= artist.Birthdate.toISOString().split('T')[0] %>
+                        <% } else { %>
+                            N/A
+                        <% } %>
+                    </td>
+                    <td>
+                        <ul class="list-actions">
+                            <li><a href="/artist/details/<%=artist.Id%>" class="list-actions-button-details">Szczegóły</a></li>
+                            <li><a href="/artist/edit/<%=artist.Id%>" class="list-actions-button-edit">Edytuj</a></li>
+                            <li><a href="/artist/delete/<%=artist.Id%>" class="list-actions-button-delete">Usuń</a></li>
+                        </ul>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+    <% } else { %>
+        <p>Brak artystów do wyświetlenia</p>
+    <% } %>
+    <p><a href="/artist/add" class="button-add">Dodaj nowego artystę</a></p>
+</main>
+<%- include('../../fragments/footer.ejs') %>

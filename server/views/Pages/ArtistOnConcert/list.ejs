@@ -1,0 +1,45 @@
+<%- include('../../fragments/header.ejs') %>
+        <main>
+            <h2>Lista artystów na koncertach</h2>
+                <% if(artistsOnConcerts.length > 0){ %>
+                    <table class="table-list">
+                        <thead>
+                            <tr>
+                                <th>Imie</th>
+                                <th>Nazwisko</th>
+                                <th>Pseudonim</th>
+                                <th>Koncert</th>
+                                <th>Akcje</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% artistsOnConcerts.forEach( data => { %>
+                                <tr>
+
+                                    <td><%=data.firstName%></td>
+                                    <td><%=data.lastName%></td>
+                                    <td><%=data.pseudonym%></td>
+                                    <td><%=data.venue%></td>
+
+                                    <td>
+
+                                        <ul class="list-actions">
+
+                                            <li><a class="list-actions-button-details" href="/artistOnConcert/details/<%=data.id%>">Szczegóły</a></li>
+                                            <li><a class="list-actions-button-edit" href="/artistOnConcert/edit/<%=data.id%>">Edytuj</a></li>
+                                            <li><a class="list-actions-button-delete" href="/artistOnConcert/delete/<%=data.id%>">Usuń</a></li>
+
+                                        </ul>
+
+                                    </td>
+
+                                </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                <% }else{ %>
+                    <p>Nie ma nic do wyświetlenia</p>
+                <% } %>
+            <p><a href="/artistOnConcert/add" class="button-add">Dodaj nowy występ</a></p>
+        </main>
+<%- include('../../fragments/footer.ejs') %>
