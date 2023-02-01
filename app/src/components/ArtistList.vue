@@ -44,6 +44,11 @@
         {{ $t('addNewArtist') }}
       </router-link>
     </p>
+    <v-btn
+        @click="logPar"
+    >
+      parent
+    </v-btn>
   </main>
 </template>
 
@@ -66,6 +71,10 @@ export default {
         });
   },
   methods: {
+    logPar(){
+      console.log(this.logedIn)
+      console.log(this.logedIn)
+    },
     async getArtistsFromApi(){
       return axios
           .get('http://localhost:3000/api/artist')

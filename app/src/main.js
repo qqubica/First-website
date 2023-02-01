@@ -8,9 +8,13 @@ import cors from 'cors'
 
 loadFonts()
 
-createApp(App)
+const app = createApp(App)
     .use(router)
     .use(vuetify)
     .use(i18n)
     .use(cors)
-    .mount('#app')
+
+app.config.globalProperties.$checkLogin = () => {      return localStorage.getItem('user') != null
+}
+
+app.mount('#app')

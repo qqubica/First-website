@@ -91,7 +91,7 @@ export default {
     handleLogin(data){
       localStorage.setItem('user', data)
       this.$router.push({name: 'home'})
-      this.logedIn = this.checkLogin()
+      this.logedIn = this.$checkLogin
     },
     handleLogout(){
       localStorage.removeItem('user')
@@ -117,7 +117,7 @@ export default {
     },
   },
   mounted() {
-    this.logedIn = this.checkLogin()
+    this.logedIn = this.$checkLogin()
   }
 }
 </script>

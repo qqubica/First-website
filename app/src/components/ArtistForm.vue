@@ -124,6 +124,7 @@ export default {
     }
   },
   methods: {
+
     async getArtistFromApi(){
       return axios
           .get('http://localhost:3000/api/artist/' + this.artistId)
