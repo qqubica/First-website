@@ -57,6 +57,7 @@ exports.deleteConcert = (req, res, next) => {
     ConcertRepository.deleteConcert(concertId)
         .then(result => {
             res.status(200).json({message: 'Removed Concert', concert: result});
+            console.log(ConcertRepository.getConcerts())
         })
         .catch(err => {
             if (!err.statusCode){

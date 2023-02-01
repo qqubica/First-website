@@ -39,14 +39,11 @@ exports.createArtistOnConcert = (newArtistOnConcert) => {
         PerformanceNumber: newArtistOnConcert.PerformanceNumber,
         PerformanceTime: newArtistOnConcert.PerformanceTime,
     }
-
     return ArtistOnConcert.create(newData);
-    // return ArtistOnConcert.build(newData).validate()
-    //     .then(()=>{
-    //     })
 };
 
 exports.updateArtistOnConcert = async (artistOnConcertId, data) => {
+    console.log(data)
     return ArtistOnConcert.update(data, {
         where: {id: artistOnConcertId}
     });

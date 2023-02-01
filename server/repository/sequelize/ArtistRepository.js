@@ -1,6 +1,7 @@
 const Artist = require("../../model/sequelize/Artist");
 
 exports.getArtists = () => {
+    console.log("GETTING")
     return Artist.findAll();
 };
 
@@ -20,6 +21,7 @@ exports.createArtist = (Data) => {
 };
 
 exports.updateArtist = (Id, data) => {
+    console.log()
     const newData = {
         FirstName: data.firstName,
         LastName: data.lastName,

@@ -3,6 +3,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+// const cors = require('cors')
+
 
 var indexRouter = require('./routes/index');
 var artistRouter = require('./routes/artistRouter');
@@ -13,9 +15,9 @@ const artistApiRouter = require('./routes/api/ArtistApiRoute');
 const concertApiRouter = require('./routes/api/ConcertApiRoute');
 const artistOnConcertApiRouter = require('./routes/api/ArtistOnConcertApiRoute');
 
-const cors = require('cors')
 
 var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -27,9 +29,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(cors({
-    origin: 'http://localhost:8000',
-}))
+// app.use(cors({
+//     origin: 'http://localhost:8000',
+// }))
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "http://192.168.1.16:8000");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
 const morgan = require('morgan');
 app.use(morgan((tokens, req, res) => {
@@ -57,6 +65,8 @@ app.use('/artistOnConcert', artistOnConcertRouter);
 app.use('/api/artist', artistApiRouter);
 app.use('/api/concert', concertApiRouter);
 app.use('/api/artistOnConcert', artistOnConcertApiRouter);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

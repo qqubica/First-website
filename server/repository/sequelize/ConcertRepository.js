@@ -29,6 +29,7 @@ exports.updateConcert = (id, data) => {
         FinishDate: data.FinishDate == '' ? null: data.FinishDate,
     };
 
+    console.log("updatins")
     return Concert.update(newData, {
         where: {Id: concertId}
     });
