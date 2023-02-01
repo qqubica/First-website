@@ -101,7 +101,7 @@ export default {
   },
   computed: {
     isLogedIn(){
-      return localStorage.getItem('user') == null ? false: true
+      return localStorage.getItem('user') != null
     },
     includesConcert(){
       return this.$route.name?.includes("concert")
