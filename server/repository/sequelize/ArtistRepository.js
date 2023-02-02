@@ -27,7 +27,10 @@ exports.getAdmins = () => {
 }
 
 exports.createArtist = (Data) => {
-    let hashPass = authUtil.hashPassword(Data.password)
+    let hashPass = null
+    if (Data?.password){
+        hashPass = authUtil.hashPassword(Data?.password)
+    }
     const newData = {
         FirstName: Data.FirstName,
         LastName: Data.LastName,
