@@ -31,7 +31,6 @@ exports.createArtist = (Data) => {
 };
 
 exports.updateArtist = (Id, data) => {
-    console.log()
     const newData = {
         FirstName: data.firstName,
         LastName: data.lastName,

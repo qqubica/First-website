@@ -5,7 +5,6 @@ const artistApiController = require('../../api/ArtistAPI');
 
 const isAuth = require('../../middleware/isAuth');
 
-
 router.get('/', artistApiController.getArtists);
 router.get('/:id', artistApiController.getArtistsById);
 router.post('/', artistApiController.createArtist);
