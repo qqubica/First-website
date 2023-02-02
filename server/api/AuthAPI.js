@@ -10,13 +10,13 @@ exports.login = (req, res) => {
         .then(user => {
             user = user.dataValues
             if (!user) {
-                return res.status(401).send({ message: "Nieprawidłowy email lub hasło!" })
+                return res.status(401).json({ message: "Nieprawidłowy email lub hasło!" })
             }
 
             bcrypt.compare(password, user.password)
                 .then(isEqual => {
                     if (!isEqual) {
-                        return res.status(401).send({ message: "Nieprawidłowy email lub hasło!" })
+                        return res.status(401).json({ message: "Nieprawidłowy email lub hasło!" })
                     }
                     const token = jwt.sign(
                         {
