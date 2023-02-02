@@ -70,6 +70,11 @@ const Artist = sequelize.define('Artist', {
     password: {
         type: Sequelize.STRING,
         allowNull: false,
+    },
+    credentials:{
+        type: Sequelize.STRING,
+        defaultValue: 'user',
+        allowNull: true
     }
 });
 

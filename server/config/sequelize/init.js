@@ -56,7 +56,7 @@ module.exports = () => {
         .then(artists => {
             if (!artists || artists.length == 0){
                 return Artist.bulkCreate([
-                    {FirstName: "Kuba", LastName: "Wudrski", Pseudonym: "Student", password: passHash},
+                    {FirstName: "Kuba", LastName: "Wudrski", Pseudonym: "Student", password: passHash, credentials: 'admin'},
                     {FirstName: "Marek", LastName: "Tura", Pseudonym: "T.M", Birthdate: "2000-03-13", password: passHash},
                     {FirstName: "Arek", LastName: "Udar", Birthdate: "2012-09-20", password: passHash},
                     {FirstName: "Darek", LastName: "Dudek", Pseudonym: "DD", Birthdate: "1890-12-29", password: passHash},
