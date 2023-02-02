@@ -17,6 +17,7 @@
               :placeholder="$t('min2max50')"
               :hint="$t('min2max50')"
               :disabled="formMode == 'details'"
+              :error-messages="firstNameErrors"
               variant="outlined"
               clearable
               class="pa-2 input-field"
@@ -28,6 +29,7 @@
               :rules="passwordRules"
               :label="$t('password')"
               :placeholder="$t('inputPass')"
+              :error-messages="passwordErrors"
               variant="outlined"
               class="pa-2 input-field"
               :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
@@ -43,6 +45,7 @@
               :placeholder="$t('min2max100')"
               :hint="$t('min2max100')"
               :disabled="formMode == 'details'"
+              :error-messages="lastNameErrors"
               variant="outlined"
               clearable
               class="pa-2 input-field"
@@ -119,7 +122,10 @@ export default {
         (v) => v ? true: this.$t('required'),
       ],
       dateRules: [],
-      showPass: false
+      showPass: false,
+      lastNameErrors: [],
+      firstNameErrors: [],
+      passwordErrors: [],
     }
   },
   props:{
@@ -184,7 +190,10 @@ export default {
               this.$router.push({path: '/artist'})
             })
             .catch((err) => {
-              console.log(err)
+              // err.response.data.forEach(r => console.log(r))
+              this.lastNameErrors = err.response.data.filter(e=>e.path=='lastName').map(e=>this.$t(e.message))
+              this.firstNameErrors= err.response.data.filter(e=>e.path=='firstName').map(e=>this.$t(e.message))
+              this.passwordErrors = err.response.data.filter(e=>e.path=='password').map(e=>this.$t(e.message))
             })
       }
       if (this.formMode == 'edit') {
@@ -205,10 +214,12 @@ export default {
               this.$router.push({path: '/artist'})
             })
             .catch((err) => {
-              console.log(err)
+              err.response.data.forEach(r => console.log(r))
+              this.lastNameErrors = err.response.data.filter(e=>e.path=='lastName').map(e=>this.$t(e.message))
+              this.firstNameErrors= err.response.data.filter(e=>e.path=='firstName').map(e=>this.$t(e.message))
+              this.passwordErrors = err.response.data.filter(e=>e.path=='password').map(e=>this.$t(e.message))
             })
       }
-      console.log(this.formMode)
     }
   },
   computed: {
@@ -539,7 +550,12 @@ textarea {
     "addButton": "Dodaj",
     "password": "Hasło",
     "inputPass": "Wpisz hasło",
-
+    "Pole jest wymagane": "Pole jest wymagane",
+    "Artist.password cannot be null": "Hasło jest wymagane",
+    "Pole powinno zawierać od 2 do 50 znaków": "Pole powinno zawierać od 2 do 50 znaków",
+    "Pole powinno zawierać od 2 do 100 znaków": "Pole powinno zawierać od 2 do 100 znaków",
+    "Pseudonim musi być unikalny": "Pseudonim musi być unikalny",
+    "Pole powinno zawierać do 200 znaków": "Pole powinno zawierać do 200 znaków",
   },
   "en": {
     "title": "Add artist",
@@ -570,7 +586,14 @@ textarea {
     "undefinedButton": "Add",
     "addButton": "Add",
     "password": "Password",
-    "inputPass": "Input password"
+    "inputPass": "Input password",
+    "Pole jest wymagane": "Field required",
+    "Artist.password cannot be null": "Password required",
+    "Pole powinno zawierać od 2 do 50 znaków": "Min 2 characters max 50",
+    "Pole powinno zawierać od 2 do 100 znaków": "Min 2 characters max 100",
+    "Pseudonim musi być unikalny": "This must be unique",
+    "Pole powinno zawierać do 200 znaków": "Max 200 characters",
+    "Pole powinno być datą": "Should be data",
   }
 }
 </i18n>
