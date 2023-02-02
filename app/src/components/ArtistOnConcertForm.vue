@@ -137,7 +137,7 @@ export default {
         id: data.Id,
         artist: {
           id: data.ArtistId,
-          name: data.ArtistId.FirstName + ' ' + data.ArtistId.LastName + (data.ArtistId.Pseudonym ? (' (' + data.ArtistId.Pseudonym + ')'): '')
+          name: data.artistOnConcert.FirstName + ' ' + data.artistOnConcert.LastName + (data.artistOnConcert.Pseudonym ? (' (' + data.artistOnConcert.Pseudonym + ')'): '')
         },
         venue: {
           id: data.ConcertId,
@@ -193,9 +193,12 @@ export default {
           PerformanceNumber: this.formData.performanceId ,
           PerformanceTime: this.formData.duration
         }
-        console.log(data)
         return axios
-            .post('http://localhost:3000/api/artistOnConcert', data)
+            .post('http://localhost:3000/api/artistOnConcert',
+                data, {
+                  headers: {
+                    Authorization: 'Bearer ' + this.$loginData().token
+                  }})
             .then(()=>{
               this.$refs.artistOnConcertForm.reset()
               this.$router.push({name: 'artistOnConcert'})
@@ -212,7 +215,11 @@ export default {
           PerformanceTime: this.formData.duration
         }
         return axios
-            .put('http://localhost:3000/api/artistOnConcert/' + this.formData.id, data)
+            .put('http://localhost:3000/api/artistOnConcert/' + this.formData.id,
+                data, {
+                  headers: {
+                    Authorization: 'Bearer ' + this.$loginData().token
+                  }})
             .then(()=>{
               this.$refs.artistOnConcertForm.reset()
               this.$router.push({name: 'artistOnConcert'})

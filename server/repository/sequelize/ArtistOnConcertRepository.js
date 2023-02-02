@@ -61,7 +61,6 @@ exports.createArtistOnConcert = (newArtistOnConcert) => {
 };
 
 exports.updateArtistOnConcert = async (artistOnConcertId, data) => {
-    console.log(data)
     return ArtistOnConcert.update(data, {
         where: {id: artistOnConcertId}
     });
