@@ -127,7 +127,10 @@ export default {
   methods: {
     async getArtistOnConcert(){
       return axios
-          .get('http://localhost:3000/api/artistOnConcert/' + this.artistOnConcertId)
+          .get('http://localhost:3000/api/artistOnConcert/' + this.artistOnConcertId, {
+            headers: {
+              Authorization: 'Bearer ' + this.$loginData().token
+            }})
           .catch(err => {
             console.log(err)
           })
