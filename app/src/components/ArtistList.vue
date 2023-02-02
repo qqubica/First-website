@@ -70,8 +70,11 @@ export default {
 
   methods: {
     async getArtistsFromApi(){
+      let headers = {
+        Authorization: 'Bearer ' + this.$loginData().token
+      }
       return axios
-          .get('http://localhost:3000/api/artist')
+          .get('http://localhost:3000/api/artist', {headers})
           .then(data => {
             return data
           })

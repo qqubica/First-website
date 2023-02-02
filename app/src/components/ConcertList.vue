@@ -68,7 +68,10 @@ export default {
   methods: {
     async getConcertsFromApi(){
       return axios
-          .get('http://localhost:3000/api/concert')
+          .get('http://localhost:3000/api/concert', {
+            headers: {
+              Authorization: 'Bearer ' + this.$loginData().token
+            }})
           .catch(error => {
             console.log(error);
           })
