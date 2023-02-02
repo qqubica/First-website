@@ -8,6 +8,7 @@ module.exports = (req, res, next) => {
     if (token == null) {
         return res.sendStatus(401)
     }
+    console.log(token)
     jwt.verify(token, config.secret, (err, user) => {
         if (err) {
             console.log(err)

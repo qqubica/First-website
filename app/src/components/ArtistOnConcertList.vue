@@ -63,7 +63,11 @@ export default {
   mounted(){
     this.getArtistOnConcertFromApi()
         .then(apiResponse => {
-          this.artistsOnConcerts = this.adaptData(apiResponse.data)
+          if (apiResponse?.data instanceof Array){
+            this.artistsOnConcerts = this.adaptData(apiResponse?.data)
+          } else {
+            this.artistsOnConcerts = []
+          }
         })
     this.logedIn = this.$checkLogin()
   },
@@ -79,7 +83,8 @@ export default {
           })
     },
     adaptData(apiData){
-      return apiData.map(performance => {
+      // console.log(apiData)
+      return apiData?.map(performance => {
         return {
           id: performance.Id,
           firstName: performance.artistOnConcert.FirstName,

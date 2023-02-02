@@ -3,7 +3,10 @@ const ArtistOnConcertRepository = require('../repository/sequelize/ArtistOnConce
 exports.getArtistsOnConcerts = (req, res, next) => {
     ArtistOnConcertRepository.getArtistsOnConcerts()
         .then((artistOnConcerts) => {
-            res.status(200).json(artistOnConcerts);
+            let data = artistOnConcerts.filter(aOc => {
+                return req.user?.credentials == 'admin' || aOc.ArtistId == req.user?.userId
+            })
+            return res.status(200).json(data);
         })
         .catch(err => {
             console.log(err);
