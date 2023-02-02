@@ -71,7 +71,7 @@ export default {
   methods: {
     async getArtistsFromApi(){
       let headers = {
-        Authorization: 'Bearer ' + this.$loginData().token
+        Authorization: 'Bearer ' + this.$loginData()?.token
       }
       return axios
           .get('http://localhost:3000/api/artist', {headers})

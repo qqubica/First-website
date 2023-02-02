@@ -70,7 +70,7 @@ export default {
       return axios
           .get('http://localhost:3000/api/concert', {
             headers: {
-              Authorization: 'Bearer ' + this.$loginData().token
+              Authorization: 'Bearer ' + this.$loginData()?.token
             }})
           .catch(error => {
             console.log(error);
