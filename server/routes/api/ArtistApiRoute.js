@@ -8,7 +8,7 @@ const isAuth = require('../../middleware/isAuth');
 
 router.get('/', artistApiController.getArtists);
 router.get('/:id', artistApiController.getArtistsById);
-router.post('/', isAuth, artistApiController.createArtist);
+router.post('/', artistApiController.createArtist);
 router.put('/:id', isAuth, artistApiController.updateArtist);
 router.delete('/:id', isAuth, artistApiController.deleteArtist);
 

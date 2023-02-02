@@ -1,4 +1,6 @@
 const Artist = require("../../model/sequelize/Artist");
+const authUtil = require('../../utils/authUtils')
+const {hashPassword} = require("../../utils/authUtils");
 
 exports.findByName = (name) => {
     return Artist.findOne({
@@ -17,13 +19,14 @@ exports.getArtistsById = (Id) => {
 }
 
 exports.createArtist = (Data) => {
+    let hashPass = authUtil.hashPassword(Data.password)
     const newData = {
         FirstName: Data.FirstName,
         LastName: Data.LastName,
         Pseudonym: Data.Pseudonym,
         Birthdate: Data.Birthdate,
+        password: hashPass,
     }
-
     return Artist.create(newData);
 };
 

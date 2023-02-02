@@ -36,7 +36,7 @@
 
     <p v-else>{{ $t('emptyList') }}</p>
 
-    <p v-if="logedIn">
+    <p>
       <router-link
           :to="{name: 'artistFormEmpty'}"
           class="button-add"

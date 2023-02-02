@@ -7,6 +7,7 @@ import ArtistForm from "@/components/ArtistForm.vue";
 import ConcertForm from "@/components/ConcertForm.vue";
 import ArtistOnConcertForm from "@/components/ArtistOnConcertForm.vue";
 import loginView from "@/views/LoginView.vue";
+import main from "@/main"
 
 const routes = [
   {
@@ -27,18 +28,19 @@ const routes = [
   {
     path:'/concert',
     name:'concert',
-    component: ConcertList
+    component: ConcertList,
   },
   {
     path:'/artistOnConcert',
     name:'artistOnConcert',
-    component: ArtistOnConcertList
+    component: ArtistOnConcertList,
   },
   {
     path:'/artist/:mode/:id',
     name:'artistForm',
     component: ArtistForm,
-    props: true
+    props: true,
+
   },
   {
     path:'/artist/add',
@@ -75,6 +77,22 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes
+})
+
+router.beforeEach((to) => {
+  let path = to.fullPath.split('/')
+  if (path[0] == '' && path[1] == ''){
+    return
+  }
+  if (path[0] == '' && path[1] != '' && path.length == 2){
+    return
+  }
+  if (to.name == 'artistFormEmpty'){
+    return
+  }
+  if (!main.userLoginBool()){
+    return {name: 'login'}
+  }
 })
 
 export default router

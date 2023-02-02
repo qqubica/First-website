@@ -22,6 +22,19 @@
               class="pa-2 input-field"
           ></v-text-field>
           <v-text-field
+              v-if="formMode=='add'"
+              ref="password"
+              v-model="formData.password"
+              :rules="passwordRules"
+              :label="$t('password')"
+              :placeholder="$t('inputPass')"
+              variant="outlined"
+              class="pa-2 input-field"
+              :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
+              :type="showPass ? 'text' : 'password'"
+              @click:append="showPass = !showPass"
+          ></v-text-field>
+          <v-text-field
               ref="lastName"
               v-model="formData.lastName"
               :label="$t('surname')"
@@ -102,7 +115,11 @@ export default {
           return v?.length <= 200 ? true: this.$t('max200')
         },
       ],
+      passwordRules: [
+        (v) => v ? true: this.$t('required'),
+      ],
       dateRules: [],
+      showPass: false
     }
   },
   props:{
@@ -124,7 +141,6 @@ export default {
     }
   },
   methods: {
-
     async getArtistFromApi(){
       return axios
           .get('http://localhost:3000/api/artist/' + this.artistId)
@@ -141,7 +157,6 @@ export default {
         birthdate: apiData.Birthdate?.split('T')[0]
       }
     },
-
     cancelForm(){
       this.$router.push({ path: '/artist' })
     },
@@ -159,10 +174,10 @@ export default {
           FirstName: this.formData.firstName,
           LastName: this.formData.lastName,
           Pseudonym: this.formData.pseudonym,
-          Birthdate: this.formData.birthdate
+          Birthdate: this.formData.birthdate,
+          password: this.formData.password,
         }
-        return axios
-            .post('http://localhost:3000/api/artist', data)
+        return axios.post('http://localhost:3000/api/artist/',data)
             .then(() => {
               this.$refs.artistForm.reset()
               this.$router.push({path: '/artist'})
@@ -516,7 +531,9 @@ textarea {
     "detailsButton" : "Edytuj",
     "editButton": "Zapisz zmiany",
     "undefinedButton": "Dodaj",
-    "addButton": "Dodaj"
+    "addButton": "Dodaj",
+    "password": "Hasło",
+    "inputPass": "Wpisz hasło",
 
   },
   "en": {
@@ -546,7 +563,9 @@ textarea {
     "detailsButton": "Edit",
     "editButton": "Save changes",
     "undefinedButton": "Add",
-    "addButton": "Add"
+    "addButton": "Add",
+    "password": "Password",
+    "inputPass": "Input password"
   }
 }
 </i18n>
