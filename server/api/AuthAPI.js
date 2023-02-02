@@ -22,6 +22,7 @@ exports.login = (req, res) => {
                         {
                             firstName: user.FirstName,
                             userId: user.Id,
+                            credentials: user.credentials,
                         },
                         config.secret,
                         { expiresIn: '1h' }
