@@ -10,6 +10,7 @@ module.exports = (req, res, next) => {
     }
     jwt.verify(token, config.secret, (err, user) => {
         if (err) {
+            // console.log(err)
             return res.sendStatus(403)
         }
         req.user = user

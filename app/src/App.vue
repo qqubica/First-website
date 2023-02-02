@@ -89,7 +89,7 @@ export default {
       this.$i18n.locale = lang
     },
     handleLogin(data){
-      localStorage.setItem('user', data)
+      localStorage.setItem('user', JSON.stringify(data))
       this.$router.push({name: 'home'})
       this.logedIn = this.$checkLogin()
     },

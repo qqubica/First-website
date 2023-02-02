@@ -25,7 +25,6 @@ exports.getArtistsById = (req, res, next) => {
 };
 
 exports.createArtist = (req, res, next) => {
-    console.log(req.body)
     ArtistRepository.createArtist(req.body)
         .then(newObj => {
             res.status(201).json(newObj);

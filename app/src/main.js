@@ -10,8 +10,12 @@ loadFonts()
 
 const app = createApp(App)
 
-let userLoginBool = () => { return localStorage.getItem('user') != null}
-let userData = () => { return localStorage.getItem('user') }
+let userLoginBool = () => {
+    return localStorage.getItem('user') != null
+}
+let userData = () => {
+    return JSON.parse(localStorage.getItem('user'))
+}
 
 app.config.globalProperties.$checkLogin = userLoginBool
 app.config.globalProperties.$loginData = userData
