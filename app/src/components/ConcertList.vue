@@ -56,7 +56,6 @@ export default {
     return{
       concerts:[],
       logedIn: false,
-
     }
   },
   mounted() {
@@ -92,7 +91,10 @@ export default {
     },
     del(id){
       axios
-          .delete('http://localhost:3000/api/concert/' + id)
+          .delete('http://localhost:3000/api/concert/' + id, {
+            headers: {
+              Authorization: 'Bearer ' + this.$loginData().token
+            }})
           .then(() => {
             this.concerts = this.concerts.filter(concert => concert.id != id)
           })

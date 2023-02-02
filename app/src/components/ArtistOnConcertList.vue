@@ -93,7 +93,11 @@ export default {
       this.$router.push({ name: 'artistOnConcertForm', params: {id: id,mode: 'edit'}})
     },
     del(id){
-      axios.delete('http://localhost:3000/api/artistOnConcert/' + id)
+      axios
+          .delete('http://localhost:3000/api/artistOnConcert/' + id, {
+            headers: {
+              Authorization: 'Bearer ' + this.$loginData().token
+            }})
           .then(() => {
             this.artistsOnConcerts = this.artistsOnConcerts.filter(performance => performance.id != id)
           })

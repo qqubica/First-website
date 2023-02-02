@@ -98,7 +98,10 @@ export default {
     },
     del(id){
       axios
-          .delete('http://localhost:3000/api/artist/' + id)
+          .delete('http://localhost:3000/api/artist/' + id, {
+            headers: {
+              Authorization: 'Bearer ' + this.$loginData().token
+            }})
           .then(() => {
               this.artists = this.artists.filter(artist => artist.id != id)
       })
