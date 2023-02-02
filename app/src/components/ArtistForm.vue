@@ -177,7 +177,8 @@ export default {
           Birthdate: this.formData.birthdate,
           password: this.formData.password,
         }
-        return axios.post('http://localhost:3000/api/artist/',data)
+        return axios
+            .post('http://localhost:3000/api/artist/',data)
             .then(() => {
               this.$refs.artistForm.reset()
               this.$router.push({path: '/artist'})
@@ -193,8 +194,14 @@ export default {
           pseudonym: this.formData.pseudonym,
           birthdate: this.formData.birthdate
         }
-        return axios
-            .put('http://localhost:3000/api/artist/' + this.formData.id, data)
+        return axios({
+          methods: 'PUT',
+          url: 'http://localhost:3000/api/artist/' + this.formData.id,
+          headers: {
+            'Authorization': 'Bearer ' + this.$loginData.token
+          },
+          data: data
+        })
             .then(() => {
               this.$refs.artistForm.reset()
               this.$router.push({path: '/artist'})
