@@ -55,14 +55,31 @@ exports.updateArtist = (req, res, next) => {
 
 exports.deleteArtist = (req, res, next) => {
     const artistId = req.params.id;
-    ArtistRepository.deleteArtist(artistId)
+    ArtistRepository.getAdmins()
         .then(result => {
-            res.status(200).json({message: 'Removed artist', artist: result});
+            result.map(r => r.dataValues.Id).forEach(a => {
+                if (a == artistId) {
+                    throw new Error('No admin delete')
+                }
+            })
+        })
+        .then(() => {
+            ArtistRepository.deleteArtist(artistId)
+                .then(result => {
+                    console.log("NO WAY")
+                    return res.status(200).json({message: 'Removed artist', artist: result});
+                })
+                .catch(err => {
+                    if (!err.statusCode) {
+                        err.statusCode = 500;
+                    }
+                    return next(err);
+                });
         })
         .catch(err => {
-            if (!err.statusCode){
-                err.statusCode = 500;
+            if (!err.statusCode) {
+                err.statusCode = 401;
             }
-            next(err);
-        });
+            return next(err);
+        })
 };

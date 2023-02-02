@@ -18,6 +18,14 @@ exports.getArtistsById = (Id) => {
     return Artist.findByPk(Id);
 }
 
+exports.getAdmins = () => {
+    return Artist.findAll({
+        where: {
+            credentials: 'admin'
+        }
+    })
+}
+
 exports.createArtist = (Data) => {
     let hashPass = authUtil.hashPassword(Data.password)
     const newData = {
