@@ -75,7 +75,7 @@ const Artist = sequelize.define('Artist', {
         type: Sequelize.STRING,
         defaultValue: 'user',
         allowNull: true
-    }
+    },
 });
 
 module.exports = Artist;
