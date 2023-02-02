@@ -30,10 +30,14 @@ exports.createConcert = (req, res, next) => {
             res.status(201).json(newObj);
         })
         .catch(err => {
-            if(!err.statusCode){
-                err.statusCode = 500;
-            }
-            next(err);
+            let errors = err.errors.map(e => {
+                return {
+                    message: e.message,
+                    path: e.path.charAt(0).toLowerCase() + e.path.slice(1),
+                }
+            })
+
+            res.status(500).json(errors);
         });
 };
 
@@ -44,10 +48,14 @@ exports.updateConcert = (req, res, next) => {
             res.status(200).json({message: 'Concert updated', concert: result});
         })
         .catch(err => {
-            if (!err.statusCode){
-                err.statusCode = 500;
-            }
-            next(err);
+            let errors = err.errors.map(e => {
+                return {
+                    message: e.message,
+                    path: e.path.charAt(0).toLowerCase() + e.path.slice(1),
+                }
+            })
+
+            res.status(500).json(errors)
         });
 };
 

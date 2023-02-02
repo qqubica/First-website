@@ -17,6 +17,7 @@
               :label="$t('artist')"
               :rules="artistRules"
               :disabled="formMode == 'details'"
+              :error-messages="artistsErrors"
               variant="outlined"
               class="pa-2 input-field"
           ></v-select>
@@ -29,6 +30,7 @@
               :label="$t('venue')"
               :rules="venueRules"
               :disabled="formMode == 'details'"
+              :error-messages="venueErrors"
               variant="outlined"
               class="pa-2 input-field"
           ></v-select>
@@ -39,6 +41,7 @@
               :rules="performanceIdRules"
               :hint="$t('performanceId')"
               :disabled="formMode == 'details'"
+              :error-messages="performanceIdErrors"
               variant="outlined"
               type="number"
               class="pa-2 input-field"
@@ -50,6 +53,7 @@
               :rules="durationRules"
               :hint="$t('durationDescription')"
               :disabled="formMode == 'details'"
+              :error-messages="durationErrors"
               variant="outlined"
               type="number"
               class="pa-2 input-field"
@@ -95,6 +99,10 @@ export default {
       performanceIdRules: [
         (v) => v ? true: this.$t('required'),
       ],
+      artistsErrors: [],
+      venueErrors: [],
+      durationErrors: [],
+      performanceIdErrors: [],
     }
   },
   props:{
@@ -207,7 +215,11 @@ export default {
               this.$router.push({name: 'artistOnConcert'})
             })
             .catch((err) => {
-              console.log(err)
+              console.log(err.response.data)
+              this.artistsErrors = err.response.data.filter(e=>e.path=="artistId").map(e=>this.$t(e.message))
+              this.venueErrors = err.response.data.filter(e=>e.path=="concertId").map(e=>this.$t(e.message))
+              this.durationErrors = err.response.data.filter(e=>e.path=="performanceTime").map(e=>this.$t(e.message))
+              this.performanceIdErrors = err.response.data.filter(e=>e.path=="performanceNumber").map(e=>this.$t(e.message))
             })
       }
       if (this.formMode == 'edit'){
@@ -565,7 +577,10 @@ textarea {
     "performanceId": "Który to występ na koncercie",
     "detailsButton": "Edytuj",
     "editButton": "Zapisz zmiany",
-    "addButton": "Dodaj"
+    "addButton": "Dodaj",
+    "Pole jest wymagane": "Pole jest wymagane",
+    "Nie znaleziono artysty": "Nie znaleziono artysty",
+    "Nie znaleziono koncertu": "Nie znaleziono koncertu",
   },
   "en": {
     "title": "Add performance",
@@ -595,7 +610,10 @@ textarea {
     "performanceId": "Which performance during the concert it is",
     "detailsButton": "Edit",
     "editButton": "Save changes",
-    "addButton": "Add"
+    "addButton": "Add",
+    "Pole jest wymagane": "Required",
+    "Nie znaleziono artysty": "Artist not found",
+    "Nie znaleziono koncertu": "Concert not found",
   }
 }
 </i18n>

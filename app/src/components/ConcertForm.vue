@@ -17,6 +17,7 @@
               :placeholder="$t('max200')"
               :hint="$t('max200')"
               :disabled="formMode == 'details'"
+              :error-messages="venueErrors"
               variant="outlined"
               class="pa-2 input-field"
           ></v-text-field>
@@ -26,6 +27,7 @@
               :label="$t('startDate')"
               :rules="startDateRules"
               :disabled="formMode == 'details'"
+              :error-messages="startDateErrors"
               variant="outlined"
               type="date"
               class="pa-2 input-field"
@@ -36,6 +38,7 @@
               :label="$t('finishDate')"
               :rules="finishDateRules"
               :disabled="formMode == 'details'"
+              :error-messages="finishDateErrors"
               variant="outlined"
               type="date"
               class="pa-2 input-field"
@@ -103,6 +106,9 @@ export default {
       finishDateRules: [
         (v) => v ? true: this.$t('required'),
       ],
+      venueErrors: [],
+      startDateErrors: [],
+      finishDateErrors: [],
     }
   },
   props:{
@@ -130,7 +136,10 @@ export default {
   methods: {
     async getArtistOnConcertFromApi(){
       return axios
-          .get('http://localhost:3000/api/artistOnConcert')
+          .get('http://localhost:3000/api/artistOnConcert',{
+            headers: {
+              Authorization: 'Bearer ' + this.$loginData().token
+            }})
           .catch(err => {
             console.log(err)
           })
@@ -152,7 +161,10 @@ export default {
     },
     async getConcertFromApi(){
       return axios
-          .get('http://localhost:3000/api/concert/' + this.concertId)
+          .get('http://localhost:3000/api/concert/' + this.concertId, {
+            headers: {
+              Authorization: 'Bearer ' + this.$loginData().token
+            }})
           .catch(error => {
             console.log(error)
           })
@@ -191,11 +203,14 @@ export default {
                     Authorization: 'Bearer ' + this.$loginData().token
                   }})
             .then(() => {
+              console.log("ASDASDAS")
               this.$refs.concertForm.reset()
               this.$router.push({path: '/concert'})
             })
             .catch((err) => {
-              console.log(err)
+              this.venueErrors = err.response.data.filter(e=>e.path=='venue').map(e=>this.$t(e.message))
+              this.startDateErrors = err.response.data.filter(e=>e.path=='startDate').map(e=>this.$t(e.message))
+              this.finishDateErrors = err.response.data.filter(e=>e.path=='finishDate').map(e=>this.$t(e.message))
             })
       }
       if (this.formMode == 'edit') {
@@ -215,7 +230,9 @@ export default {
               this.$router.push({path: '/concert'})
             })
             .catch((err) => {
-              console.log(err)
+              this.venueErrors = err.response.data.filter(e=>e.path=='venue').map(e=>this.$t(e.message))
+              this.startDateErrors = err.response.data.filter(e=>e.path=='startDate').map(e=>this.$t(e.message))
+              this.finishDateErrors = err.response.data.filter(e=>e.path=='finishDate').map(e=>this.$t(e.message))
             })
       }
     },
@@ -450,6 +467,11 @@ textarea {
     "performanceTime":"Czas występu",
     "performanceDetails":"Szczegóły występu",
     "min2": "Minimum 2 znaki",
+    "Pole jest wymagane": "Pole jest wymagane",
+    "Pole nie może mieć od 2 do 200 znaków": "Pole nie może mieć od 2 do 200 znaków",
+    "Pole powinno zawierać do 200 znaków": "Pole powinno zawierać do 200 znaków",
+
+    "Pole powinno być datą": "Pole powinno być datą",
   },
   "en": {
     "title": "Add concert",
@@ -477,6 +499,10 @@ textarea {
     "performanceTime":"Performance time",
     "performanceDetails":"Performance details",
     "min2": "At liest 2 characters",
+    "Pole jest wymagane": "Required",
+    "Pole nie może mieć od 2 do 200 znaków": "Max 200 min 2",
+    "Pole powinno zawierać do 200 znaków": "Max 200",
+    "Pole powinno być datą": "This should be date type",
   }
 }
 </i18n>
