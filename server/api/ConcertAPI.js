@@ -41,7 +41,6 @@ exports.updateConcert = (req, res, next) => {
     const concertId = req.params.id;
     ConcertRepository.updateConcert(concertId, req.body)
         .then(result => {
-            console.log("EQWA")
             res.status(200).json({message: 'Concert updated', concert: result});
         })
         .catch(err => {

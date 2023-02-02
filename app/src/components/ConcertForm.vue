@@ -94,6 +94,7 @@ export default {
       performances: [],
       venueRules: [
         (v) => v ? true: this.$t('required'),
+        (v) => v?.length >= 2 ? true: this.$t('min2'),
         (v) => v?.length <= 200 ? true: this.$t('max200'),
       ],
       startDateRules: [
@@ -184,7 +185,11 @@ export default {
           FinishDate: this.formData.finishDate,
         }
         return axios
-            .post('http://localhost:3000/api/concert', data)
+            .post('http://localhost:3000/api/concert/',
+                data, {
+                  headers: {
+                    Authorization: 'Bearer ' + this.$loginData().token
+                  }})
             .then(() => {
               this.$refs.concertForm.reset()
               this.$router.push({path: '/concert'})
@@ -195,12 +200,16 @@ export default {
       }
       if (this.formMode == 'edit') {
         let data = {
-            Venue: this.formData.venue,
-            StartDate: this.formData.startDate,
-            FinishDate: this.formData.finishDate,
-          }
+          Venue: this.formData.venue,
+          StartDate: this.formData.startDate,
+          FinishDate: this.formData.finishDate,
+        }
         return axios
-            .put('http://localhost:3000/api/concert/' + this.formData.id, data)
+            .put('http://localhost:3000/api/concert/' + this.formData.id,
+            data, {
+              headers: {
+                Authorization: 'Bearer ' + this.$loginData().token
+              }})
             .then(() => {
               this.$refs.concertForm.reset()
               this.$router.push({path: '/concert'})
@@ -209,7 +218,6 @@ export default {
               console.log(err)
             })
       }
-      console.log(this.formMode)
     },
 
   },
@@ -441,6 +449,7 @@ textarea {
     "performanceId":"Nr występu",
     "performanceTime":"Czas występu",
     "performanceDetails":"Szczegóły występu",
+    "min2": "Minimum 2 znaki",
   },
   "en": {
     "title": "Add concert",
@@ -467,6 +476,7 @@ textarea {
     "performanceId":"Performance number",
     "performanceTime":"Performance time",
     "performanceDetails":"Performance details",
+    "min2": "At liest 2 characters",
   }
 }
 </i18n>
